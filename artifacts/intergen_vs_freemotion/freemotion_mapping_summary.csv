@@ -1,0 +1,4 @@
+mapping,matched_keys,missing_keys,unexpected_keys,shape_mismatch,matched_parameter_ratio,backbone_ratio
+single:safe_wrapper_mapping,282,48,64,0,0.8254598123788601,0.6740345802281005
+multi:safe_wrapper_mapping,282,220,64,0,0.5276033548985577,0.6740345802281005
+multi:safe_wrapper_and_official_stage2_clone,390,112,128,0,0.758287475408003,0.6740345802281005

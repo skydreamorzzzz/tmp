@@ -1,0 +1,30 @@
+{
+  "strict_load": true,
+  "keys": 346,
+  "missing_keys": [],
+  "unexpected_keys": [],
+  "checkpoint_modified": false,
+  "added_parameter_count": 0,
+  "native_source_modified": false,
+  "zero_B": "normalized zero input at every denoising step, B hidden stream updated through all8 blocks; return A only",
+  "port_sha256": "032d033693d2fdb3cfb3dabeaf918e26c72fe27835ec77d41245b792ac00441f",
+  "settings": {
+    "seed": 1234,
+    "strategy": "ddim50",
+    "ddim_steps": 50,
+    "eta": 0,
+    "cfg_weight": 3.5,
+    "diffusion_steps": 1000,
+    "precision": "FP32",
+    "generation_batch_size": 8,
+    "text": "separate test text1/text2, no global interactive text"
+  },
+  "cases": 1099,
+  "reference": "https://github.com/skydreamorzzzz/DPMotion/blob/main/models/nets.py",
+  "reference_sampling_difference": "DPMotion current forward_single includes1000-step graph sampling; port uses native DDIM50 only as user instructed",
+  "zero_B_native_A_equivalence_max_abs": 1.6689300537109375e-06,
+  "zero_B_native_A_equivalence_tolerance": {
+    "atol": 1e-05,
+    "rtol": 1e-05
+  }
+}

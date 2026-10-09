@@ -1,0 +1,18 @@
+[
+  {
+    "id": "5834",
+    "original": "/home/featurize/work/incoming/interhuman/InterHuman-dataset/annots-20261004T100415Z-1-001/annots/5834.txt",
+    "original_encoding": "gb18030",
+    "original_sha256": "579b429ff71d56e984c44bc9c2b46188c50ef76c7261981a9e4d3e0d1b9f8fc9",
+    "utf8_sha256": "987ad620b6ea6706867678512fb20705660910bccc98ed3e765f80c7efd88b9c",
+    "text_changed": false
+  },
+  {
+    "id": "4642",
+    "original": "/home/featurize/work/incoming/interhuman/InterHuman-dataset/annots-20261004T100415Z-1-001/annots/4642.txt",
+    "original_encoding": "gb18030",
+    "original_sha256": "7fe453a6111035559a84f1a4a4d88a4c79925ec792fd8ab3ef6cde362e9d2b8b",
+    "utf8_sha256": "84feb465e93024fe713e0325207ba8b37abd7cdcf3b299e83676bb729103ac83",
+    "text_changed": false
+  }
+]

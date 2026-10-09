@@ -1,0 +1,141 @@
+{
+  "pairs": [
+    {
+      "file_id": "2636",
+      "seed": 2678,
+      "group1_text": "one person sidesteps to the right and the other person advances ahead.",
+      "group2_text": "the first one moves ahead by running, and the other person moves forward by walking.",
+      "retrieval": {
+        "text": "the first one moves ahead by running, and the other person moves forward by walking.",
+        "score": 0.923800528049469,
+        "rank": 6,
+        "reason": "rank6_fallback_no_below_threshold"
+      },
+      "window": 150,
+      "distance_m": 3.0,
+      "distance_weight": 5.0,
+      "sampler": "unmodified upstream forward_single; ancestral DDPM 1000",
+      "same_torch_random_draws_exactly": true,
+      "torch_random_draw_count": 2009,
+      "conditions": {
+        "off": {
+          "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/off/scene_2636_4p.npy",
+          "mean_random_draw_count": 2009,
+          "random_draw_sequence_sha256": "eddfd55c2f36fcc519f6c600b8354eb5bd8fa4ba57e7a59e6a904bb232f4ff2d",
+          "first_draw_sha256": "9c69cc39d204e4a774bd488be0e599ae098b174e457849e8613ecd1073394a60",
+          "last_draw_sha256": "86c618751d363f69de5cc4affd890b73552d8a2e8b01ae871da8e903c1eb19aa"
+        },
+        "on": {
+          "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/on/scene_2636_4p.npy",
+          "mean_random_draw_count": 2009,
+          "random_draw_sequence_sha256": "eddfd55c2f36fcc519f6c600b8354eb5bd8fa4ba57e7a59e6a904bb232f4ff2d",
+          "first_draw_sha256": "9c69cc39d204e4a774bd488be0e599ae098b174e457849e8613ecd1073394a60",
+          "last_draw_sha256": "86c618751d363f69de5cc4affd890b73552d8a2e8b01ae871da8e903c1eb19aa"
+        }
+      }
+    },
+    {
+      "file_id": "5647",
+      "seed": 5689,
+      "group1_text": "two persons lift slightly and swing both hands upwards from the front of their bodies.",
+      "group2_text": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+      "retrieval": {
+        "text": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+        "score": 0.8930875062942505,
+        "rank": 3,
+        "reason": "first_similarity_below_threshold"
+      },
+      "window": 150,
+      "distance_m": 3.0,
+      "distance_weight": 5.0,
+      "sampler": "unmodified upstream forward_single; ancestral DDPM 1000",
+      "same_torch_random_draws_exactly": true,
+      "torch_random_draw_count": 2009,
+      "conditions": {
+        "off": {
+          "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/off/scene_5647_4p.npy",
+          "mean_random_draw_count": 2009,
+          "random_draw_sequence_sha256": "527996b48936eebfc91809bc96b45eea599b9f576fb9da5acb324466080078d2",
+          "first_draw_sha256": "6f25783a90322a0306d5175d287c50e37062c39e9d20d7d7449ea3d8a3f1a378",
+          "last_draw_sha256": "5fa05b1de7ef39b70f4a4aca8a94d5adf966ad9d00d58d5156a7ecdd32b41bb3"
+        },
+        "on": {
+          "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/on/scene_5647_4p.npy",
+          "mean_random_draw_count": 2009,
+          "random_draw_sequence_sha256": "527996b48936eebfc91809bc96b45eea599b9f576fb9da5acb324466080078d2",
+          "first_draw_sha256": "6f25783a90322a0306d5175d287c50e37062c39e9d20d7d7449ea3d8a3f1a378",
+          "last_draw_sha256": "5fa05b1de7ef39b70f4a4aca8a94d5adf966ad9d00d58d5156a7ecdd32b41bb3"
+        }
+      }
+    },
+    {
+      "file_id": "2813",
+      "seed": 2855,
+      "group1_text": "two individuals are conversing with each other.",
+      "group2_text": "the two persons approach each other closely.",
+      "retrieval": {
+        "text": "the two persons approach each other closely.",
+        "score": 0.8986022472381592,
+        "rank": 16,
+        "reason": "first_similarity_below_threshold"
+      },
+      "window": 150,
+      "distance_m": 3.0,
+      "distance_weight": 5.0,
+      "sampler": "unmodified upstream forward_single; ancestral DDPM 1000",
+      "same_torch_random_draws_exactly": true,
+      "torch_random_draw_count": 2009,
+      "conditions": {
+        "off": {
+          "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/off/scene_2813_4p.npy",
+          "mean_random_draw_count": 2009,
+          "random_draw_sequence_sha256": "7e2002209fb50bf711f9c4b7aad7e9b6ed90619db82ded934ff81fcdd08af7aa",
+          "first_draw_sha256": "162ee37aa2577cb6e531ceb28fdd35acc0f261e2adb64cff7a092cfe4905bd45",
+          "last_draw_sha256": "9acf62de67dd89480a1b42543c0c9af398ef9e7bb00b9b53194f66b6d1d05b46"
+        },
+        "on": {
+          "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/on/scene_2813_4p.npy",
+          "mean_random_draw_count": 2009,
+          "random_draw_sequence_sha256": "7e2002209fb50bf711f9c4b7aad7e9b6ed90619db82ded934ff81fcdd08af7aa",
+          "first_draw_sha256": "162ee37aa2577cb6e531ceb28fdd35acc0f261e2adb64cff7a092cfe4905bd45",
+          "last_draw_sha256": "9acf62de67dd89480a1b42543c0c9af398ef9e7bb00b9b53194f66b6d1d05b46"
+        }
+      }
+    },
+    {
+      "file_id": "4000",
+      "seed": 4042,
+      "group1_text": "two persons stroll on the street and offer assistance in pushing the cart.",
+      "group2_text": "two people are taking a walk, and one picks up an item belonging to the first one.",
+      "retrieval": {
+        "text": "two people are taking a walk, and one picks up an item belonging to the first one.",
+        "score": 0.7718766331672668,
+        "rank": 4,
+        "reason": "first_similarity_below_threshold"
+      },
+      "window": 150,
+      "distance_m": 3.0,
+      "distance_weight": 5.0,
+      "sampler": "unmodified upstream forward_single; ancestral DDPM 1000",
+      "same_torch_random_draws_exactly": true,
+      "torch_random_draw_count": 2009,
+      "conditions": {
+        "off": {
+          "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/off/scene_4000_4p.npy",
+          "mean_random_draw_count": 2009,
+          "random_draw_sequence_sha256": "4eb00d421f926077d59f164f29b25e53b159d7c6ec32ff4a96db3ba2d48235b4",
+          "first_draw_sha256": "9a9ca97b59f621bdcd3290e19f08bdc16003c7665bdcc12f5213d9506d99bb35",
+          "last_draw_sha256": "12ea27a25a356c7a163a88b7d10b02822a6362bc114c50de867e79d1b855e1e3"
+        },
+        "on": {
+          "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/on/scene_4000_4p.npy",
+          "mean_random_draw_count": 2009,
+          "random_draw_sequence_sha256": "4eb00d421f926077d59f164f29b25e53b159d7c6ec32ff4a96db3ba2d48235b4",
+          "first_draw_sha256": "9a9ca97b59f621bdcd3290e19f08bdc16003c7665bdcc12f5213d9506d99bb35",
+          "last_draw_sha256": "12ea27a25a356c7a163a88b7d10b02822a6362bc114c50de867e79d1b855e1e3"
+        }
+      }
+    }
+  ],
+  "rationale": "Same seed, prompt, group graph and sampling settings; exact equality of captured torch.randn/randn_like outputs verifies paired random noise."
+}

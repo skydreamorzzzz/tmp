@@ -1,0 +1,46 @@
+{
+  "label": "InterGen single",
+  "ground_truth_sanity": {
+    "MM_Distance": 3.7847047863584575,
+    "R_Precision": [
+      0.41761363636363635,
+      0.5852272727272727,
+      0.6837121212121212
+    ],
+    "Diversity": 7.780393123626709,
+    "purpose": "Real motion calibration, not generated model metrics"
+  },
+  "metrics": {
+    "FID": 9.13302862474984,
+    "R_Precision": [
+      0.2481060606060606,
+      0.3939393939393939,
+      0.47632575757575757
+    ],
+    "MM_Distance": 3.878193913084088,
+    "Diversity": 7.5276007652282715,
+    "Multimodality": 1.4407639503479004
+  },
+  "protocol": {
+    "sanity_only": false,
+    "generated_cases": 1099,
+    "evaluation_cases": 1056,
+    "full_valid_test_cases": 1099,
+    "retrieval_candidates": 96,
+    "drop_last": true,
+    "seed": 1234,
+    "generation_replications": 1,
+    "confidence_interval": null,
+    "diversity_pairs": 300,
+    "mm_selected_cases": 100,
+    "mm_repeats": 30,
+    "mm_pairs": 10,
+    "fid_feature_scale": 6,
+    "diversity_feature_scale": 6,
+    "diversity_distance_divisor": 2,
+    "mm_distance_feature_scale": 1,
+    "multimodality_feature_scale": 1,
+    "evaluator": "unmodified FreeMotion EvaluatorModelWrapper and utils.metrics; interclip.ckpt strict load",
+    "paper_comparison": "descriptive reference only; paper repeats metrics20x / MM5x; paper baseline InterGen* retrained"
+  }
+}

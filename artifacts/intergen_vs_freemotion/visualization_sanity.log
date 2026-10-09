@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "text": "the two guys greet each other while shaking hands.",
+    "length": 238,
+    "gif": "visualizations/native_two_person_1.gif",
+    "finite": true,
+    "bone_length_mean_m": 0.18635931611061096,
+    "root_distance_mean_m": 1.4520175457000732,
+    "mean_joint_frame_displacement_m": 0.007776900660246611
+  },
+  {
+    "id": "4",
+    "text": "one observes the other, leans forward, and vigorously greets the other party with a handshake while having a conversation.",
+    "length": 79,
+    "gif": "visualizations/native_two_person_4.gif",
+    "finite": true,
+    "bone_length_mean_m": 0.17692601680755615,
+    "root_distance_mean_m": 0.6682377457618713,
+    "mean_joint_frame_displacement_m": 0.004925215616822243
+  },
+  {
+    "id": "6",
+    "text": "both people release their grip and stand up.",
+    "length": 41,
+    "gif": "visualizations/native_two_person_6.gif",
+    "finite": true,
+    "bone_length_mean_m": 0.18333688378334045,
+    "root_distance_mean_m": 0.46046796441078186,
+    "mean_joint_frame_displacement_m": 0.013906659558415413
+  }
+]

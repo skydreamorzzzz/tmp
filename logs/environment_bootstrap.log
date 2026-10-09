@@ -1,0 +1,18 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting pip==24.2
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/d4/55/90db48d85f7689ec6f81c0db0622d704306c5284850383c090e6c7195a5c/pip-24.2-py3-none-any.whl (1.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 79.6 MB/s eta 0:00:00
+Collecting setuptools==65.6.3
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ef/e3/29d6e1a07e8d90ace4a522d9689d03e833b67b50d1588e693eec15f26251/setuptools-65.6.3-py3-none-any.whl (1.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 52.7 MB/s eta 0:00:00
+Requirement already satisfied: wheel==0.44.0 in /environment/miniconda3/envs/py38/lib/python3.8/site-packages (0.44.0)
+Installing collected packages: setuptools, pip
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 56.0.0
+    Uninstalling setuptools-56.0.0:
+      Successfully uninstalled setuptools-56.0.0
+  Attempting uninstall: pip
+    Found existing installation: pip 23.0.1
+    Uninstalling pip-23.0.1:
+      Successfully uninstalled pip-23.0.1
+Successfully installed pip-24.2 setuptools-65.6.3

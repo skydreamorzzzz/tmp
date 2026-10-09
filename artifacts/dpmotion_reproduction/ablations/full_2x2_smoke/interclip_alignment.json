@@ -1,0 +1,270 @@
+{
+  "evaluator": "FreeMotion-Codes InterCLIP; strict state_dict load",
+  "checkpoint": "code/FreeMotion-Codes/eval_model/interclip.ckpt",
+  "checkpoint_sha256": "4e14b8ee5c2d965778fe003fb37d98ed8e5c7e0940668515fc7dcfa2831c17f8",
+  "checkpoint_epoch": 0,
+  "feature_protocol": "generated denormalized 262-D per-person global representation; pair inputs concatenate two people; 150 valid frames",
+  "condition_scores": {
+    "A_no_rag_no_guidance": {
+      "group1_test_text_alignment_control": {
+        "n": 1,
+        "matching_distance_mean": 4.04028844833374,
+        "matching_distance_median": 4.04028844833374,
+        "paired_cosine_similarity_mean": 0.5622144937515259,
+        "r_precision_top1": 1.0,
+        "r_precision_top2": 1.0,
+        "r_precision_top3": 1.0,
+        "mean_retrieval_rank": 1.0,
+        "rank_per_case": [
+          1
+        ],
+        "matched_distance_per_case": [
+          4.04028844833374
+        ],
+        "duplicate_text_count": 0
+      },
+      "group2_conditioned_text_alignment": {
+        "n": 1,
+        "matching_distance_mean": 4.009464263916016,
+        "matching_distance_median": 4.009464263916016,
+        "paired_cosine_similarity_mean": 0.5688689351081848,
+        "r_precision_top1": 1.0,
+        "r_precision_top2": 1.0,
+        "r_precision_top3": 1.0,
+        "mean_retrieval_rank": 1.0,
+        "rank_per_case": [
+          1
+        ],
+        "matched_distance_per_case": [
+          4.009464263916016
+        ],
+        "duplicate_text_count": 0
+      },
+      "within_scene_group_motion_embedding_cosine_distance": {
+        "mean": 0.04663628339767456,
+        "per_case": [
+          0.04663628339767456
+        ]
+      },
+      "within_scene_group_text_embedding_cosine_distance": {
+        "mean": -1.1920928955078125e-07,
+        "per_case": [
+          -1.1920928955078125e-07
+        ]
+      },
+      "n_scenes": 1
+    },
+    "B_rag_no_guidance": {
+      "group1_test_text_alignment_control": {
+        "n": 1,
+        "matching_distance_mean": 4.04028844833374,
+        "matching_distance_median": 4.04028844833374,
+        "paired_cosine_similarity_mean": 0.5622144937515259,
+        "r_precision_top1": 1.0,
+        "r_precision_top2": 1.0,
+        "r_precision_top3": 1.0,
+        "mean_retrieval_rank": 1.0,
+        "rank_per_case": [
+          1
+        ],
+        "matched_distance_per_case": [
+          4.04028844833374
+        ],
+        "duplicate_text_count": 0
+      },
+      "group2_conditioned_text_alignment": {
+        "n": 1,
+        "matching_distance_mean": 3.7587263584136963,
+        "matching_distance_median": 3.7587263584136963,
+        "paired_cosine_similarity_mean": 0.6211056709289551,
+        "r_precision_top1": 1.0,
+        "r_precision_top2": 1.0,
+        "r_precision_top3": 1.0,
+        "mean_retrieval_rank": 1.0,
+        "rank_per_case": [
+          1
+        ],
+        "matched_distance_per_case": [
+          3.7587263584136963
+        ],
+        "duplicate_text_count": 0
+      },
+      "within_scene_group_motion_embedding_cosine_distance": {
+        "mean": 0.12214314937591553,
+        "per_case": [
+          0.12214314937591553
+        ]
+      },
+      "within_scene_group_text_embedding_cosine_distance": {
+        "mean": 0.16362351179122925,
+        "per_case": [
+          0.16362351179122925
+        ]
+      },
+      "n_scenes": 1
+    },
+    "C_no_rag_guidance": {
+      "group1_test_text_alignment_control": {
+        "n": 1,
+        "matching_distance_mean": 4.072690486907959,
+        "matching_distance_median": 4.072690486907959,
+        "paired_cosine_similarity_mean": 0.5551644563674927,
+        "r_precision_top1": 1.0,
+        "r_precision_top2": 1.0,
+        "r_precision_top3": 1.0,
+        "mean_retrieval_rank": 1.0,
+        "rank_per_case": [
+          1
+        ],
+        "matched_distance_per_case": [
+          4.072690486907959
+        ],
+        "duplicate_text_count": 0
+      },
+      "group2_conditioned_text_alignment": {
+        "n": 1,
+        "matching_distance_mean": 3.974027156829834,
+        "matching_distance_median": 3.974027156829834,
+        "paired_cosine_similarity_mean": 0.5764561295509338,
+        "r_precision_top1": 1.0,
+        "r_precision_top2": 1.0,
+        "r_precision_top3": 1.0,
+        "mean_retrieval_rank": 1.0,
+        "rank_per_case": [
+          1
+        ],
+        "matched_distance_per_case": [
+          3.974027156829834
+        ],
+        "duplicate_text_count": 0
+      },
+      "within_scene_group_motion_embedding_cosine_distance": {
+        "mean": 0.05511051416397095,
+        "per_case": [
+          0.05511051416397095
+        ]
+      },
+      "within_scene_group_text_embedding_cosine_distance": {
+        "mean": -1.1920928955078125e-07,
+        "per_case": [
+          -1.1920928955078125e-07
+        ]
+      },
+      "n_scenes": 1
+    },
+    "D_rag_guidance": {
+      "group1_test_text_alignment_control": {
+        "n": 1,
+        "matching_distance_mean": 4.21734094619751,
+        "matching_distance_median": 4.21734094619751,
+        "paired_cosine_similarity_mean": 0.5230046510696411,
+        "r_precision_top1": 1.0,
+        "r_precision_top2": 1.0,
+        "r_precision_top3": 1.0,
+        "mean_retrieval_rank": 1.0,
+        "rank_per_case": [
+          1
+        ],
+        "matched_distance_per_case": [
+          4.21734094619751
+        ],
+        "duplicate_text_count": 0
+      },
+      "group2_conditioned_text_alignment": {
+        "n": 1,
+        "matching_distance_mean": 3.7316482067108154,
+        "matching_distance_median": 3.7316482067108154,
+        "paired_cosine_similarity_mean": 0.6265451312065125,
+        "r_precision_top1": 1.0,
+        "r_precision_top2": 1.0,
+        "r_precision_top3": 1.0,
+        "mean_retrieval_rank": 1.0,
+        "rank_per_case": [
+          1
+        ],
+        "matched_distance_per_case": [
+          3.7316482067108154
+        ],
+        "duplicate_text_count": 0
+      },
+      "within_scene_group_motion_embedding_cosine_distance": {
+        "mean": 0.11815834045410156,
+        "per_case": [
+          0.11815834045410156
+        ]
+      },
+      "within_scene_group_text_embedding_cosine_distance": {
+        "mean": 0.16362351179122925,
+        "per_case": [
+          0.16362351179122925
+        ]
+      },
+      "n_scenes": 1
+    }
+  },
+  "protocol_note": "Group2 alignment is the primary RAG-sensitive diagnostic. Text-motion R-precision is computed across this fixed set and is not the paper's reported multi-group score.",
+  "paired_contrasts": {
+    "RAG_effect_without_guidance": {
+      "distance_treated_minus_control_mean": -0.25073790550231934,
+      "distance_treated_minus_control_median": -0.25073790550231934,
+      "fraction_treated_lower_distance": 1.0,
+      "per_case_distance_difference": [
+        -0.25073790550231934
+      ]
+    },
+    "RAG_effect_with_guidance": {
+      "distance_treated_minus_control_mean": -0.24237895011901855,
+      "distance_treated_minus_control_median": -0.24237895011901855,
+      "fraction_treated_lower_distance": 1.0,
+      "per_case_distance_difference": [
+        -0.24237895011901855
+      ]
+    },
+    "guidance_effect_without_RAG": {
+      "distance_treated_minus_control_mean": -0.03543710708618164,
+      "distance_treated_minus_control_median": -0.03543710708618164,
+      "fraction_treated_lower_distance": 1.0,
+      "per_case_distance_difference": [
+        -0.03543710708618164
+      ]
+    },
+    "guidance_effect_with_RAG": {
+      "distance_treated_minus_control_mean": -0.02707815170288086,
+      "distance_treated_minus_control_median": -0.02707815170288086,
+      "fraction_treated_lower_distance": 1.0,
+      "per_case_distance_difference": [
+        -0.02707815170288086
+      ]
+    }
+  },
+  "paired_group_motion_diversity_contrasts": {
+    "RAG_effect_without_guidance": {
+      "distance_treated_minus_control_mean": 0.07550686597824097,
+      "fraction_treated_more_different": 1.0,
+      "per_case_difference": [
+        0.07550686597824097
+      ]
+    },
+    "RAG_effect_with_guidance": {
+      "distance_treated_minus_control_mean": 0.06304782629013062,
+      "fraction_treated_more_different": 1.0,
+      "per_case_difference": [
+        0.06304782629013062
+      ]
+    },
+    "guidance_effect_without_RAG": {
+      "distance_treated_minus_control_mean": 0.008474230766296387,
+      "fraction_treated_more_different": 1.0,
+      "per_case_difference": [
+        0.008474230766296387
+      ]
+    },
+    "guidance_effect_with_RAG": {
+      "distance_treated_minus_control_mean": -0.003984808921813965,
+      "fraction_treated_more_different": 0.0,
+      "per_case_difference": [
+        -0.003984808921813965
+      ]
+    }
+  }
+}

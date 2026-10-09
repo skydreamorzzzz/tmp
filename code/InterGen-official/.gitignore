@@ -1,0 +1,6 @@
+results
+__pycache__
+.idea
+venv
+evaluation_*
+cache

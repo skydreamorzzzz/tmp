@@ -1,0 +1,885 @@
+=== PAGE 1 ===
+          FreeMotion:AUnifiedFrameworkfor
+         Number-freeText-to-MotionSynthesis
+
+
+  KeFan1,JunshuTang1,WeijianCao2,RanYi1,MoranLi2,JingyuGong1,
+   JiangningZhang2,YabiaoWang2,ChengjieWang1,2,andLizhuangMa1
+
+                          1 ShanghaiJiaoTongUniversity
+                                2 TencentYoutuLab
+                      https://VankouF.github.io/FreeMotion
+
+
+
+
+       Abstract. Text-to-motionsynthesisisacrucialtaskincomputervision.
+       Existingmethodsarelimitedintheiruniversality,astheyaretailoredfor
+       single-personortwo-personscenariosandcannotbeappliedtogenerate
+       motionsformoreindividuals.Toachievethenumber-freemotionsyn-
+       thesis,thispaperreconsidersmotiongenerationandproposestounify
+       thesingleandmulti-personmotionbytheconditionalmotiondistribu-
+       tion.Furthermore,agenerationmoduleandaninteractionmoduleare
+       designedforour FreeMotionframeworktodecoupletheprocessofcon-
+       ditionalmotiongenerationandfinallysupportthenumber-freemotion
+       synthesis.Besides,basedonourframework,thecurrentsingle-person
+       motionspatialcontrolmethodcouldbeseamlesslyintegrated,achieving
+       precisecontrolofmulti-personmotion.Extensiveexperimentsdemon-
+       stratethesuperiorperformanceofourmethodandourcapabilityto
+       infersingleandmulti-humanmotionssimultaneously.
+
+       Keywords: Text-to-motionsynthesis  ·Diffusionmodels
+
+
+1   Introduction
+
+Humanmotionsynthesisaimsatgeneratinghumanmotionsdrivenbytheinput
+text,audio,scene,etc.,andhasextensiveapplicationsinareaslikeroboticcon-
+trol,movies,andanimationproduction.Amongtheseinputsignals,text,                         i.e.,
+naturallanguage,canproviderichsemanticdetailsandisthemostuser-friendly
+andconvenientsignalformotionsynthesis.
+   Generatingsingle-personmotion,asafundamentaltaskintext-to-motion
+(T2M),hasreceivedsignificantattentionintheresearchcommunity.Somemeth-
+ods[6,19]alignedthetextandmotioninthesamespacebyutilizingtheVAE
+structure,whileothers[29,32,33]utilizedthediffusionmodelconditionedon
+texttomakethegeneratedmotionmorediverseandrealistic.Recently,some
+workshavebeguntoexploretwo-personmotionsynthesis.ComMDM[21]fine-
+tunedapre-trainedsingle-humanmotiongenerationmodelonadatasetwith
+only20two-persontext-annotatedmotionsbyfew-shotlearning.InterGen[15]
+furtherintroducedalargeannotatedtwo-personmotiondataset,InterHuman,
+
+=== PAGE 2 ===
+2      F.Authoretal.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.1:The leftshowsourmodelcangeneratecontrollablemotionsforanynumber
+(1–4fromthefigure)ofindividuals.Differentcolorsrepresentthedifferentperson’s
+motion.Therightisanillustrationofournewparadigmofmotiongeneration,recursive
+generation,whereeverysinglemotionispredictedundertheconditionofthemotions
+generatedbefore.Bestviewedincolor.
+
+
+
+andemployedashared-weightdiffusionnetworkandcross-attentiontomodel
+theinteractionoftwo-personmotion.
+   Althoughtheaforementionedmethodshavedemonstratedremarkableachieve-
+mentsinbothsingle-personandtwo-personmotiongeneration,theirapplicabil-
+ityremainslimitedintermsofuniversality.Specifically,theselimitationsinclude:
+(1)theirmodelsaretailoredeitherforfittingthemarginalmotiondistribution
+ofsingle-personorthejointmotiondistributionoftwo-personscenariosandcan-
+notsupportmotioninferenceforbothcasessimultaneously.(2)Moreover,due
+totheunavailabilityoftext-annotatedmulti-personmotiondatasets,aswellas
+thenon-scalabilityofnetworkdesign,noneofthesemethodscanbeappliedto
+generatemotionformorethantwoindividualsduringtheinferencephase.(3)
+Whilesomestudieshaveaccomplishedspatialcontrolforsingle-personmotion
+generation,incorporatingthespatialsignalintothecurrentmulti-personmotion
+generationmodelremainsanon-trivialchallenge.
+   Toaddresstheseproblems,werethinktheprocessofmulti-personmotion
+synthesisandproposeFreeMotion,anovelunifiedframeworkthatenablesmotion
+generationforanynumberofindividualsandachievesfine-grainedspatialcontrol
+ofmultiplehumanmotions.
+   Ourkeyinsightistobuildabridgebetweenthemarginalandjointdis-
+tributionwiththeconditionaldistribution.Withoutlossofgenerality,forthe
+n-personmotiongenerationtask,weneedtomodelthejointdistributionprob-
+ability p(x 1,...,x n ).Accordingtotheformulaofconditionalprobability,wecan
+decomposethejointdistributionas     p(x 1,...,x n )=  p(x 1)Q  n −  1i=1   p(x i+1 |x i,...,x 1).
+
+=== PAGE 3 ===
+                                                      Abbreviatedpapertitle      3
+
+Therefore,ifwecanmodeltheconditionalmotiondistribution,wecangenerate
+motionsforn individualsinarecursiveprocess,asshowninFig.1.Throughthe
+conditionalprobabilityformula,wereducethetaskofmulti-personmotionsyn-
+thesistothesingle-personmotionsynthesisundertheguidanceofotherpeople’s
+motions,             i.e.,conditionalsingle-personmotionsynthesis.
+   Tothisend,wedesignaconditionalmotiondiffusionnetwork,whichcan
+generatethetargetmotionconditionedonthemotionsofanynumberofother
+individuals.Wedecouplethemodelingofconditionalmotiondistributioninto
+single-personmotiongenerationandmulti-personmotioninteraction,whichcor-
+respondtothetwomodulesofournetwork,namelythegenerationmoduleand
+theinteractionmodule.Thegenerationmoduleaimstogeneratediverseand
+vividsingle-personmotionaccordingtothetextprompt.Whiletheinteraction
+moduleaimstoinjectconditionmotionsintothehumanmotiongenerationby
+extractingtheinteractiveinformationbetweenconditionmotionsandthecur-
+rentmotiontobegenerated.Toaccommodatethevariabilityinthenumberof
+motionconditionsintheinteractionmodule,weleveragethelength-independent
+characteristicsofself-attentionanddeliberatelydesigntheinteractiveblockto
+beentirelybasedonglobalself-attention.Besides,todescribethemotionofeach
+person,wedesignpromptsandemployalargelanguagemodel[18]totransform
+multi-personmotiondescriptionsintocorrespondingdescriptionsofeachperson.
+   Furthermore,weenhancethefine-grainedspatialcontrolofmulti-personmo-
+tiongeneration.Previousworks[27,28]addaccuratecontrolonthejointofa
+single-personmotion.Nevertheless,thesecontrolsignalsarenoteasytobeap-
+pliedtomulti-personmotiongeneration.Inourwork,weincorporateflexible
+spatialsignalsintotheinteractionmoduletocontrolthegloballocationofhu-
+manmotionswhilemaintainingtherealismofthemotionresults.Asdemon-
+stratedinFig.1,althoughourmodelisonlytrainedontwo-personmotions,it
+hastheabilitytopredictthemovementsofmorethantwoindividualsinthe
+inferencephase.
+   Insummary,ourcontributionsareasfollows:(1)Werethinktheprocessof
+motionsynthesisandproposeanewparadigmtounifythesynthesisofmotions
+forbothsingleandmultiplepeople.(2)Weproposeadecoupledgenerationand
+interactionmoduleforconditionalmotiongeneration,whichisthefirstattempt
+toachievehigh-fidelitynumber-freemotiongenerationundertextconditions.
+(3)Wefurtherachieveprecisecontrolofmulti-personmotionbasedonflexible
+spatialcontrolsignalsutilizingexplicitandimplicitguidance.Extensiveexperi-
+mentsdemonstratethatourmethodoutperformspriorworks,andachievesvivid
+multiplemotionsresults.
+
+2   Related Work
+
+2.1  Single-PersonMotionSynthesis
+
+Atpresent,themainstreamtext2motionmethodsaremainlydividedintotwo
+categories:align-basedmodelandthecondition-basedmodel.
+
+=== PAGE 4 ===
+4      F.Authoretal.
+
+   Thealign-basedmodelmainlyalignstextandmotionintoasharedlatent
+space.Intheinferencestage,featuresareextractedbasedonthegiventext,and
+theFeaturesareregardedascorrespondingmotionfeaturesforactiongenera-
+tion.TEMOS [19]andGuo et al. [6]leveragetheVAEarchitecturetolearna
+jointlatentspaceofmotionandtextconstrainedonanormaldistribution.How-
+ever,naturallanguageandhumanmotionsarequitedifferentwithmisaligned
+structureanddistribution,whichmakesthealignmentprocessquitedifficult.
+   Condition-basedmodelsareusuallybasedonthediffusionmodelarchitec-
+ture.Itusespre-trainedtextencoders,suchasCLIP,toextracttextfeatures,
+andinjecttextfeaturesasconditionsintothediffusionreconstructionnetwork
+toguidethenetworktogeneratecorrespondingmotions.MDM[26]andMotion
+Diffuse[31]arethefirstworkstointroducethediffusionmodelintothemo-
+tiongenerationfield.MDMadditionallyintroducesageometriclosstoimprove
+themodelperformance.MLD[1]furtherleveragesthelatentdiffusionmodel
+tosignificantlydropthetrainingandinferencecost.However,Xie et al.[29]
+pointsoutthatthelatentdimensionaffectstheperformanceofthemodel.It
+cascadestwodiffusionmodelswithdifferentlatentdimensions,promotingthe
+detailsandthemodalconsistency.ReMoDiffuse[32]proposesanenhancement
+mechanismbasedondatasetretrievaltorefinethedenoisingprocessofDiffu-
+sion.FineMoGen[33]andMotion-X[16]furtherproposeanewlarge-scaledata
+settointroducemoredetaileddescriptions,suchashandjoints,expression,etc.
+GMD[11]andOminiControl[28]exploreprecisetrajectorycontrolbytheim-
+paintingtechniqueorbothimplicitandexplicitspatialguidance.However,these
+methodsareallnetworksdesignedforsingle-personmodels,anditisdifficultto
+achievemotionsynthesisfortwoorevenmultipleindividuals.
+
+2.2  Multi-PersonMotionSynthesis
+Multi-personmotionsynthesisismoredifficultthansingle-humanmotiongener-
+ation,whichinvolvesaninteractiveprocessbetweenmultipleindividuals.Early
+workstendtousemotiongraphs[22]andmomentum-basedinversekinemat-
+ics[12].Guo et al.[7]proposestheExtremePoseInteractiondatasetaswell
+asatwo-streamnetworkwithcross-interactionattentionforinteractionmod-
+eling.InterFormer[3]usesanattention-basedinteractiontransformertogen-
+eratesparse-levelreactivemotionsontheK3HI[10]andtheDuetDance[13]
+datasets.SocialDiffusion[25]proposesthefirstdiffusion-basedstochasticmul-
+tipersonmotionanticipationmodel.BiGraphDiff[2]furtherintroducesbipar-
+titegraphdiffusionforgeometricconstraintsbetweenskeletonnodes.Tanakaet
+al.[24]introducesaPITmodulethediffusionnetwork,whichenablesthemodel
+toautomaticallydistinguishactorsandreceivers,therebybetterlearningthe
+interactionprocess.Tobroadentheapplications,ReMos[5]andLe et al.[14]
+furtherproposenewdatasetsthatcontainhandmovementsormusic.However,
+thesemethodsdependoneitherhistoricalmotion,actionlabel,ormusictogive
+themotionprediction,andcannotsupportthetaskofT2M.
+   ComMDM[21]annotates3DPWmanuallytoobtainasmallscaleofsam-
+ples.Furthermore,itfine-tunesapre-trainedsingle-personT2Mmodelinafew-
+
+=== PAGE 5 ===
+                                                      Abbreviatedpapertitle      5
+
+shotmannerandattemptedmulti-personmotiongenerationforthefirsttime.
+However,sinceitonlycontains27two-personmotionsequences,Themodel’s
+abilitytogeneratetwo-personinteractionsisgreatlyrestricted.Therefore,Inter-
+Gen[15]firstcontributesalarge-scaletext-annotatedtwo-personmotiondataset
+calledInterHuman,andbasedonthis,itproposedadiffusionmodelwithshared
+weightsandmultipleregularizationlosses,outperformingtheComMDM.Inter-
+Control[27]attemptstocompletetheinteractionprocessbycontrollingthejoints
+oftwoindividualstoacertainposition.ItusesLLMtogenerateplanningfortwo
+individualsduringtheirmovementsbydesigningprompts.However,sinceitwas
+nottrainedontwoindividuals,themodelcannotmodeltheinteractionprocess
+explicitly.Inshort,theseT2Mmodelsalmostalldirectlypredicttheactionsofa
+singlepersonorapairofindividuals,andcannotsupporttheinferenceofsingle
+anddoublepersonsatthesametime,letalonesupporttheinferenceofmotion
+formultipleindividualsatthesametime.
+
+
+2.3  DiffusionModels
+
+Diffusionprobabilisticmodels[8]areaclassofneuralgenerativemodelsbased
+onthestochasticdiffusionprocess.ComparedtoVAE-basedpipelines,themost
+popularmotion-generativemodelsinpreviousworks,diffusionmodelsstrengthen
+thegenerationcapacitythroughastochasticdiffusionprocess,asevidencedby
+thediverseandhigh-fidelitygeneratedresults.Someworkshavemadegreat
+progressinacceleratingthedenoisingprocess[23]andimprovingthegenera-
+tionquality[17].Dhariwal et al.[4],introducesclassifier-guideddiffusionfora
+conditionedgeneration.TheClassifier-FreeGuidanceapproach[9]enablescondi-
+tioningwhiletrading-offfidelityanddiversity,andachievesbetterresults.Inthis
+paper,weimplementourmodelconditionedontheinputtextinaclassifier-free
+manner.ControlNet[30]copiesthetrainableparametersofadiffusionmodelto
+processtheconditionandfreezestheoriginalmodeltoavoiddegenerationofgen-
+erationability.Itsgeneralityinenablingvariouscontrolsignalshasbeenlargely
+proven.Inspiredbythis,weachieveconditionalmotionmodelingbyleveraging
+theControlNetstructure.
+
+3   Preliminaries
+
+3.1  DiffusionModelforMotionSynthesis
+
+ThediffusionModel[8]isaprobabilisticmodelthatgraduallydenoisesaGaus-
+siannoisetogenerateatargetoutput.Thekeypointistogenerateatarget
+outputbygraduallydenoisingGaussiannoise.Itisformulatedasadiffusionpro-
+cessandareverseprocessandisutilizedtoapproximatetheposteriorq(x 1: T |x 0),
+where T isthetotaltimesteps,and x 1,...,x T aretherealdata x 0 with tsteps
+ofnoiseadded.ThediffusionprocessfollowsaMarkovchaintograduallyadd
+Gaussiannoisetothedatauntilitsdistributionisclosetothelatentdistribution
+
+=== PAGE 6 ===
+6      F.Authoretal.
+
+N  (0,I),accordingtovarianceschedulesgivenby β t:
+
+                                       TY
+                      q(x 1: T |x 0) :=   q(x t|x t−  1),                           (1)
+                                      t=1
+                      q(x t|x t−  1) :=  N  (x t;p1 −  β tx t−  1,β tI).
+
+   Duringtraining,themean-squarederrorlossisusedtooptimizetheparame-
+ters.Duringinference,wecangeneratethetargetoutputbysamplingtheinitial
+noise ϵanddenoisingitbypredictingtheaddednoise,mean,or x 0 recursively.
+Tofitthearbitrarylengthoftime,thetransformer-baseddenoiserblockiscom-
+monlypreferredinmotiongeneration.
+
+
+3.2  MotionInteractionRepresentation
+
+Tomaintaingenerality,wemodelmulti-personmotiongenerationasamotion
+sequence X   = ( x p), p  ∈ { 1,2,...,N },where N  representsthetotalnumber
+ofindividuals.Forsimplicity,weuse x torepresentthemotionofaspecific
+individual.
+   Inthecontextofgeneratingmotionforasingleperson,thecanonicalrepre-
+sentationproposedbyHumanML3D[6]hasproventobewell-suitedforneural
+networkprocessing.However,itsnormalizationoperationlosestherelativepo-
+sitionrelationshipinmulti-personscenarios,makingitunsuitableforsuchuse
+cases.Toaddressthislimitation,InterGen[15]introducedanon-canonicalrep-
+resentationthatmaintainstherelativepositionsbetweendifferentindividuals.
+Theformulationofthisrepresentationisasfollows:
+
+                               x p(i)=[jpg ,jgv ,jr,cf],                            (2)
+
+wherethe i-thposeof x p isdefinedasacollectionofglobaljointpositions
+jgp ∈ R 3J,velocitiesjgv ∈ R 3J intheworldframe,localrotationsjr ∈ R 6J inthe
+rootframe,andbinaryfoot-groundcontactfeaturescf ∈ R 4,where J denotes
+thejointnumber.Sincethisrepresentationpreservestheglobalcoordinatesof
+joints,itwellrepresentsthespatialrelationshipofinteractions.Inthispaper,
+wefollowthenon-canonicalrepresentationproposedbyInterGen.
+
+4   Method
+
+4.1  Overview
+
+Inthispaper,weproposeaunifiedframeworkfornumber-freehumanmotion
+generation.Byreconsideringthegenerationprocessviadecomposingthejoint
+motionintoaconditionaldistributionthroughtheconditionalprobabilityfor-
+mula,ourframeworkcangeneratearbitrarynumberofmotionsinarecursive
+manner,asshowninFig.1.Specifically,wemodelthemulti-personjointmotion
+distributionas p(x 1,...,x n )
+
+=== PAGE 7 ===
+                                                       Abbreviatedpapertitle      7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.2:OverallarchitectureofFreeMotion,whichcontainsagenerationmoduleand
+aninteractionmodule.Givenatext d,ourframeworkcaninferamotion x 1 bythe
+generationmoduleindependently,orundertheconditionofmultiplemotions x 2,x 3...
+orsomespatialguidance s.Redlinerepresentstheimplicitguidanceofthespatial
+controlsignal.
+=  p(x 1)Q  n −  1i=1   p(x i+1 |x i,...,x 1).Givenatext d,wefirstpredictthemotionof
+thefirstindividual.Subsequently,themotionofthesecondindividualisinferred,
+conditioneduponthemotionofthefirstindividual,andtheprocessiteratesuntil
+themotionofthen-thindividualisgenerated.Therefore,thismethodessentially
+transformsamulti-personmotiongenerationprocessintoasequenceofcondi-
+tionalsingle-personmotiongeneration.Basedonthis,wecanfurtherachieve
+multi-humanspatialmotioncontrolbyseparatelycontrollingthespatialmotion
+ofeachindividual.
+
+
+4.2  Number-freeMotionGeneration
+
+Asintroducedbefore,weconsiderthemultiplemotionsgenerationasacondi-
+tionalgenerationprocess.Fromtheperspectiveofconditionalmotiondistribu-
+tion,wedecouplethemodelingprocessintoamotiongenerationprocessanda
+motioninteractionprocess.Tostartwith,wefirstdesignagenerationmodule
+whichhasthecapabilityofsinglemotiongeneration.Thenwedesignaninter-
+actionmoduletoinjectconditionsignals(motionsof       N  − 1 individuals)intothe
+humanmotiongenerationprocessbymodelingtheinteractionbetweencondition
+signalsandthecurrentmotiontobegenerated.Thedetailedarchitectureofthe
+generationandtheinteractionmoduleareshowninFig.2.
+   GenerationModule.Thegenerationmoduleisdesignedtosynthesizedi-
+versesinglemotionaccordingtothetextprompt.Similartoprevioustext-to-
+motionmethods[26,31],themoduleisaTransformer-baseddiffusionnetwork,
+containingseveraldenoiserblocks.Duringtraining,attimestep t,weaddnoise
+toamotion     x andgetthenoisedmotion     x t,andthenusethegenerationmodule
+todenoise x t to x t−  1.Duringtheinference,thegenerationmoduleisableto
+generateacleanmotion x 0 startingfromthepureGaussiannoise x T.
+   InteractionModule.InspiredbyControlNet[30],wedesignaneuralnet-
+worknamedInteractionModuletoinjecttheconditionsignalsintothehuman
+motiongeneration.Specifically,wedenotethe                  N  −  1 motionsinthecondition
+
+=== PAGE 8 ===
+8      F.Authoretal.
+
+signalasx 2,x 3,..,x N ,andthenoisedmotionobtainedbyaddingnoiseto                x 1 as
+x t1.Firstly,wefeed  x 1t and N  −  1 motionconditions          x i,i ∈ { 2,...,N } intoa
+sharedlinearlayertoencodeeachmotionintoahiddenstate,denotedas                   h 1,0t
+and h i,0,i ∈ { 2,...N }.Secondly,tomodeltheinteractioninformationbetween
+variablenumberofmotionconditionsandthemotiontobegenerated,wede-
+signanovelInteractiveBlock,whichissequentiallystackedfor K times.The
+interactiveblockatthe k-thstage(k ∈{ 1,...,K })takesthe h 1,k−  1t    and h i,k−  1
+asinputsandoutputsthe     h 1,kt  and h i,k.Eachinteractiveblockcontainstwo
+sequentialself-attentionmodulesandamaskmodule,andthewholecalculation
+processinthe k-thinteractiveblockisformulatedas:
+
+        h 1,kt   ,h 2,k,...,h N,k   =  SA  (SA  (h 1,k−  1t      ),Mask    (h 2,k−  1,...,h N,k  −  1)),(3)
+
+where k ∈{ 1,...,K }and SA  representstheself-attentionoperation.
+   Specifically,inthek-thinteractiveblock,wefirstlyrandomlymasksomehid-
+denstatesh i,k−  1,toenableourmodeltoinferthemotionunderanynumberof
+motionconditions.Then,thenoisedhiddenstate                         h 1,k−  1 isinputintothefirst
+SA  module.Weconcatenatethemasked        N  −  1 hiddenstates,andtheoutput
+ofthefirst SA  modulealongthechanneldimension,andfeedtheconcatenated
+resulttothesecond     SA  module,sothatthemodellearnstheinteractiveinfor-
+mationbetweenthenoisedmotionandmotionconditions.Andtheoutputsof
+thesecond SA  module, i.e., h 1,kt  and h i,ks,willbefurtherinputtothenext
+interactiveblock.Byleveragingtheglobalself-attention, h 1,kt  successfullyfuses
+theinformationfromthemotionconditions.
+   Theoutputfromtheinteractiveblockwillthenbeaddedtotheoutputofeach
+denoiserblockinthegenerationmoduleaftergoingthroughalinearlayer.The
+linearlayersareinitializedwithzero,therebyensuringthattheinteractivemod-
+uledoesnotimpactthegenerationmoduleattheonsetoftraining.Compared
+withcross-attention,self-attentionismoreflexibleformodelingtheinteraction
+betweenmotionsregardlessofthenumberofmotionsinthecondition.
+
+
+4.3  TrainingProcess
+
+Wedecomposeourtrainingprocessintotwostages.Inthefirststage,wetrainthe
+generationmoduleforsingle-personmotiongeneration.Toenablethegeneration
+moduletosynthesizethesingle-personmotion,itisnecessarytoprovideasingle-
+personmotiondescriptionasitsinputduringtraining.Therefore,foragiven
+interactivedescriptionofmulti-personmotion,weutilizetheabilityoftheLarge
+LanguageModel(LLM)[18]togenerate N  motiondescriptions,oneforeach
+individual.Weusetheseparatedsingle-persondescriptionforthetrainingof
+thegenerationmodule.Thetextfeatureisextractedbyapre-trainedCLIP[20]
+modelandisinjectedintotheadaptivelayernormalizationinallattentionlayers.
+   Inthesecondstage,wetraintheinteractionmoduleforconditionalmotion
+modelingandmulti-humanmotiongeneration.InspiredbythesuccessofCon-
+trolNet,wefirstfreezetheparametersofthegenerationmoduleandutilizethe
+
+=== PAGE 9 ===
+                                                        Abbreviatedpapertitle      9
+
+parameterstoinitializetheinteractionmodule.Thenweusemulti-humanmo-
+tionsdatatotraintheinteractionmodule.Denotethemotionsof                                         N individuals
+as [x 1,x 2,...,x N ].Weinitiallyrandomizetheorderofthese N motionsandthe
+correspondingdescriptions,andthenselectthefirstoneasthemotiontobe
+noisedandreconstructed,leavingtheother N  −  1 motionsasthecleanmotion
+condition.1)Weadd                   t stepsofnoiseto x 1 toobtain x 1t andinputittothe
+generationmodule.2)Fortheinteractionmodule,          x 1t andtheremaining N  −  1
+motionconditions x p, p ∈{ 2,...,N }areinputintoasharedlinearlayerand     K
+interactiveblockstoextracttheinteractiveinformation.3)Theoutputofeach
+interactiveblockisaddedtotheoutputfromthecorrespondingdenoiserblockin
+thegenerationmoduleaftergoingthroughalinearlayer.4)Finally,thedenoised
+motion x 1t−  1 canbeobtainedfromthegenerationmodule.
+
+
+4.4  SpatialControl
+
+Ourproposedframeworkbasedonconditionalmotiongenerationenableseffort-
+lessspatialcontrolovermulti-humanmotions.Itallowsfortheintegrationof
+thecurrentsingle-personmotioncontrolmethodwithouttheneedforcarefully
+designingthespatialrepresentationofmultipleindividuals.InspiredbyOmni-
+Control[28],weconcurrentlyutilizeexplicitandimplicitguidancetorealizeour
+spatialcontrol.
+   Explicitguidance.Givenadesiredspatiallocation s ∈  R F ×  3J,where F
+representsthevalidmotionlengthandJ denotesthejointnumber.Weutilizethe
+L  2 distanced  =  ∥snj −  x nj ∥2 tomeasurethebiasbetweentargetposition sand
+thepredictedmotion x forjoint j atframe n.Thenweleveragethemechanism
+ofclassifierguidancetoperturbthepredictedmotionateachdenoisingsteptto
+correctthebias,whichisformulatedas          x t =  x t−  η∇ x td,where η controlsthe
+stepoftheguidance.
+   Implicitguidance.Inadditiontoexplicitguidance,astheredlinesshown
+inFig.2,wefurtheremployimplicitspatialguidance.Thewholetrainingprocess
+isalmostthesameasthenumber-freemotiongeneration.Aminordifferenceis
+thatwefirstinputthespatialsignalsintoanindependentlinearlayer,andadd
+theoutputtogetherwiththenoisedmotionhiddenstate.Someframesandjoints
+arerandomlyselectedandtheothersaresubsequentlymaskedoutforthewhole
+trainingprocess.
+   Afterinjectingthespatialcontrolsignalunderexplicitandimplicitguid-
+ance,ourproposedunifiedframeworkhasthecapabilitytocontrolthespatial
+locationsofmulti-humanmotionsindependently,whichfurtherenhancesthe
+controllabilityofourmethod.
+
+
+4.5  LossFunction
+
+InadditiontoreconstructionlossL rec,wealsoincorporatesomeregularization
+losses,whichincludethecontactlossL foot andjointvelocitylossL vel mentioned
+inMDM[26]andthebonelengthloss L bl aswellasthemaskedjointdistance
+
+=== PAGE 10 ===
+10     F.Authoretal.
+
+map(DM)loss L dm  mentionedinInterGen[15].Forthefirststageofsingle-
+motiongeneration,thetotallossisformulatedas:
+
+                      L 1 =  L rec  +  λ 1L foot  +  λ 2L vel +  λ 3L bl,          (4)
+
+wheretheDMlossisnotincluded.Forthesecondstageofconditionalsingle-
+motiongeneration,wefurtherintroduceDMlosstomodeltheinteractions,where
+thetotallossisformulatedas:
+
+                 L 2 =  L rec  +  λ 1L foot  +  λ 2L vel +  λ 3L bl +  λ 4L dm  ,  (5)
+
+where λ 1,λ 2,λ 3,and λ 4 areusedtobalancetheeffectofcorrespondingloss.
+
+5   Experiments
+
+5.1  DatasetsandMetrics
+
+Datasets.Weevaluateourproposedframeworkonthe    InterHumandataset,
+whichisthefirsttext-annotatedtwo-personmotiondataset,consistingof6,022
+motionsderivedfromvariouscategoriesofhumanactions,labeledwith16,756
+uniquedescriptionscomposedof5,656distinctwords.
+Metrics.WeutilizethesameevaluationmetricsasInterGen.(1)FID:mea-
+suringthelatentdistributiondistancebetweenthegenerateddatasetandthe
+realdataset.(2)RPrecision:measuringthetextmotionmatching,indicatesthe
+probabilitythattherealtextappearsintheTop-k(1,2,and3)aftersorting.(3)
+Diversity:measuringlatentvariance.(4)Multimodality(MModality):measuring
+diversitywithinthesametext.(5)Multi-modaldistance(MMDist):measuring
+thedistancebetweenmotionsandtextfeatures.
+
+5.2  ImplementationDetails
+
+Weemployafrozen CLIP-ViT-L-14modelasthetextencoder.Thenumberof
+diffusiontimestepsissetto1,000duringtrainingandtheDDIM[23]sampling
+strategywith50timestepsisappliedintheinferencestage.For          number-free
+motiongeneration,thebatchsizeissetto80and30forthefirstandthesecond
+trainingstageoneachGPU.Theepochnumbersare2,500and1,000separately
+forthetwostages.Bothtrainingstagesaretrainedwith1e-4learningrateand2e-
+5weightdecay.Forspatialcontrol,theepochnumberandlearningrateareset
+to1,000and1e-5.Otherhyper-parametersremainthesameasaforementioned.
+AllexperimentsaretrainedoneightTeslaV100GPUs.
+
+
+5.3  QuantitativeResults
+
+Baseline.Wemainlycompare ourmethodagainstthecurrentstate-of-the-
+artapproach InterGenthatmodelstheinteractionrelationshipoftwopeople
+byacross-attentionmechanism.However,itbydefaultcanonlysupportthe
+
+=== PAGE 11 ===
+                                                                                                          Abbreviatedpapertitle     11
+
+                                       Table1:QuantitativecomparisonsontheInterHumantestset.Werunalltheevalua-
+                                       tions20timesexceptMModalityruns5times.± indicatesthe95%confidenceinterval.
+                                       Boldindicatesthebestresult.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                       two-personmotioninferenceandcannotgeneratesingle-personmotion.Thus,
+                                       wemakeminormodificationstoitsmodelstructureandretrainittomakeit
+                                       adapttotheinferenceofbothsingleanddoublehumanmotion,ensuringafair
+                                       comparison.Thecorrespondingoutputofcross-attentionissettozerowitha
+                                       10%probability,therebygainingsomecapacityforsingle-persongeneration.Our
+                                       re-annotatedsingle-persontextsareutilizedduringthetrainingphase.Sincethe
+                                       performanceofothermethodsisinferiortotheInterGenontwo-personmotion
+                                       synthesis,wedirectlytaketheresultsreportedbyInterGenfortheexperiments
+                                       oftwo-personmotionsynthesis.
+                                       ComparisonResults.Forevaluationontwo-personmotionsynthesis,wefol-
+                                       lowthesettingsgivenbyInterGen.Asforsingle-personmotionsynthesis,wetake
+                                       thecorrespondingre-annotatedtwosingle-persondescriptionsgivenbyLLMto
+                                       synthesizetwoseparatesingle-personmotionsandconcatenatethemtogetherfor
+                                       performanceevaluation.ItcanbeseenfromTab.1andTab.2thatalthoughthe
+                                       InterGen*cangeneratebothsingleandtwo-personmotions,theperformanceis
+                                       inferiortooursinalmostalltermsofmetrics.Besides,theremainingmodels
+                                       inTab.1areonlytrainedontheinteractivedescriptionsandhavenoability
+                                       forsingle-motioninference,theirperformanceontwo-personmotionsynthesisis
+                                       stillinferiortoourmethod.Thisfullydemonstratesthepowerfulgeneralityof
+                                       ourproposedframework.
+
+
+                                       5.4  AblationStudies
+
+                                       Weinvestigatetheinfluenceofseveraldesignsontwo-personmotiongenera-
+                                       tion.Initially,weremovetheinteractionmodule,solelyemployingthegenera-
+                                       tionmodule(GM).Duringthesecondtrainingstage,wefinetunetheparam-
+                                       etersofGM.Toendowthenetworkwithbothsingle-personandtwo-person
+                                       motioncapabilities,wedropthemotionconditionwitha10%probabilityinthe
+                                       secondSAmodulewithineachdenoiserblock.Inaddition,weexclusivelyuse
+
+
+
+
+
+
+
+
+
+
+Methods             RPrecision↑          FID↓  MMDist↓ Diversity→ MModality↑
+                   Top1    Top2    Top3
+Real                  0.452  ±  .008    0.610  ±  .009    0.701  ±  .008    0.273  ±  .007    3.755  ±  .008    7.748  ±  .064      -
+TEMOS[19]      0.224  ±  .010    0.316  ±  .013    0.450  ±  .018   17 .375  ±  .043    5.342  ±  .015    6.939  ±  .071      0.535  ±  .014
+T2M[6]             0.238  ±  .012    0.325  ±  .010    0.464  ±  .014   13 .769  ±  .072    4.731  ±  .013    7.046  ±  .022      1.387  ±  .076
+MDM[26]          0.153  ±  .012    0.260  ±  .009    0.339  ±  .012    9.167  ±  .056    6.125  ±  .018    7.602  ±  .045    2.355±  .080
+ComMDM∗[21] 0.067  ±  .013    0.125  ±  .018    0.184  ±  .015   38 .643  ±  .098   13 .211  ±  .013    3.520  ±  .058      0.217  ±  .018
+ComMDM[21]   0.223  ±  .009    0.334  ±  .008    0.466  ±  .010    7.069  ±  .054    5.212  ±  .021    7.244  ±  .038      1.822  ±  .052
+InterGen∗[15]    0.264  ±  .006    0.392  ±  .005    0.472  ±  .005   13 .404  ±  .200    3.882  ±  .001     7.77 ±  .030       1.451  ±  .034
+FreeMotion     0.326±  .003  0.462±  .006  0.544±  .006  6.740±  .130  3.848±  .002  7.828±  .130     1.226  ±  .046
+
+=== PAGE 12 ===
+                                     12     F.Authoretal.
+
+                                     Table2:QuantitativecomparisonswithInterGen*onourre-annotatedtextforsingle
+                                     motiongeneration.ThemannerofevaluationisthesameasTab.1.Boldindicatesthe
+                                     bestresult.
+
+
+
+
+
+
+
+
+
+
+
+                                     Table 3:Ablationstudyofourproposedframework.Allresultsarereportedonthe
+                                     InterHumantestsetunderthesettingoftwo-personmotiongeneration. InterDes
+                                     andthe GMrepresenttheinteractivedescriptionandgenerationmodule.Weuse to
+                                     separatewhethertoleverageInterDesornot.
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                     ourre-annotatedsingle-personmotiontexts,withouttheinteractivedescription
+                                     (InterDes)providedintheInterHumandataset.Subsequently,weincorporate
+                                     high-qualitytwo-personinteractivemotiondescriptions(2ndrow)duringthe
+                                     secondtrainingstage.Furthermore,weintroducetheinteractionmoduleaswell
+                                     asInterDestogetourFreeMotion*(3rdrow)andFreeMotion(4throw).
+                                          ComparingFreeMotion*withGM*,wefounditalmostgetsthesameresults
+                                     inallmetrics.However,afterintroducingthehigh-qualityinteractivedescrip-
+                                     tion(InterDes),ourFineMotionachievedasignificantimprovementwhilethe
+                                     performanceofGMdroppedagreatdeal.Weanalyzedthisandfoundthatitis
+                                     becausewhenusingonlyGM,theGMnetworkparametersneedtobeupdated
+                                     inthesecondtrainingstage.Whenusingonlysingle-persontext,thetextused
+                                     inthesecondstageoftrainingwasconsistentwiththefirststageanddidnot
+                                     producealargegap,sothattheupdateprocesswasabletoensurethatGM*
+                                     learnedaswellasFineMotion*.However,whenInterDeswasintroduced,the
+                                     differencesbetweensingleanddoubletextpreventedtheGMfromeffectively
+                                     adaptingitsparametersafterthefirststageoftraining.However,ascanbeseen
+                                     fromtheFineMotionresults,theintroductionofhigh-qualitytwo-persontexts
+                                     isofgreatsignificanceinimprovingthemodelperformance.Overall,thedecou-
+                                     pledgenerationmoduleandinteractionmodulewedesignedcanutilizeallthe
+                                     informationfortrainingmoreefficiently.
+
+
+
+
+
+
+
+
+Methods    InterDesR-Precision1↑   FID↓   MMDist↓ Diversity→
+Methods            RPrecision↑          FID↓   MMDist↓Diversity→ MModality↑
+GM*                                       0.300   ±   .005         8.842   ±   .130      3.863   ±   .001      7.761   ±   .036Top1    Top2    Top3
+Real                0.452  ±  .008    0.610  ±  .009    0.701  ±  .008     0.273  ±  .007     3.755  ±  .008    7.748  ±  .064      -GM               ✓             0.259   ±   .005        10 .749   ±   .145     3.883   ±   .001      7.645   ±   .031
+InterGen*[15] 0.206  ±  .004    0.313  ±  .004    0.389  ±  .005    23 .415  ±  .222    3.925  ±  .001    7.514  ±  .029    1.526±  .026FreeMotion*                       0.300   ±   .004         8.792   ±   .135      3.865   ±   .001      7.750   ±   .022
+FreeMotion    0.264±  .005  0.394±  .006  0.473±  .006  12.975±  .171  3.885±  .035  7.702±  .027     1.300  ±  .063FreeMotion      ✓         0.326±   .003     6.740±   .130   3.848±   .002   7.828±   .130
+
+=== PAGE 13 ===
+                                                      Abbreviatedpapertitle     13
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.3:ComparisonwithIntergen*onsingleandtwo-personmotiongeneration.For
+single-personmotion,wegenerateitwithourre-annotatedsingledescription.Fortwo-
+personmotion,wefurtherleveragetheoriginalinteractivedescriptions.Forbetter
+visualization,someposeframesareshiftedtopreventcompleteoverlap.
+
+5.5  QualitativeResults
+
+SinglePersonMotionSynthesis.Toillustratetheeffectiveness,weprovide
+aqualitativecomparisonbetweentheInterGen     ∗ andourFreeMotiononsingle-
+motionsynthesis.AsshowninFig.3,thesynthesizedsingle-personmotiongiven
+bytheproposedmethodaremoreconsistentwiththedescription.Forexample,
+inthesecondcolumn,ourmodelcanproduceanobvioussquattingpose,whichis
+moreconsistentwiththetextualcommandofgrabbingothers’waists.Thisfully
+demonstratesthatthedecompositionofthegenerationandinteractionprocess
+weproposedcanmoreadequatelyfitthemappingfromtexttosinglemotion
+thanrandomlymasktheinteractionprocessinthetrainingphase.
+TwoPersonMotionSynthesis.Wefurtherexhibitthecomparisonoftwo-
+personmotionsynthesisinthe3rdand4thcolumnsinFig.3.Ourapproach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.4:Qualitativeresultsforgeneratingthree-personmotions.Wemanuallydesign
+sometextpromptsandfeedthemtoournetworkformotiongeneration.Forbetter
+visualization,someposeframesareslightlyshiftedtopreventcompletedoverlap.
+
+=== PAGE 14 ===
+14     F.Authoretal.
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.5:Resultsofmulti-personspatialcontrol.Wemanuallydesignsometextprompts
+aswellasthetrajectoriesandleveragetheintegratedspatialcontrolmoduletogenerate
+theresults.
+
+
+
+performsbetterintwo-personinteractioncoordinationandcomprehensibility
+incomplextext.ItcanbeseenthatInterGen       ∗ doesnotachievesimultaneity
+whengeneratingtherock-paper-scissorsmotionatthethirdcolumn,andeven
+switchesthemainlyusedhands.Inthefourthcolumn,InterGen              ∗onlyfocuseson
+thekickingmotion,whichresultsinbothpeoplemakingkicks.Incontrast,our
+methodcanperformbetter.Webelievethatthisisalsoduetothedecoupling
+ofthegenerationandinteractionprocesses.Thegenerationmodulemakesthe
+comprehensionofcomplextextbetter,andtheinteractionmoduleenablesbetter
+two-personsynchronization.
+
+ThreePersonMotionSynthesis.Wemanuallydesignedthetextwiththree
+differentlevelsofinteraction(low,middle,andhigh),correspondingtotheresults
+fromlefttorightinFig.4.Ourinteractiveblockisdesignedwithglobalself-
+attention,whichallowsournetworktohavetheabilitytosupportmorepeople’s
+motionsasconditions,thusgeneratingthreepeople’smotions.Moreimportantly,
+althoughourapproachistrainedusingonlytwopeople’smotionsduetodata
+scarcity,thewaywedecouplethegenerationandinteractiveprocessesenables
+ournetworktohavetheabilitytodirectlyreasonaboutthreepeople’smotions.
+Thegenerationmoduleenablesournetworktogeneratesemanticallyconsistent
+one-personmotionsunderweakinteractiontext.Theinteractionmoduleenables
+theextractionofmotioninteractionfeaturesunderstronginteractiontext.The
+aboveresultsfurtherillustratethattheinteractiveblockwedesignedcanextract
+interactioninformationeffectively.
+
+ControllableMotionSynthesis.Thankstoourproposedparadigmofcondi-
+tionalmotionmodeling,wecanseamlesslyintegrateexistingsinglemotioncon-
+trolmodelsintospatialcontrolofmulti-personmotions.Weusebothimplicit
+andexplicitspatialguidancetocontrolourgenerationmodule(i.e.,controlling
+thesingle-personmotiongeneration).AsshowninFig5,eventhoughthespatial
+controlmoduleistrainedforsinglemotions,mountingtheinteractionmodule
+whengeneratingmulti-personmotionshasnoobviousdamagetothespatial
+controlandperformswellfromtwotofour-person.
+
+=== PAGE 15 ===
+                                                       Abbreviatedpapertitle     15
+
+6   Conclusion and Limitations
+Inthispaper,wepresentFreeMotion,anovelmotiongenerationframework
+fornumber-freemotionsynthesis.Werethinkthewayofmulti-personmotion
+generationsandproposetorecursivelygeneratemulti-personmotionsbasedon
+conditionalmotionmodeling.Wefurtherproposethedecoupledgenerationmod-
+uleandinteractionmodule,andconductalargenumberofquantitativeaswell
+asqualitativeexperimentstoprovethatourframeworkcansupportmotion
+synthesisforanynumberofmotions.
+Limitations.First,wedirectlyutilizethecapabilityofthelargelanguagemodel
+toseparatesingle-motiontextfromtheinteractivedescription.Inevitably,there
+mightbesomeinstanceswheretextandmovementsdonotmatchwell,which
+limitsourabilitytogeneratesingle-personmotion.Secondly,althoughourmodel
+cangeneratemulti-personmotions,duetothelimitedunderstandingofinter-
+actionsfromtrainingonlyontwo-personmotions,theremightbesomeinter-
+penetrationamongdifferentindividualswhenthenumbergetslargeorthetext
+promptistoocomplex.
+
+References
+
+ 1.Chen,X.,Jiang,B.,Liu,W.,Huang,Z.,Fu,B.,Chen,T.,Yu,G.:Executingyour
+    commandsviamotiondiffusioninlatentspace.In:ProceedingsoftheIEEE/CVF
+    ConferenceonComputerVisionandPatternRecognition.pp.18000–18010(2023)
+ 2.Chopin,B.,Tang,H.,Daoudi,M.:Bipartitegraphdiffusionmodelforhuman
+    interactiongeneration.In:ProceedingsoftheIEEE/CVFWinterConferenceon
+    ApplicationsofComputerVision.pp.5333–5342(2024)
+ 3.Chopin,B.,Tang,H.,Otberdout,N.,Daoudi,M.,Sebe,N.:Interactiontransformer
+    forhumanreactiongeneration.IEEETransactionsonMultimedia(2023)
+ 4.Dhariwal,P.,Nichol,A.:Diffusionmodelsbeatgansonimagesynthesis.Advances
+    inneuralinformationprocessingsystems 34,8780–8794(2021)
+ 5.Ghosh,A.,Dabral,R.,Golyanik,V.,Theobalt,C.,Slusallek,P.:Remos:Reactive
+    3dmotionsynthesisfortwo-personinteractions.arXivpreprintarXiv:2311.17057
+    (2023)
+ 6.Guo,C.,Zou,S.,Zuo,X.,Wang,S.,Ji,W.,Li,X.,Cheng,L.:Generatingdi-
+    verseandnatural3dhumanmotionsfromtext.In:ProceedingsoftheIEEE/CVF
+    ConferenceonComputerVisionandPatternRecognition.pp.5152–5161(2022)
+ 7.Guo,W.,Bie,X.,Alameda-Pineda,X.,Moreno-Noguer,F.:Multi-personextreme
+    motionprediction.In:ProceedingsoftheIEEE/CVFConferenceonComputer
+    VisionandPatternRecognition.pp.13053–13064(2022)
+ 8.Ho,J.,Jain,A.,Abbeel,P.:Denoisingdiffusionprobabilisticmodels.Advancesin
+    neuralinformationprocessingsystems 33,6840–6851(2020)
+ 9.Ho, J.,  Salimans,  T.:  Classifier-free  diffusion guidance.  arXiv  preprint
+    arXiv:2207.12598(2022)
+10.Hu,T.,Zhu,X.,Guo,W.,Su,K.,etal.:Efficientinteractionrecognitionthrough
+    positiveactionrepresentation.MathematicalProblemsinEngineering2013(2013)
+11.Karunratanakul, K., Preechakul, K., Suwajanakorn, S., Tang, S.: Gmd: Con-
+    trollable human motion synthesis via guided diffusion models. arXiv preprint
+    arXiv:2305.12577(2023)
+
+=== PAGE 16 ===
+16     F.Authoretal.
+
+12.Komura,T.,Ho,E.S.,Lau,R.W.:Animatingreactivemotionusingmomentum-
+    basedinversekinematics.ComputerAnimationandVirtualWorlds 16(3-4),213–
+    223(2005)
+13.Kundu,J.N.,Buckchash,H.,Mandikal,P.,Jamkhandi,A.,Radhakrishnan,V.B.,
+    etal.:Cross-conditionedrecurrentnetworksforlong-termsynthesisofinter-person
+    humanmotioninteractions.In:ProceedingsoftheIEEE/CVFwinterconference
+    onapplicationsofcomputervision.pp.2724–2733(2020)
+14.Le,N.,Pham,T.,Do,T.,Tjiputra,E.,Tran,Q.D.,Nguyen,A.:Music-driven
+    groupchoreography.In:ProceedingsoftheIEEE/CVFConferenceonComputer
+    VisionandPatternRecognition.pp.8673–8682(2023)
+15.Liang,H.,Zhang,W.,Li,W.,Yu,J.,Xu,L.:Intergen:Diffusion-basedmulti-human
+    motiongenerationundercomplexinteractions.arXivpreprintarXiv:2304.05684
+    (2023)
+16.Lin,J.,Zeng,A.,Lu,S.,Cai,Y.,Zhang,R.,Wang,H.,Zhang,L.:Motion-x:
+    A large-scale 3d expressive whole-body human motion dataset. arXiv preprint
+    arXiv:2307.00818(2023)
+17.Nichol,A.Q.,Dhariwal,P.:Improveddenoisingdiffusionprobabilisticmodels.In:
+    InternationalConferenceonMachineLearning.pp.8162–8171.PMLR(2021)
+18.OpenAI:Https://openai.com/blog/chatgpt
+19.Petrovich,M.,Black,M.J.,Varol,G.:Temos:Generatingdiversehumanmotions
+    fromtextualdescriptions.In:EuropeanConferenceonComputerVision.pp.480–
+    497.Springer(2022)
+20.Radford,A.,Kim,J.W.,Hallacy,C.,Ramesh,A.,Goh,G.,Agarwal,S.,Sastry,G.,
+    Askell,A.,Mishkin,P.,Clark,J.,etal.:Learningtransferablevisualmodelsfrom
+    naturallanguagesupervision.In:Internationalconferenceonmachinelearning.pp.
+    8748–8763.PMLR(2021)
+21.Shafir,Y.,Tevet,G.,Kapon,R.,Bermano,A.H.:Humanmotiondiffusionasa
+    generativeprior.arXivpreprintarXiv:2303.01418(2023)
+22.Shum,H.P.,Komura,T.,Yamazaki,S.:Simulatingcompetitiveinteractionsusing
+    singlycapturedmotions.In:Proceedingsofthe2007ACMsymposiumonVirtual
+    realitysoftwareandtechnology.pp.65–72(2007)
+23.Song,J.,Meng,C.,Ermon,S.:Denoisingdiffusionimplicitmodels.arXivpreprint
+    arXiv:2010.02502(2020)
+24.Tanaka,M.,Fujiwara,K.:Role-awareinteractiongenerationfromtextualdescrip-
+    tion.In:ProceedingsoftheIEEE/CVFInternationalConferenceonComputer
+    Vision.pp.15999–16009(2023)
+25.Tanke,J.,Zhang,L.,Zhao,A.,Tang,C.,Cai,Y.,Wang,L.,Wu,P.C.,Gall,J.,
+    Keskin,C.:Socialdiffusion:Long-termmultiplehumanmotionanticipation.In:
+    ProceedingsoftheIEEE/CVFInternationalConferenceonComputerVision.pp.
+    9601–9611(2023)
+26.Tevet,G.,Raab,S.,Gordon,B.,Shafir,Y.,Cohen-Or,D.,Bermano,A.H.:Human
+    motiondiffusionmodel.arXivpreprintarXiv:2209.14916(2022)
+27.Wang,Z.,Wang,J.,Lin,D.,Dai,B.:Intercontrol:Generatehumanmotioninter-
+    actionsbycontrollingeveryjoint.arXivpreprintarXiv:2311.15864(2023)
+28.Xie,Y.,Jampani,V.,Zhong,L.,Sun,D.,Jiang,H.:Omnicontrol:Controlanyjoint
+    atanytimeforhumanmotiongeneration.arXivpreprintarXiv:2310.08580(2023)
+29.Xie,Z.,Wu,Y.,Gao,X.,Sun,Z.,Yang,W.,Liang,X.:Towardsdetailedtext-to-
+    motionsynthesisviabasic-to-advancedhierarchicaldiffusionmodel.arXivpreprint
+    arXiv:2312.10960(2023)
+
+=== PAGE 17 ===
+                                                         Abbreviatedpapertitle     17
+
+30.Zhang,L.,Rao,A.,Agrawala,M.:Addingconditionalcontroltotext-to-image
+    diffusionmodels.In:ProceedingsoftheIEEE/CVFInternationalConferenceon
+    ComputerVision.pp.3836–3847(2023)
+31.Zhang,M.,Cai,Z.,Pan,L.,Hong,F.,Guo,X.,Yang,L.,Liu,Z.:Motiondiffuse:
+    Text-drivenhumanmotiongenerationwithdiffusionmodel.IEEETransactionson
+    PatternAnalysisandMachineIntelligence(2024)
+32.Zhang,M.,Guo,X.,Pan,L.,Cai,Z.,Hong,F.,Li,H.,Yang,L.,Liu,Z.:Remodif-
+    fuse:Retrieval-augmentedmotiondiffusionmodel.arXivpreprintarXiv:2304.01116
+    (2023)
+33.Zhang,M.,Li,H.,Cai,Z.,Ren,J.,Yang,L.,Liu,Z.:Finemogen:Fine-grained
+    spatio-temporalmotiongenerationandediting.arXivpreprintarXiv:2312.15004
+    (2023)

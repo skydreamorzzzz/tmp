@@ -1,0 +1,111 @@
+{
+  "seed_base": 42,
+  "test_id": "2636",
+  "window": 150,
+  "distance_weight": 5.0,
+  "non_interactive_distance_m": 3.0,
+  "shared_rag_text": "the first one moves ahead by running, and the other person moves forward by walking.",
+  "all_conditions_same_scene_and_derived_seed": true,
+  "conditions": [
+    {
+      "condition": "A_intergen_no_rag_no_guidance",
+      "file_id": "2636",
+      "group1_text": "one person sidesteps to the right and the other person advances ahead.",
+      "group2_text": "one person sidesteps to the right and the other person advances ahead.",
+      "retrieval": {
+        "text": "the first one moves ahead by running, and the other person moves forward by walking.",
+        "score": 0.923800528049469,
+        "rank": 6,
+        "reason": "rank6_fallback_no_below_threshold"
+      },
+      "seed": 2678,
+      "shape": [
+        4,
+        150,
+        22,
+        3
+      ],
+      "mean_abs_root_difference_from_A": null,
+      "output": "artifacts/dpmotion_reproduction/ablations/four_way/A_intergen_no_rag_no_guidance/scene_2636_4p.npy",
+      "seconds": 57.67,
+      "guidance_trace": null,
+      "mean_abs_joint_diff_vs_A": 0.0,
+      "max_abs_joint_diff_vs_A": 0.0
+    },
+    {
+      "condition": "B_intergen_plus_rag_no_guidance",
+      "file_id": "2636",
+      "group1_text": "one person sidesteps to the right and the other person advances ahead.",
+      "group2_text": "the first one moves ahead by running, and the other person moves forward by walking.",
+      "retrieval": {
+        "text": "the first one moves ahead by running, and the other person moves forward by walking.",
+        "score": 0.923800528049469,
+        "rank": 6,
+        "reason": "rank6_fallback_no_below_threshold"
+      },
+      "seed": 2678,
+      "shape": [
+        4,
+        150,
+        22,
+        3
+      ],
+      "mean_abs_root_difference_from_A": null,
+      "output": "artifacts/dpmotion_reproduction/ablations/four_way/B_intergen_plus_rag_no_guidance/scene_2636_4p.npy",
+      "seconds": 40.98,
+      "guidance_trace": null,
+      "mean_abs_joint_diff_vs_A": 0.5609687566757202,
+      "max_abs_joint_diff_vs_A": 3.8263893127441406
+    },
+    {
+      "condition": "C_intergen_plus_guidance_no_rag",
+      "file_id": "2636",
+      "group1_text": "one person sidesteps to the right and the other person advances ahead.",
+      "group2_text": "one person sidesteps to the right and the other person advances ahead.",
+      "retrieval": {
+        "text": "the first one moves ahead by running, and the other person moves forward by walking.",
+        "score": 0.923800528049469,
+        "rank": 6,
+        "reason": "rank6_fallback_no_below_threshold"
+      },
+      "seed": 2678,
+      "shape": [
+        4,
+        150,
+        22,
+        3
+      ],
+      "mean_abs_root_difference_from_A": null,
+      "output": "artifacts/dpmotion_reproduction/ablations/four_way/C_intergen_plus_guidance_no_rag/scene_2636_4p.npy",
+      "seconds": 70.11,
+      "guidance_trace": "artifacts/dpmotion_reproduction/guidance/C_intergen_plus_guidance_no_rag_scene_2636.json",
+      "mean_abs_joint_diff_vs_A": 0.41201916337013245,
+      "max_abs_joint_diff_vs_A": 2.2237966060638428
+    },
+    {
+      "condition": "D_rag_plus_guidance",
+      "file_id": "2636",
+      "group1_text": "one person sidesteps to the right and the other person advances ahead.",
+      "group2_text": "the first one moves ahead by running, and the other person moves forward by walking.",
+      "retrieval": {
+        "text": "the first one moves ahead by running, and the other person moves forward by walking.",
+        "score": 0.923800528049469,
+        "rank": 6,
+        "reason": "rank6_fallback_no_below_threshold"
+      },
+      "seed": 2678,
+      "shape": [
+        4,
+        150,
+        22,
+        3
+      ],
+      "mean_abs_root_difference_from_A": null,
+      "output": "artifacts/dpmotion_reproduction/ablations/four_way/D_rag_plus_guidance/scene_2636_4p.npy",
+      "seconds": 122.38,
+      "guidance_trace": "artifacts/dpmotion_reproduction/guidance/D_rag_plus_guidance_scene_2636.json",
+      "mean_abs_joint_diff_vs_A": 1.041616439819336,
+      "max_abs_joint_diff_vs_A": 4.137818813323975
+    }
+  ]
+}

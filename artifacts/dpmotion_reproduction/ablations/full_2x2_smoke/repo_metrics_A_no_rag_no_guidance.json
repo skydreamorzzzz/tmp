@@ -1,0 +1,42 @@
+{
+  "num_scenes": 1,
+  "metrics": {
+    "penebone_mean": 0.48836445808410645,
+    "penebone_std": 0.0,
+    "pene_rate_mean": 7.306626354245402e-05,
+    "pene_rate_std": 0.0,
+    "penebone_inter_mean": 0.0,
+    "pene_inter_rate_mean": 0.0,
+    "penebone_non_mean": 0.48836445808410645,
+    "pene_non_rate_mean": 0.00010959939390886575,
+    "cframe_all_mean": 14.666666666666666,
+    "cframe_all_std": 0.0,
+    "contact_all_mean": 0.36,
+    "contact_all_std": 0.0,
+    "cframe_inter_mean": 0.0,
+    "contact_inter_mean": 0.0,
+    "cframe_non_mean": 14.666666666666666,
+    "contact_non_mean": 0.36,
+    "intra_scene_diversity_mean": 2.285120149453481,
+    "intra_scene_diversity_std": 0.0
+  },
+  "per_scene": [
+    {
+      "scene": "scene_2636_4p",
+      "num_frames": 150,
+      "penebone": 0.48836445808410645,
+      "pene_rate": 7.306626354245402e-05,
+      "penebone_inter": 0.0,
+      "pene_inter_rate": 0.0,
+      "penebone_non": 0.48836445808410645,
+      "pene_non_rate": 0.00010959939390886575,
+      "cframe_all": 14.666666666666666,
+      "contact_all": 0.36,
+      "cframe_inter": 0.0,
+      "contact_inter": 0.0,
+      "cframe_non": 14.666666666666666,
+      "contact_non": 0.36,
+      "diversity": 2.285120149453481
+    }
+  ]
+}

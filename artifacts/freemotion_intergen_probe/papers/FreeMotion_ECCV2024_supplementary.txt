@@ -1,0 +1,321 @@
+=== PAGE 1 ===
+          FreeMotion:AUnifiedFrameworkfor
+         Number-freeText-to-MotionSynthesis
+                   (SupplementaryMaterial)
+
+
+   KeFan1     ,JunshuTang1       ,WeijianCao2      ,RanYi1 ⋆    ,MoranLi2      ,
+JingyuGong1      ,JiangningZhang2      ,YabiaoWang3,2       ,ChengjieWang1,2      ,
+                             andLizhuangMa1,4,5 ⋆
+
+                         1 ShanghaiJiaoTongUniversity
+       {slipperyfrank, tangjs,  ranyi,  gongjingyu, lzma}@sjtu.edu.cn
+                               2 TencentYoutuLab
+        weijiancao@tencent.com,  moranli.aca@gmail.com, {caseywang,
+                            jasoncjwang}@tencent.com
+                               3 ZhejiangUniversity
+                         4 EastChinaNormalUniversity
+      5 MoEKeyLabofArtificialIntelligence,ShanghaiJiaoTongUniversity
+                     https://VankouF.github.io/FreeMotion
+
+   Inthefollowing,weprovideadditionalimplementationdetails,wherewein-
+troducethemetrics,settings,andtheusageofLLMfortheseparationofmotion
+description,andthedetailsoftrainingaswellasthemannerofvisualization.
+Then,weshowtheadditionalexperiments,whichincludemorequalitativere-
+sults,comparisonbetweenself-attentionandcross-attentionmechanism,andan
+userstudy.Wealsoprovideademovideoforvisualizationsofthegenerated
+motions.
+
+1   Additional Implementation Details
+
+1.1   Metrics
+
+WeutilizethesameevaluationmetricsasInterGen.(1)FID:measuringthelatent
+distributiondistancebetweenthegenerateddatasetandtherealdataset.(2)R
+Precision:measuringthetextmotionmatching,indicatestheprobabilitythatthe
+realtextappearsintheTop-k(1,2,and3)aftersorting.(3)Diversity:measuring
+latentvariance.(4)Multimodality(MModality):measuringdiversitywithinthe
+sametext.(5)Multi-modaldistance(MMDist):measuringthedistancebetween
+motionsandtextfeatures.
+
+
+1.2   Settings
+
+Weemployafrozen CLIP-ViT-L-14modelasthetextencoder.Thenumberof
+diffusiontimestepsissetto1,000duringtrainingandtheDDIM[6]sampling
+strategywith50timestepsisappliedintheinferencestage.For       number-free
+
+⋆ CorrespondingAuthors.
+
+=== PAGE 2 ===
+2      KeFan,JunshuTang,etal.
+
+motiongeneration,thebatchsizeissetto80and30forthefirstandthesecond
+trainingstageoneachGPU.Theepochnumbersare2,500and1,000separately
+forthetwostages.Bothtrainingstagesaretrainedwith1e-4learningrateand2e-
+5weightdecay.Forspatialcontrol,theepochnumberandlearningrateareset
+to1,000and1e-5.Otherhyper-parametersremainthesameasaforementioned.
+AllexperimentsaretrainedoneightTeslaV100GPUs.
+
+
+1.3   LLM for Single-person Motion Description.
+
+Tofacilitatethegenerationmoduleinsynthesizingsingle-personmotion,itises-
+sentialtoprovideasingle-personmotiondescriptionasinputduringthetraining
+phase.Toaccomplishthis,givenamulti-personinteractivemotiondescription,
+weleveragethecapabilitiesoftheLargeLanguageModel(LLM)[5]andcarefully
+designtheprompttogenerate N motiondescriptionsforeachsingleindividual.
+Thisprocessinvolvestwosteps:(1) Separation,whereintheLLMdividesthe
+interactiondescriptionintosingle-personmotiondescriptions,and(2) Assign-
+ment,whereinthesplittextsareassignedtotheirrespectiveindividuals.
+   Separation.LLMisaconversationalmodelbuiltonalargelanguagemodel
+thatcanfacilitatenaturallanguageconversationsandgeneratecorresponding
+responses.TheresponsesgeneratedbyLLMareoftendirectlyinfluencedby
+theinformationandexpressionsprovidedintheprompt.Forourtask,inspired
+by[7],wemeticulouslydesignedeffectivepromptsthroughempiricalvalidation.
+ThepromptandsometypicalresultsareshowninTab.2.
+
+
+Table 1:WeuseCAtorepresentthecross-attentionmechanismandtheSAtorepre-
+senttheself-attentionmechanism.
+
+                                  MethodFID ↓
+                                     CA    7.03
+                                     SA      6.74
+
+
+   Assignment.Toassigneachsingle-persondescriptiontothecorrespond-
+ingmotion,manualallocationisnotfeasibleduetothehighcostinvolved.
+Therefore, we employ a feature extraction model developed by [2], which is
+trainedonalarge-scalesingle-personmotiondatasetwithatextannotation
+(HumanML3D[2])bycontrastivelearning,toaidusintheassignmentprocess.
+Thismodelaimstobringpairedtext-motionfeaturescloserduringtrainingwhile
+pushingunpairedonesfartheraway.Weextractthefeaturesofeachtextand
+motionusingthismodelandcalculatetheEuclideandistancebetweenthem.As
+weonlyhavealarge-scaletext-motiondatasetfortwoindividuals,giventwotext
+descriptionst1,t2,andtwomotionsm  1,m  2,wecalculatea2×2distancematrix
+asshowninFig.1(a).However,directlycomparingthefeaturespacedistance
+between  (t1,m  1 ),  (t1,m  2 ) and  (t2,m  1 ),  (t2,m  2 ) toassignmotiontotextmay
+
+=== PAGE 3 ===
+                                                                  FreeMotion      3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.1:Theleft(a)demonstratesacaseofthecalculatedEuclideandistancebetween
+textfeaturesandmotionfeatures.Theright(b)showstheresultsofouruserstudy,
+andeachsectorrepresentsthecorrespondingquestion.Thelargerthearea,themore
+peoplechoosethecorrespondingmodel.
+
+
+resultinone-to-manymapping, e.g.,when dt1m  1  < d  t1m  2 and dt2m  1  < d  t2m  2,
+both t1 and t2 areassignedto m  1.Toavoidtheone-to-manyassignment,we
+havedesignedasimpleruleshowninAlgorithm.1,toensurethemappingfrom
+texttomotionisaone-to-onemapping.
+
+1.4   Mixed Texts for Training
+Asanalyzedintheexperimentalsectionofourmainpaper,incorporatingboth
+oursplitsingle-persontextdescriptionsandhigh-qualityinteractiondescriptions
+duringthetrainingphasecansubstantiallyenhancethemodel’sperformance.To
+achievethis,weinputthecorrespondingsingle-persontextandglobalinteraction
+textforeachindividualintothefrozenCLIPmodeltoextracttheirrespective
+textfeatures.Wethenaddthesetwofeaturesandusetheresultantfeatureasa
+conditiontoguidethemodelduringsubsequenttrainingtogeneratethedesired
+motionforthatindividual.
+
+1.5   Visualizations
+Oncethemodelpredictsthejoints,weobtainthecorrespondingSMPL[4]pa-
+rametersthroughSMPLmodelfitting.Toenhancethevisualappealofthedis-
+play,wedownloadthecharacterfromMixamo[1]andretargetitthroughthe
+blenderplug-in.Pleaserefertoouraccompanieddemovideoforvisualizations.
+
+2   Additional Experiments
+
+2.1   Additional Qualitative Results.
+Inthissection,weprovideadditionalcomparisonsofourgeneratedsingleand
+two-personmotionswithourrevisedInterGen[3].TheresultsshowninFig.      2
+
+=== PAGE 4 ===
+4      KeFan,JunshuTang,etal.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.2:ComparisonwithInterGen*onsingleandtwo-personmotiongeneration.For
+single-personmotion,wegenerateitwithourre-annotatedsingledescription.Fortwo-
+personmotion,wefurtherleveragetheoriginalinteractivedescriptions.Forbetter
+visualization,someposeframesareshiftedtopreventcompleteoverlap.
+
+
+demonstratethatourmethodoutperformsInterGeninbothsingleandmulti-
+personmotiongeneration.
+
+
+2.2   Comparison between Self-Attention and Cross-Attention
+
+Comparedwithcross-attention,self-attentionextractsnotonlytheinteractive
+relationsbetweennoisemotionandmotionconditionsbutalsotheinteraction
+betweendifferentmotionconditions.AsshowninTab1,whereSAachievesa
+betterFID,whichmeansthatcomparedwithcross-attention,self-attentionis
+moreflexibleformodelingtheinteractionbetweenmotionsregardlessofthe
+numberofmotionsinthecondition.
+
+2.3   User Study
+
+Weconductauserstudytoobtaintheuser’ssubjectevaluationbetweenoursand
+InterGenforthegenerationofbothsingleandtwo-personmotions.Wegenerate
+25resultsusingourmethod,and25resultsusingInterGenunderthesamesetof
+inputtexts,andpresenttheseresultstomorethan50participants.Weaskthem
+toselecttheirpreferenceaccordingtothecomprehensiveconsiderationoftext-
+motionconsistencyandfidelity.AsshowninFig.1(b),ourmethodachievesan
+overwhelmingmajorityofvotesinallcases,provingthatourcarefullydesigned
+modelarchitecturecanbetteradapttomotiongenerationforanynumberof
+people.
+
+=== PAGE 5 ===
+                                                                                           FreeMotion      5
+
+
+
+
+
+
+
+
+
+
+
+Algorithm 1TextMotionMatching
+Require: Alist L  =  {(dit1m  1,dit1m  2,dit2m  1,dit2m  2 )},i∈{ 1,...,N },where d represents
+     thedistanceofcorrespondingtextfeatureandmotionfeature, N  representsthe
+     totalinteractivedescriptions.
+ 1: for dt1m  1,dt1m  2,dt2m  1,dt2m  2 in L  do
+ 2:      pt1m  1,pt1m  2 =         dt1 m  2dt1 m  1 + dt1 m  2 ,      dt1 m  1dt1 m  1 + dt1 m  2
+ 3:      pt2m  1,pt2m  2 =         dt2 m  2dt2 m  1 + dt2 m  2 ,      dt2 m  1dt2 m  1 + dt2 m  2
+ 4:      if pt1m  1 >p  t1m  2 then
+ 5:          if pt2m  1 ≤  pt1m  2 then
+ 6:         Match(t1,m   1),Match(t2,m   2)
+ 7:          else
+ 8:               if pt1m  1 ≥  pt2m  1 then
+ 9:            Match(t1,m   1),Match(t2,m   2)
+10:               else
+11:            Match(t1,m   2),Match(t2,m   1)
+12:               end if
+13:          end if
+14:      else
+15:          if pt2m  2 ≤  pt2m  1 then
+16:         Match(t1,m   2),Match(t2,m   1)
+17:          else
+18:               if pt1m  1 ≥  pt2m  1 then
+19:            Match(t1,m   1),Match(t2,m   2)
+20:               else
+21:            Match(t1,m   2),Match(t2,m   1)
+22:               end if
+23:          end if
+24:      end if
+25: end for
+26: return
+
+=== PAGE 6 ===
+6      KeFan,JunshuTang,etal.
+
+Table2:Exampleofthedesignedpromptandafewcasesforseparatingtheinteractive
+descriptionintothesingle-personmotiontextsbyLLM.
+
+              SeparationProcess(twopeopleasanexample)
+              Instruction:twopeoplegreeteachotherwithahand-
+              shakewhileholdingtheircardsinthelefthand.Giventhe
+              instruction,generatethedescriptionsaccordingtothefol-
+              lowingrulesandexamples.Eachtaskplanshouldcom-
+              pletelyreflectanentireprocessofactionsdescribedinthe
+              instruction.
+              [start of rules]
+              1.Beplausible.Donotgenerateuncommoninteractions.
+              2.Useonesentencetodescribewhatactionshouldperson1
+              doandonesentencetodescribewhatactionshouldperson
+              2doaccordingtothetextinstructionatthebeginningof
+              thetaskplan.
+              IMPORTANT:
+              1.thesentencestartsfrom’text1:’describingtheactionof
+              person1fromtheperspectiveofperson1andthesentence
+              startsfrom’text2:’describingtheactionofperson2from
+              theperspectiveofperson2.SentencesshouldNOTcontain
+              wordslike’person1’or’person2’,use’aperson’torefer
+              tohimselfinthesentenceand’others’torefertoothers.
+              3.Pleasenotethatifadescriptiononlycontainstheactions
+              ofoneperson,itmeansthatthesecondpersonstandsstill.
+              Inthiscase,pleasegivethedescriptionofthesecondperson
+              thedefaultoutputas"Apersonstandsstill.
+              [end of rules]
+              [start of an example 1]
+              Instruction:twopeoplegreeteachotherwithahandshake,
+              whileholdingtheircardsinthelefthand.Output:[Text
+              1]apersonmakeahandshakewithothersusinghisright
+              wrist,whileholdinghiscardsintheleftwrist.[Text2]a
+              personmakeahandshakewithothersusinghisrightwrist,
+              whileholdinghiscardsintheleftwrist.
+              [end of an example 1]
+              [start of an example 2]Instruction:onepersonmoves
+              ahead,loweringthearm.Ouput:[Text1]Apersondrops
+              theirarmandmovesastepforward.[Text2]Aperson
+              standsstill.
+              [end of an example 2]
+              User:thefirstonelowersthearmandmovesahead.
+              LLM:Output[Text1]Apersonlowerstheirarmandtakes
+              astepforward.[Text2]Apersonstandsstill.
+              User:onepersonnodswhentheotherpersontriestotouch
+              therighthand.
+              LLM:Output:[Text1]Apersonnodsinresponseasthe
+              otherpersonreachesouttotouchtheirrighthand.[Text2]
+              Apersontriestotouchtherighthandoftheotherperson
+              whileobservingtheirreaction.
+
+=== PAGE 7 ===
+                                                                     FreeMotion      7
+
+References
+
+1. Adobe:Https://www.mixamo.com/3
+2. Guo,C.,Zou,S.,Zuo,X.,Wang,S.,Ji,W.,Li,X.,Cheng,L.:Generatingdiverseand
+   natural3dhumanmotionsfromtext.In:ProceedingsoftheIEEE/CVFConference
+   onComputerVisionandPatternRecognition.pp.5152–5161(2022)2
+3. Liang,H.,Zhang,W.,Li,W.,Yu,J.,Xu,L.:Intergen:Diffusion-basedmulti-human
+   motion generation under complex interactions. arXiv preprint arXiv:2304.05684
+   (2023)3
+4. Loper,M.,Mahmood,N.,Romero,J.,Pons-Moll,G.,Black,M.J.:Smpl:Askinned
+   multi-personlinearmodel.In:SeminalGraphicsPapers:PushingtheBoundaries,
+   Volume2,pp.851–866(2023)3
+5. OpenAI:Https://openai.com/blog/chatgpt2
+6. Song,J.,Meng,C.,Ermon,S.:Denoisingdiffusionimplicitmodels.arXivpreprint
+   arXiv:2010.02502(2020)1
+7. Wang,Z.,Wang,J.,Lin,D.,Dai,B.:Intercontrol:Generatehumanmotioninter-
+   actionsbycontrollingeveryjoint.arXivpreprintarXiv:2311.15864(2023)2

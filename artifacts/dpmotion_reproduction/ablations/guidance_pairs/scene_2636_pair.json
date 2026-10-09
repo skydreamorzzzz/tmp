@@ -1,0 +1,34 @@
+{
+  "file_id": "2636",
+  "seed": 2678,
+  "group1_text": "one person sidesteps to the right and the other person advances ahead.",
+  "group2_text": "the first one moves ahead by running, and the other person moves forward by walking.",
+  "retrieval": {
+    "text": "the first one moves ahead by running, and the other person moves forward by walking.",
+    "score": 0.923800528049469,
+    "rank": 6,
+    "reason": "rank6_fallback_no_below_threshold"
+  },
+  "window": 150,
+  "distance_m": 3.0,
+  "distance_weight": 5.0,
+  "sampler": "unmodified upstream forward_single; ancestral DDPM 1000",
+  "same_torch_random_draws_exactly": true,
+  "torch_random_draw_count": 2009,
+  "conditions": {
+    "off": {
+      "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/off/scene_2636_4p.npy",
+      "mean_random_draw_count": 2009,
+      "random_draw_sequence_sha256": "eddfd55c2f36fcc519f6c600b8354eb5bd8fa4ba57e7a59e6a904bb232f4ff2d",
+      "first_draw_sha256": "9c69cc39d204e4a774bd488be0e599ae098b174e457849e8613ecd1073394a60",
+      "last_draw_sha256": "86c618751d363f69de5cc4affd890b73552d8a2e8b01ae871da8e903c1eb19aa"
+    },
+    "on": {
+      "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/on/scene_2636_4p.npy",
+      "mean_random_draw_count": 2009,
+      "random_draw_sequence_sha256": "eddfd55c2f36fcc519f6c600b8354eb5bd8fa4ba57e7a59e6a904bb232f4ff2d",
+      "first_draw_sha256": "9c69cc39d204e4a774bd488be0e599ae098b174e457849e8613ecd1073394a60",
+      "last_draw_sha256": "86c618751d363f69de5cc4affd890b73552d8a2e8b01ae871da8e903c1eb19aa"
+    }
+  }
+}

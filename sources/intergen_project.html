@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="InterGen: Diffusion-based Multi-human Motion Generation under Complex Interactions.">
+  <meta name="keywords" content="MoGen, interaction, diffusion">
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+  <title>InterGen: Diffusion-based Multi-human Motion Generation under Complex Interactions</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="font-size:45px">InterGen: Diffusion-based Multi-human Motion Generation under Complex Interactions</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://tr3e.github.io/">Han Liang</a>,</span>
+            <span class="author-block">
+              <a>Wenqian Zhang</a>,</span>
+            <span class="author-block">
+              <a>Wenxuan Li</a>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.yu-jingyi.com/">Jingyi Yu</a>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.xu-lan.com/">Lan Xu</a>,
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">ShanghaiTech University</span>
+          </div>
+          <div class="column has-text-centered">
+          	<a href="https://link.springer.com/journal/11263"><h3 style="font-size:19px"><i>( IJCV 2024 - International Journal of Computer Vision )</i></h3></a>
+          <div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://doi.org/10.1007/s11263-024-02042-6"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2304.05684"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/tr3e/InterGen"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/drive/folders/1oyozJ4E7Sqgsr7Q747Na35tWo5CjNYk3?usp=sharing"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data (released)</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/images/teaser.gif"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> One man knocked the other down with a thumping leg
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"Oppenheimer and Einstein <span style="color: purple;">walked side by side</span> in the garden and had profound discussions."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/walk/11.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/walk/22.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/walk/33.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/walk/44.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"With <span style="color: purple;">fiery passion</span> two dancers entwine in <span style="color: purple;">Latin dance</span> sublime."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/latin/11.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/latin/22.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/latin/33.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/latin/55.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We have recently seen tremendous progress in diffusion advances for generating realistic human motions. Yet, they largely disregard the rich multi-human interactions. 
+          </p>
+          <p>
+            In this paper, we present InterGen, an effective diffusion-based approach that incorporates human-to-human interactions into the motion diffusion process, which enables layman users to customize high-quality two-person interaction motions, with only text guidance.
+          </p>
+          <p>
+            We first contribute a multimodal dataset, named InterHuman. It consists of about 107M frames for diverse two-person interactions, with accurate skeletal motions and 16,756 natural language descriptions.
+For the algorithm side, we carefully tailor the motion diffusion model to our two-person interaction setting. 
+            Then, we propose a novel representation for motion input in our interaction diffusion model, which explicitly formulates the global relations between the two performers in the world frame.
+            We further introduce two novel regularization terms to encode spatial relations, equipped with a corresponding damping scheme during the training of our interaction diffusion model. 
+          </p>
+          <p>
+            Extensive experiments validate the effectiveness and generalizability of InterGen. Notably, it can generate more diverse and compelling two-person motions than previous methods and enables various downstream applications for human interactions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video.
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <center><img id="teaser" width="120%" src="./static/images/pipeline.png" margin: 0 auto;></center>
+    </div>
+  </div>
+</section>
+
+
+<!-- <center>
+  <h2 class="title is-3">Visual Effects</h2>
+  <p>
+    Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+    would be impossible without nerfies since it would require going through a wall.
+  </p>
+  <h2 class="subtitle has-text-centered">
+  </center> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Prompt-guided Generation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our approach enables layman users to customize high-quality and diverse two-person interaction motions, with only text prompt guidance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"In an intense boxing match, one person <span style="color: purple;">attacks the opponent with straight punch</span>, and then the opponent <span style="color: purple;">falls over</span>."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_punch/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_punch/2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_punch/3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_punch/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"Two good friends <span style="color: purple;">jump in the same rhythm</span> to celebrate something."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/jump/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/jump/2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/jump/3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/jump/4.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"Two people <span style="color: purple;">bow</span> to each other."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/bow/7.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/bow/6.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/bow/5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/bow/4.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/bow/3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/bow/2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/bow/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"Two people <span style="color: purple;">embrace</span> each other."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/hug/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/hug/2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/hug/3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/hug/4.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/hug/5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/hug/6.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"In an intense boxing match, one is <span style="color: purple;">continuously punching</span> while the other is <span style="color: purple;">defending and counterattacking</span>."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/boxing/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/boxing/2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/boxing/3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/boxing/4.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/boxing/5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"Two fencers engage in a <span style="color: purple;">thrilling duel</span>, their sabres clashing and sparking as they strive for victory."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/fence/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/fence/2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/fence/3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/fence/4.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"The two are <span style="color: purple;">blaming each other</span> and having an <span style="color: purple;">intense argument</span>"
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/argue/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/argue/2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/argue/3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/argue/4.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <h2 class="subtitle has-text-centered">
+      <span class="prompt">"In an intense boxing match, <span style="color: purple;">one man knocks the other down</span> with a <span style="color: purple;">thumping leg</span>."
+    </h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_kick/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="1" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_kick/2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_kick/3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay  muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_kick/1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">InterHuman Dataset</h2>
+        <div class="content has-text-justified">
+          <p>
+            InterHuman is a comprehensive, large-scale 3D human interactive motion dataset encompassing a diverse range of 3D motions of two interactive people, each accompanied by natural language annotations.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section class="hero teaser">
+  <center><img id="teaser" width="45%" src="./static/images/interhuman.gif" margin: 0 auto;></center>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+@article{liang2024intergen,
+  title={Intergen: Diffusion-based multi-human motion generation under complex interactions},
+  author={Liang, Han and Zhang, Wenqian and Li, Wenxuan and Yu, Jingyi and Xu, Lan},
+  journal={International Journal of Computer Vision},
+  pages={1--21},
+  year={2024},
+  publisher={Springer}
+}
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/pdf/intergen.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/tr3e" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+/environment/miniconda3/envs/py38/lib/python3.8/site-packages/torch/nn/modules/transformer.py:276: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:175.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+Encoded 96 / 1056
+Encoded 192 / 1056
+Encoded 288 / 1056
+Encoded 384 / 1056
+Encoded 480 / 1056
+Encoded 576 / 1056
+Encoded 672 / 1056
+Encoded 768 / 1056
+Encoded 864 / 1056
+Encoded 960 / 1056
+Encoded 1056 / 1056
+{
+  "label": "InterGen single",
+  "ground_truth_sanity": {
+    "MM_Distance": 3.7847047863584575,
+    "R_Precision": [
+      0.41761363636363635,
+      0.5852272727272727,
+      0.6837121212121212
+    ],
+    "Diversity": 7.780393123626709,
+    "purpose": "Real motion calibration, not generated model metrics"
+  },
+  "metrics": {
+    "FID": 9.13302862474984,
+    "R_Precision": [
+      0.2481060606060606,
+      0.3939393939393939,
+      0.47632575757575757
+    ],
+    "MM_Distance": 3.878193913084088,
+    "Diversity": 7.5276007652282715,
+    "Multimodality": null
+  },
+  "protocol": {
+    "sanity_only": false,
+    "generated_cases": 1099,
+    "evaluation_cases": 1056,
+    "full_valid_test_cases": 1099,
+    "retrieval_candidates": 96,
+    "drop_last": true,
+    "seed": 1234,
+    "generation_replications": 1,
+    "confidence_interval": null,
+    "diversity_pairs": 300,
+    "mm_selected_cases": 0,
+    "mm_repeats": null,
+    "mm_pairs": null,
+    "fid_feature_scale": 6,
+    "diversity_feature_scale": 6,
+    "diversity_distance_divisor": 2,
+    "mm_distance_feature_scale": 1,
+    "multimodality_feature_scale": 1,
+    "evaluator": "unmodified FreeMotion EvaluatorModelWrapper and utils.metrics; interclip.ckpt strict load",
+    "paper_comparison": "descriptive reference only; paper repeats metrics20x / MM5x; paper baseline InterGen* retrained"
+  }
+}

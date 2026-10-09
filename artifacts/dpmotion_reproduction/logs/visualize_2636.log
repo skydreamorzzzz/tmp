@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "artifacts/dpmotion_reproduction/visualize.py", line 39, in <module>
+    main()
+  File "artifacts/dpmotion_reproduction/visualize.py", line 33, in main
+    plot_3d_motion_multi(str(dest), kit_kinematic_chain, arr,
+  File "/home/featurize/work/FreeMotion-reproduction/code/DPMotion/utils/plot_script.py", line 318, in plot_3d_motion_multi
+    ani.save(save_path, fps=fps)
+  File "/home/featurize/work/FreeMotion-reproduction/.venv/lib/python3.8/site-packages/matplotlib/animation.py", line 1102, in save
+    alt_writer = next(writers, None)
+TypeError: 'MovieWriterRegistry' object is not an iterator

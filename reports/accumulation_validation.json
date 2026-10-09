@@ -1,0 +1,6 @@
+{
+  "stage1_max_gradient_error": 9.313225746154785e-10,
+  "stage2_max_gradient_error": 3.725290298461914e-09,
+  "stage2_loss_error": 0.0,
+  "case": "Unequal lengths and microbatch with zero active timesteps; upstream RO batch reduction preserved"
+}

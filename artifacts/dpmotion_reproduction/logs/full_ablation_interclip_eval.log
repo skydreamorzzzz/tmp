@@ -1,0 +1,6 @@
+INTERCLIP_EVALUATED A_no_rag_no_guidance 120 3.872774362564087 0.31666666666666665
+INTERCLIP_EVALUATED B_rag_no_guidance 120 3.8840322494506836 0.475
+INTERCLIP_EVALUATED C_no_rag_guidance 120 3.905604600906372 0.21666666666666667
+INTERCLIP_EVALUATED D_rag_guidance 120 3.913358449935913 0.31666666666666665
+/environment/miniconda3/envs/py38/lib/python3.8/site-packages/torch/nn/modules/transformer.py:276: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:175.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)

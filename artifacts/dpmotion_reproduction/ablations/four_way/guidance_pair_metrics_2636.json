@@ -1,0 +1,74 @@
+{
+  "no_guidance": {
+    "group_center_xz_distance_m": {
+      "mean": 2.410073757171631,
+      "min": 0.6424901485443115,
+      "max": 3.679858922958374,
+      "fraction_frames_below_3m": 0.54
+    },
+    "cross_group_root_xz_distance_m": {
+      "mean": 2.6792378425598145,
+      "min": 0.10553126037120819,
+      "fraction_pairs_frames_below_3m": 0.6133333333333333
+    },
+    "within_group_root_3d_distance_m": {
+      "group1_mean": 1.626191258430481,
+      "group2_mean": 1.5275771617889404
+    },
+    "root_path_length_m": [
+      2.360668659210205,
+      2.749904155731201,
+      2.668206214904785,
+      3.5701498985290527
+    ],
+    "mean_root_speed_m_per_frame": 0.020694352686405182,
+    "mean_joint_speed_m_per_frame": 0.022214017808437347,
+    "penebone": 0.7820073962211609,
+    "penetration_rate": 0.00012597631645250694,
+    "interaction_penebone": 0.0,
+    "non_interaction_penebone": 0.7820073962211609,
+    "contact_rate_pct": 10.666666666666668,
+    "contact_pairs_per_frame": 0.4866666666666667
+  },
+  "guidance": {
+    "group_center_xz_distance_m": {
+      "mean": 4.61915922164917,
+      "min": 3.800231695175171,
+      "max": 5.089443683624268,
+      "fraction_frames_below_3m": 0.0
+    },
+    "cross_group_root_xz_distance_m": {
+      "mean": 4.85007905960083,
+      "min": 2.946289300918579,
+      "fraction_pairs_frames_below_3m": 0.03
+    },
+    "within_group_root_3d_distance_m": {
+      "group1_mean": 2.5728938579559326,
+      "group2_mean": 1.834212064743042
+    },
+    "root_path_length_m": [
+      1.8053951263427734,
+      3.394843339920044,
+      2.3451671600341797,
+      3.7018442153930664
+    ],
+    "mean_root_speed_m_per_frame": 0.020411742851138115,
+    "mean_joint_speed_m_per_frame": 0.021722521632909775,
+    "penebone": 0.0,
+    "penetration_rate": 0.0,
+    "interaction_penebone": 0.0,
+    "non_interaction_penebone": 0.0,
+    "contact_rate_pct": 0.0,
+    "contact_pairs_per_frame": 0.0
+  },
+  "paired_change": {
+    "mean_abs_joint_xyz_change_m": 0.49768614768981934,
+    "per_person_mean_abs_xyz_change_m": [
+      0.7121636271476746,
+      0.8267737030982971,
+      0.27226361632347107,
+      0.17954373359680176
+    ],
+    "max_abs_xyz_change_m": 2.8963828086853027
+  }
+}

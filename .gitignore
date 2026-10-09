@@ -1,0 +1,56 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.cache/
+cache/
+*.tmp
+*.tmp.npy
+*.part
+*.lock
+events.out.tfevents.*
+
+# Local datasets, including links to incoming dataset folders
+/data/
+code/*/data/motions
+code/*/data/motions_processed
+code/*/data/annots
+code/*/data/annots_utf8
+code/*/data/separate_annots
+code/*/data/split
+code/*/data/raw/
+code/*/data/processed/
+artifacts/intergen_vs_freemotion/ground_truth/
+
+# Rebuildable retrieval KB/embedding caches; keep retrieval audit records
+artifacts/dpmotion_reproduction/rag/dpmotion_kb.pkl
+artifacts/dpmotion_reproduction/rag/dpmotion_embeddings.npy
+artifacts/dpmotion_reproduction/rag/dpmotion_entries.jsonl
+**/dpmotion_kb.pkl
+
+# Local secrets and editor files
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Model weights stay local (including symlinks to checkpoints).
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.h5
+*.hdf5
+# Keep normalizers, experiment metrics and logs.

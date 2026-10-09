@@ -1,0 +1,51 @@
+{
+  "native_two_person": {
+    "primary_files": 1099,
+    "primary_motion_sequences": 2198,
+    "mm_files": 100,
+    "mm_motion_sequences": 6000,
+    "all_finite": true,
+    "primary_max_abs_all_features": 4.5075860023498535,
+    "minimum_mm_position_variation": 0.1465630680322647,
+    "motion_bytes": 787916208,
+    "evaluation_features": [
+      1056,
+      512
+    ],
+    "mm_features": [
+      100,
+      30,
+      512
+    ]
+  },
+  "single": {
+    "primary_files": 1099,
+    "primary_motion_sequences": 2198,
+    "mm_files": 100,
+    "mm_motion_sequences": 6000,
+    "all_finite": true,
+    "primary_max_abs_all_features": 4.089339256286621,
+    "minimum_mm_position_variation": 0.14339810609817505,
+    "motion_bytes": 787916208,
+    "evaluation_features": [
+      1056,
+      512
+    ],
+    "mm_features": [
+      100,
+      30,
+      512
+    ]
+  },
+  "comparison_alignment": {
+    "identical_test_ids": true,
+    "identical_ground_truth_features": true,
+    "identical_text_features": true,
+    "native_vs_single_motion_features_different": true
+  },
+  "implementation_integrity": {
+    "native_source_unchanged": true,
+    "freemotion_source_unchanged": true,
+    "single_port_matches_generation_hash": true
+  }
+}

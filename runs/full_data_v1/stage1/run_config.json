@@ -1,0 +1,19 @@
+{
+  "stage": 1,
+  "epochs": 30,
+  "batch_size": 16,
+  "workers": 4,
+  "seed": 1234,
+  "run_dir": "/home/featurize/work/FreeMotion-reproduction/runs/full_data_v1/stage1",
+  "pretrained": null,
+  "resume": null,
+  "max_steps": 0,
+  "log_every": 25,
+  "dataset_examples": 11258,
+  "device": "NVIDIA GeForce RTX 4090",
+  "model_parameters": 288648710,
+  "trainable_parameters": 154558726,
+  "method": "engineering reconstruction",
+  "precision": "FP32",
+  "upstream_model_modified": false
+}

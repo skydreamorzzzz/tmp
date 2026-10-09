@@ -1,0 +1,437 @@
+{
+  "conditions": {
+    "A_no_rag_no_guidance": {
+      "penebone_mean": 0.48836445808410645,
+      "penebone_std": 0.0,
+      "pene_rate_mean": 7.306626354245402e-05,
+      "pene_rate_std": 0.0,
+      "penebone_inter_mean": 0.0,
+      "pene_inter_rate_mean": 0.0,
+      "penebone_non_mean": 0.48836445808410645,
+      "pene_non_rate_mean": 0.00010959939390886575,
+      "cframe_all_mean": 14.666666666666666,
+      "cframe_all_std": 0.0,
+      "contact_all_mean": 0.36,
+      "contact_all_std": 0.0,
+      "cframe_inter_mean": 0.0,
+      "contact_inter_mean": 0.0,
+      "cframe_non_mean": 14.666666666666666,
+      "contact_non_mean": 0.36,
+      "intra_scene_diversity_mean": 2.285120149453481,
+      "intra_scene_diversity_std": 0.0
+    },
+    "B_rag_no_guidance": {
+      "penebone_mean": 0.7820073962211609,
+      "penebone_std": 0.0,
+      "pene_rate_mean": 0.00012597631645250694,
+      "pene_rate_std": 0.0,
+      "penebone_inter_mean": 0.0,
+      "pene_inter_rate_mean": 0.0,
+      "penebone_non_mean": 0.7820073962211609,
+      "pene_non_rate_mean": 0.0001889644772745669,
+      "cframe_all_mean": 10.666666666666668,
+      "cframe_all_std": 0.0,
+      "contact_all_mean": 0.4866666666666667,
+      "contact_all_std": 0.0,
+      "cframe_inter_mean": 0.0,
+      "contact_inter_mean": 0.0,
+      "cframe_non_mean": 10.666666666666668,
+      "contact_non_mean": 0.4866666666666667,
+      "intra_scene_diversity_mean": 2.3911837140719094,
+      "intra_scene_diversity_std": 0.0
+    },
+    "C_no_rag_guidance": {
+      "penebone_mean": 0.0,
+      "penebone_std": 0.0,
+      "pene_rate_mean": 0.0,
+      "pene_rate_std": 0.0,
+      "penebone_inter_mean": 0.0,
+      "pene_inter_rate_mean": 0.0,
+      "penebone_non_mean": 0.0,
+      "pene_non_rate_mean": 0.0,
+      "cframe_all_mean": 0.0,
+      "cframe_all_std": 0.0,
+      "contact_all_mean": 0.0,
+      "contact_all_std": 0.0,
+      "cframe_inter_mean": 0.0,
+      "contact_inter_mean": 0.0,
+      "cframe_non_mean": 0.0,
+      "contact_non_mean": 0.0,
+      "intra_scene_diversity_mean": 3.2176172137260437,
+      "intra_scene_diversity_std": 0.0
+    },
+    "D_rag_guidance": {
+      "penebone_mean": 0.0,
+      "penebone_std": 0.0,
+      "pene_rate_mean": 0.0,
+      "pene_rate_std": 0.0,
+      "penebone_inter_mean": 0.0,
+      "pene_inter_rate_mean": 0.0,
+      "penebone_non_mean": 0.0,
+      "pene_non_rate_mean": 0.0,
+      "cframe_all_mean": 0.0,
+      "cframe_all_std": 0.0,
+      "contact_all_mean": 0.0,
+      "contact_all_std": 0.0,
+      "cframe_inter_mean": 0.0,
+      "contact_inter_mean": 0.0,
+      "cframe_non_mean": 0.0,
+      "contact_non_mean": 0.0,
+      "intra_scene_diversity_mean": 4.216815193494161,
+      "intra_scene_diversity_std": 0.0
+    }
+  },
+  "num_scenes": {
+    "A_no_rag_no_guidance": 1,
+    "B_rag_no_guidance": 1,
+    "C_no_rag_guidance": 1,
+    "D_rag_guidance": 1
+  },
+  "per_scene_factorial_contrasts": {
+    "penebone": {
+      "rag_effect_without_guidance": {
+        "mean": 0.29364293813705444,
+        "median": 0.29364293813705444,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.29364293813705444,
+          0.29364293813705444
+        ]
+      },
+      "rag_effect_with_guidance": {
+        "mean": 0.0,
+        "median": 0.0,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          0.0,
+          0.0
+        ]
+      },
+      "rag_main_effect": {
+        "mean": 0.14682146906852722,
+        "median": 0.14682146906852722,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.14682146906852722,
+          0.14682146906852722
+        ]
+      },
+      "guidance_effect_without_rag": {
+        "mean": -0.48836445808410645,
+        "median": -0.48836445808410645,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.48836445808410645,
+          -0.48836445808410645
+        ]
+      },
+      "guidance_effect_with_rag": {
+        "mean": -0.7820073962211609,
+        "median": -0.7820073962211609,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.7820073962211609,
+          -0.7820073962211609
+        ]
+      },
+      "guidance_main_effect": {
+        "mean": -0.6351859271526337,
+        "median": -0.6351859271526337,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.6351859271526337,
+          -0.6351859271526337
+        ]
+      },
+      "rag_guidance_interaction": {
+        "mean": -0.29364293813705444,
+        "median": -0.29364293813705444,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.29364293813705444,
+          -0.29364293813705444
+        ]
+      },
+      "per_scene_rag_main_effect": [
+        0.14682146906852722
+      ]
+    },
+    "pene_rate": {
+      "rag_effect_without_guidance": {
+        "mean": 5.291005291005292e-05,
+        "median": 5.291005291005292e-05,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          5.291005291005292e-05,
+          5.291005291005292e-05
+        ]
+      },
+      "rag_effect_with_guidance": {
+        "mean": 0.0,
+        "median": 0.0,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          0.0,
+          0.0
+        ]
+      },
+      "rag_main_effect": {
+        "mean": 2.645502645502646e-05,
+        "median": 2.645502645502646e-05,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          2.645502645502646e-05,
+          2.645502645502646e-05
+        ]
+      },
+      "guidance_effect_without_rag": {
+        "mean": -7.306626354245402e-05,
+        "median": -7.306626354245402e-05,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -7.306626354245402e-05,
+          -7.306626354245402e-05
+        ]
+      },
+      "guidance_effect_with_rag": {
+        "mean": -0.00012597631645250694,
+        "median": -0.00012597631645250694,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.00012597631645250694,
+          -0.00012597631645250694
+        ]
+      },
+      "guidance_main_effect": {
+        "mean": -9.952128999748048e-05,
+        "median": -9.952128999748048e-05,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -9.952128999748048e-05,
+          -9.952128999748048e-05
+        ]
+      },
+      "rag_guidance_interaction": {
+        "mean": -5.291005291005292e-05,
+        "median": -5.291005291005292e-05,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -5.291005291005292e-05,
+          -5.291005291005292e-05
+        ]
+      },
+      "per_scene_rag_main_effect": [
+        2.645502645502646e-05
+      ]
+    },
+    "cframe_all": {
+      "rag_effect_without_guidance": {
+        "mean": -3.9999999999999982,
+        "median": -3.9999999999999982,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -3.9999999999999982,
+          -3.9999999999999982
+        ]
+      },
+      "rag_effect_with_guidance": {
+        "mean": 0.0,
+        "median": 0.0,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          0.0,
+          0.0
+        ]
+      },
+      "rag_main_effect": {
+        "mean": -1.9999999999999991,
+        "median": -1.9999999999999991,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -1.9999999999999991,
+          -1.9999999999999991
+        ]
+      },
+      "guidance_effect_without_rag": {
+        "mean": -14.666666666666666,
+        "median": -14.666666666666666,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -14.666666666666666,
+          -14.666666666666666
+        ]
+      },
+      "guidance_effect_with_rag": {
+        "mean": -10.666666666666668,
+        "median": -10.666666666666668,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -10.666666666666668,
+          -10.666666666666668
+        ]
+      },
+      "guidance_main_effect": {
+        "mean": -12.666666666666668,
+        "median": -12.666666666666668,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -12.666666666666668,
+          -12.666666666666668
+        ]
+      },
+      "rag_guidance_interaction": {
+        "mean": 3.9999999999999982,
+        "median": 3.9999999999999982,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          3.9999999999999982,
+          3.9999999999999982
+        ]
+      },
+      "per_scene_rag_main_effect": [
+        -1.9999999999999991
+      ]
+    },
+    "contact_all": {
+      "rag_effect_without_guidance": {
+        "mean": 0.1266666666666667,
+        "median": 0.1266666666666667,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.1266666666666667,
+          0.1266666666666667
+        ]
+      },
+      "rag_effect_with_guidance": {
+        "mean": 0.0,
+        "median": 0.0,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          0.0,
+          0.0
+        ]
+      },
+      "rag_main_effect": {
+        "mean": 0.06333333333333335,
+        "median": 0.06333333333333335,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.06333333333333335,
+          0.06333333333333335
+        ]
+      },
+      "guidance_effect_without_rag": {
+        "mean": -0.36,
+        "median": -0.36,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.36,
+          -0.36
+        ]
+      },
+      "guidance_effect_with_rag": {
+        "mean": -0.4866666666666667,
+        "median": -0.4866666666666667,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.4866666666666667,
+          -0.4866666666666667
+        ]
+      },
+      "guidance_main_effect": {
+        "mean": -0.42333333333333334,
+        "median": -0.42333333333333334,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.42333333333333334,
+          -0.42333333333333334
+        ]
+      },
+      "rag_guidance_interaction": {
+        "mean": -0.1266666666666667,
+        "median": -0.1266666666666667,
+        "fraction_delta_positive": 0.0,
+        "bootstrap_95pct_ci": [
+          -0.1266666666666667,
+          -0.1266666666666667
+        ]
+      },
+      "per_scene_rag_main_effect": [
+        0.06333333333333335
+      ]
+    },
+    "diversity": {
+      "rag_effect_without_guidance": {
+        "mean": 0.10606356461842825,
+        "median": 0.10606356461842825,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.10606356461842825,
+          0.10606356461842825
+        ]
+      },
+      "rag_effect_with_guidance": {
+        "mean": 0.999197979768117,
+        "median": 0.999197979768117,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.999197979768117,
+          0.999197979768117
+        ]
+      },
+      "rag_main_effect": {
+        "mean": 0.5526307721932726,
+        "median": 0.5526307721932726,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.5526307721932726,
+          0.5526307721932726
+        ]
+      },
+      "guidance_effect_without_rag": {
+        "mean": 0.9324970642725625,
+        "median": 0.9324970642725625,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.9324970642725625,
+          0.9324970642725625
+        ]
+      },
+      "guidance_effect_with_rag": {
+        "mean": 1.8256314794222512,
+        "median": 1.8256314794222512,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          1.8256314794222512,
+          1.8256314794222512
+        ]
+      },
+      "guidance_main_effect": {
+        "mean": 1.3790642718474069,
+        "median": 1.3790642718474069,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          1.3790642718474069,
+          1.3790642718474069
+        ]
+      },
+      "rag_guidance_interaction": {
+        "mean": 0.8931344151496887,
+        "median": 0.8931344151496887,
+        "fraction_delta_positive": 1.0,
+        "bootstrap_95pct_ci": [
+          0.8931344151496887,
+          0.8931344151496887
+        ]
+      },
+      "per_scene_rag_main_effect": [
+        0.5526307721932726
+      ]
+    }
+  },
+  "design": "A=no RAG/no guidance; B=RAG/no guidance; C=no RAG/guidance; D=RAG/guidance",
+  "contrast_convention": "RAG main effect=((B-A)+(D-C))/2; guidance main effect=((C-A)+(D-B))/2; interaction=(D-C)-(B-A). Positive delta is numerically larger, not necessarily better.",
+  "scene_ids": [
+    "2636_4p"
+  ]
+}

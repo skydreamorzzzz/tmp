@@ -1,0 +1,39 @@
+/environment/miniconda3/envs/py38/lib/python3.8/site-packages/torch/nn/modules/transformer.py:276: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:175.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+Encoded 8 / 8
+{
+  "label": "InterGen single",
+  "metrics": {
+    "FID": 138.26337037293547,
+    "R_Precision": [
+      0.25,
+      0.625,
+      0.75
+    ],
+    "MM_Distance": 3.9621119499206543,
+    "Diversity": null,
+    "Multimodality": null
+  },
+  "protocol": {
+    "sanity_only": true,
+    "generated_cases": 8,
+    "evaluation_cases": 8,
+    "full_valid_test_cases": 1099,
+    "retrieval_candidates": 8,
+    "drop_last": false,
+    "seed": 1234,
+    "generation_replications": 1,
+    "confidence_interval": null,
+    "diversity_pairs": null,
+    "mm_selected_cases": 0,
+    "mm_repeats": null,
+    "mm_pairs": null,
+    "fid_feature_scale": 6,
+    "diversity_feature_scale": 6,
+    "diversity_distance_divisor": 2,
+    "mm_distance_feature_scale": 1,
+    "multimodality_feature_scale": 1,
+    "evaluator": "unmodified FreeMotion EvaluatorModelWrapper and utils.metrics; interclip.ckpt strict load",
+    "paper_comparison": "descriptive reference only; paper repeats metrics20x / MM5x; paper baseline InterGen* retrained"
+  }
+}

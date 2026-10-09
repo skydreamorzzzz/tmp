@@ -1,0 +1,23 @@
+[
+  {
+    "path": "code/DPMotion",
+    "commit": "36dafe8b2cefa8f4610723fb10f581e380548498",
+    "origin": "https://github.com/skydreamorzzzz/DPMotion.git",
+    "status": "",
+    "git_backup": ".git/upstream-repositories/DPMotion"
+  },
+  {
+    "path": "code/InterGen-official",
+    "commit": "b1750df4a859443b8a69329f759ce3a7503ae179",
+    "origin": "https://github.com/tr3e/InterGen.git",
+    "status": "",
+    "git_backup": ".git/upstream-repositories/InterGen-official"
+  },
+  {
+    "path": "code/FreeMotion-Codes",
+    "commit": "df92bdd982e25363fd27c86899e22b3b40230de2",
+    "origin": "https://github.com/VankouF/FreeMotion-Codes.git",
+    "status": "?? data/annots\n?? data/motions\n?? data/motions_processed\n?? data/separate_annots\n?? data/split\n?? eval_model/",
+    "git_backup": ".git/upstream-repositories/FreeMotion-Codes"
+  }
+]

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FreeMotion: A Unified Framework for Number-free Text-to-Motion Synthesis</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">FreeMotion: A Unified Framework for Number-free Text-to-Motion Synthesis</h1>
+          <!-- <div class="is-size-3 publication-authors">
+            UnderReview
+          </div> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="">Ke Fan</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="">Junshu Tang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="">Weijian Cao</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Ran Yi</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Moran Li</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Jingyu Gong</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Jiangning Zhang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Yabiao Wang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Chengjie Wang</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Lizhuang Ma</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Shanghai Jiao Tong University<sup>1</sup>, Tencent Youtu Lab<sup>2</sup></span>
+            <!-- <span class="author-block"><sup>2</sup>Google Research</span> -->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2405.15763"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/VankouF/FreeMotion-Codes.git"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1ZtNZuctaIXMrxlWuQZS2eZhT0U6kAMoQ/view?usp=sharing" 
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fas fa-database"></i>
+                </span>
+                <span>Data</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    
+        <!-- <center><h2 class="title is-3">Abstract</h2></center> -->
+    
+    <div class="hero-body has-text-centered">
+        <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/video/demo_teaser.mp4" type="video/mp4">
+        </video>
+    <!-- <div class="hero-body has-text-centered"> -->
+        <!-- <img src = "./static/images/teaser.png" height="80%"></img><br> -->
+    </div>
+
+    <p>
+      Text-to-motion synthesis is a crucial task in computer vision. 
+      Existing methods are limited in their universality, 
+      as they are tailored for single-person or two-person scenarios and can not 
+be applied to generate motions for more individuals. 
+To achieve the number-free motion synthesis, this paper reconsiders motion generation 
+and proposes to unify the single and multi-person motion by the conditional motion distribution. 
+Furthermore, a generation module and an interaction module are designed for our FreeMotion
+framework to decouple the process of conditional motion generation and finally support the number-free motion synthesis. 
+Besides, based on our framework, the current single-person motion spatial control method could be seamlessly integrated, 
+achieving precise control of multi-person motion. 
+Extensive experiments demonstrate the superior performance of our method 
+and our capability to infer single and multi-human motions simultaneously.
+    </p>
+    <br>
+    <!-- <div id="video-container">
+      <video id="video" muted controls playsinline>
+        <source src="./static/video/demo.mp4" type="video/mp4">
+      </video>
+      <span style="font-size:12px">* This video contains audio.</span>
+    </div> -->
+    
+  </div>
+</section>
+
+<section class="hero is-small is-light">
+  <center><h2 class="title is-3">Single Person Motion Generation</h2></center>
+  <div class="hero-body">
+
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="column is-centered has-text-centered">
+          <p><b> "A person receives a gesture and responds with equal intensity, but eventually backs away by one step and falls silent.
+            "</b></p>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/one_person/1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "A person lowers their body into a squat position and holds out their camera towards others.
+            "</b></p><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/one_person/2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "A person raises their leg and kicks towards another person."</b></p><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/one_person/3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "A person bows to others by bending their knees slightly."</b></p><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/one_person/4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "A person bends down to pick up an object."</b></p><br><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/one_person/5.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "A person runs continuously with strides, and jumps up and downs excitedly, cheering and shouting encouragements."</b></p>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/one_person/6.mp4" type="video/mp4">
+          </video>
+        </div>
+        <!-- <div class="column is-centered has-text-centered">
+          <p><b> A person walks with a limp, their left leg gets injured.</b></p>
+          <br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/gallery/4.mp4" type="video/mp4">
+          </video>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small is-light">
+  <center><h2 class="title is-3">Two Person Motion Generation</h2></center>
+  <div class="hero-body">
+
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="column is-centered has-text-centered">
+          <p><b> "The first one crouches to capture an image of the second one.
+            "</b></p><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/two_person/1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "Two humans are performing taekwondo, executing face-to-face punches.
+            "</b></p><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/two_person/2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "The first person is sitting on a chair and examining a document, when the second approaches whilst holding a cellphone.
+            "</b></p>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/two_person/4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "Both people rotate their bodies and move rhythmetically while spinning around. 
+            "</b></p><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/two_person/5.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "The two persons circle around clockwise, raise both hands, stretch the right hand forward to cross each other.
+            "</b></p>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/two_person/6.mp4" type="video/mp4">
+          </video>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small is-light">
+  <center><h2 class="title is-3">More Person Motion Generation</h2></center>
+  <div class="hero-body">
+
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="column is-centered has-text-centered">
+          <p><b> "<span style="color:red;">Three</span> people walk in a circle.
+            "</b></p><br><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/three_person_four_person/three/1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "<span style="color:red;">Three</span> people prepare to make a strike.
+            "</b></p><br><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/three_person_four_person/three/2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "<span style="color:red;">Three</span> engage in a fierce boxing match, with aggressively exchanging blows while also defending themselves.
+            "</b></p>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/three_person_four_person/three/3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "<span style="color:red;">Three</span> people are playing a game of tossing and catching a toy duck."</b></p><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/three_person_four_person/three/4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <p><b> "<span style="color:red;">Four</span> acknowledge each other's presence with a polite greeting."</b></p><br>
+          <video poster="" id="tree" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/video/three_person_four_person/four/1.mp4" type="video/mp4">
+          </video>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <center><h2 class="title is-3">Applications</h2></center><br>
+    <!-- <p>
+      We showcase MoMask's capability to inpaint specific regions within existing motion clips, conditioned on a textual description. Here, we present the inpainting results for the middle, suffix, and prefix regions of motion clips. The input motion clips are highlighted in <span style="color:purple;">purple</span>, and the synthesized content is represented in <span style="color:#76D7C4;">cyan</span>.
+    </p>
+    <br> -->
+    <h3 class="title is-4">Reaction Generation</h2>
+      <p>
+        <b>We can fix the first motion as condition and generate different motion reactions under various text.</b>
+      </p>
+    <!-- (<span style="color:purple;">Purple</span>=Input, <span style="color:#76D7C4;">Cyan</span>=Synthesis) -->
+    <br>
+    <div class="columns is-centered">
+      <div class="column">
+        <div id="video-container">
+          <center><p>"A person swings their fist towards others while the other 
+            <span style="color:blue;">one kicks back for the incoming punch.</span>
+            "</p></center>
+          <video id="video" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/fix_motion_multi_text/1.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <center><p>"A person swings their fist towards others while the other 
+            <span style="color:blue;">use their both hands to defend.</span>
+            "</p></center>
+          <video poster="" id="push" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/fix_motion_multi_text/2.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <center><p>"A person swings their fist towards others while the other 
+            <span style="color:blue;">one evades the incoming punch by stepping back.</span>
+            "</p></center>
+          <video poster="" id="push" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/fix_motion_multi_text/3.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="title is-4">Spatial Control</h2>
+      <p>
+        <b>We can generate the controllable multi-person motion under spatial signals.</b>
+      </p>
+      <br>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <center><p>"<span style="color:red;">Two</span> people run towards each other with joy and embrace each other."</p></center>
+          <video poster="" id="standing" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/trajectory_control/1.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <center><p>"<span style="color:red;">Three</span> people are walking to get away from each other."</p></center>
+          <video poster="" id="warmup" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/trajectory_control/2.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <center><p>"<span style="color:red;">Four</span> people walks forward."</p></center>
+          <center><p><br /></p></center>
+          <video poster="" id="standing" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/trajectory_control/3.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="title is-4">Diverse Generation</h2>
+      <p>
+        <b>We can use the same text to generate diverse two-person motion results.</b>
+      </p>
+      <br>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <center><p>"The first person bows to apologize to the other person."</p></center>
+          <video poster="" id="standing" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/one_text_multi_results/1.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <center><p>"The first person bows to apologize to the other person."</p></center>
+          <video poster="" id="warmup" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/one_text_multi_results/2.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <center><p>"The first person bows to apologize to the other person."</p></center>
+          <video poster="" id="standing" controls muted loop playsinline height="40%">
+              <source src="./static/video/application/one_text_multi_results/3.mp4#t=0.01"
+                      type="video/mp4">
+            </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <center><h2 class="title is-3">Comparisons</h2></center><br>
+    <div class="content has-text-justified">
+      <p>
+        <b>We compare against Intergen for two person motion generation. The synthesized motion by our proposed method are more consistent with the description.</p></b> <br>
+      </p>
+      <div class="content has-text-centered">
+        <video id="replay-video"
+               controls
+               muted
+               preload
+               playsinline
+               width="100%">
+          <source src="./static/video/comparison/comparison.mp4#t=0.01"
+                  type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+<section class="section is-light is-small">
+  <div class="container is-max-desktop">
+    <center><h2 class="title is-3">Approach Overview</h2></center>
+    <div class="hero-body">
+      <a href="./static/images/model.png"><img src = "./static/images/model.png" height="100%"></img></href></a><br>
+    </div>
+  </div>
+    <!--/ Abstract. -->
+
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{fan2024freemotion
+      title={FreeMotion: A Unified Framework for Number-free Text-to-Motion Synthesis}, 
+      author={Ke Fan and Junshu Tang and Weijian Cao and Ran Yi and Moran Li and Jingyu Gong and Jiangning Zhang and Yabiao Wang and Chengjie Wang and Lizhuang Ma},
+      year={2024},
+      eprint={2405.15763},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="content">
+        <p>
+          This website is licensed under a <a rel="license"
+          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.
+      </p>
+      <p>
+        Website source code based on the <a href="https://nerfies.github.io/"> Nerfies</a> project page. If you want to reuse their <a
+        href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+
+<script>
+      var videoContainer = document.getElementById('video-container');
+      var video = document.getElementById('video');
+
+      var videoOffset = videoContainer.offsetTop;
+
+      window.addEventListener('scroll', function() {
+        var scrollPosition = window.scrollY || window.pageYOffset;
+
+        if (scrollPosition >= videoOffset) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    </script>
+
+</body>
+</html>

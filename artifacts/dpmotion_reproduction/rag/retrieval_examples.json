@@ -1,0 +1,266 @@
+[
+  {
+    "file_id": "2636",
+    "query": "one person sidesteps to the right and the other person advances ahead.",
+    "retrieved_text": "the first one moves ahead by running, and the other person moves forward by walking.",
+    "cosine_similarity": 0.923800528049469,
+    "selected_rank": 6,
+    "selection_reason": "rank6_fallback_no_below_threshold",
+    "top_results": [
+      {
+        "score": 0.999829888343811,
+        "interaction_text": "one person sidesteps to the right and the other person advances ahead.",
+        "text1": "one person sidesteps to the right",
+        "text2": "the other person advances ahead",
+        "file_id": "2636"
+      },
+      {
+        "score": 0.9457767009735107,
+        "interaction_text": "the person sidesteps to the right.",
+        "text1": "the person sidesteps to the right.",
+        "text2": "the person sidesteps to the right.",
+        "file_id": "6881"
+      },
+      {
+        "score": 0.9381428956985474,
+        "interaction_text": "one sidesteps to the right and the other moves straight ahead.",
+        "text1": "one sidesteps to the right",
+        "text2": "the other moves straight ahead",
+        "file_id": "2636"
+      },
+      {
+        "score": 0.9260449409484863,
+        "interaction_text": "both people make a sidestep to the right together, preparing to move forward and take action.",
+        "text1": "both people make a sidestep to the right together, preparing to move forward and take action.",
+        "text2": "both people make a sidestep to the right together, preparing to move forward and take action.",
+        "file_id": "1290"
+      },
+      {
+        "score": 0.9248160719871521,
+        "interaction_text": "one person evades by stepping back and the other person advances by stepping forward.",
+        "text1": "one person evades by stepping back",
+        "text2": "the other person advances by stepping forward",
+        "file_id": "1231"
+      },
+      {
+        "score": 0.923800528049469,
+        "interaction_text": "the first one moves ahead by running, and the other person moves forward by walking.",
+        "text1": "the first one moves ahead by running",
+        "text2": "the other person moves forward by walking",
+        "file_id": "1048"
+      },
+      {
+        "score": 0.9213743209838867,
+        "interaction_text": "one person sidesteps towards the right while the other moves towards the front.",
+        "text1": "one person sidesteps towards the right",
+        "text2": "the other moves towards the front",
+        "file_id": "2636"
+      },
+      {
+        "score": 0.9204099178314209,
+        "interaction_text": "two people retreat one step, then subsequently move forward two steps.",
+        "text1": "two people retreat one step, then subsequently move forward two steps.",
+        "text2": "two people retreat one step, then subsequently move forward two steps.",
+        "file_id": "5712"
+      }
+    ]
+  },
+  {
+    "file_id": "5647",
+    "query": "two persons lift slightly and swing both hands upwards from the front of their bodies.",
+    "retrieved_text": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+    "cosine_similarity": 0.8930875062942505,
+    "selected_rank": 3,
+    "selection_reason": "first_similarity_below_threshold",
+    "top_results": [
+      {
+        "score": 0.9994390606880188,
+        "interaction_text": "two persons lift slightly and swing both hands upwards from the front of their bodies.",
+        "text1": "two persons lift slightly and swing both hands upwards from the front of their bodies.",
+        "text2": "two persons lift slightly and swing both hands upwards from the front of their bodies.",
+        "file_id": "5647"
+      },
+      {
+        "score": 0.905470609664917,
+        "interaction_text": "the two persons lift their right arms up above their heads and raise their left arms to chest level.",
+        "text1": "the two persons lift their right arms up above their heads and raise their left arms to chest level.",
+        "text2": "the two persons lift their right arms up above their heads and raise their left arms to chest level.",
+        "file_id": "5344"
+      },
+      {
+        "score": 0.8930875062942505,
+        "interaction_text": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+        "text1": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+        "text2": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+        "file_id": "5911"
+      },
+      {
+        "score": 0.8893418312072754,
+        "interaction_text": "the two people lift both hands up and swing them back and forth, while standing on their right toes repeatedly.",
+        "text1": "the two people lift both hands up and swing them back and forth, while standing on their right toes repeatedly.",
+        "text2": "the two people lift both hands up and swing them back and forth, while standing on their right toes repeatedly.",
+        "file_id": "5266"
+      },
+      {
+        "score": 0.8815889954566956,
+        "interaction_text": "the two people lift both hands up, then swing them down and forward.",
+        "text1": "the two people lift both hands up, then swing them down and forward.",
+        "text2": "the two people lift both hands up, then swing them down and forward.",
+        "file_id": "5268"
+      },
+      {
+        "score": 0.8788717985153198,
+        "interaction_text": "the two people raise their left arms with bent elbows to chest level while lifting their right arms upward.",
+        "text1": "the two people raise their left arms with bent elbows to chest level while lifting their right arms upward.",
+        "text2": "the two people raise their left arms with bent elbows to chest level while lifting their right arms upward.",
+        "file_id": "5746"
+      },
+      {
+        "score": 0.875489354133606,
+        "interaction_text": "the two people lift their left legs, swing both hands upwards, take a step forward with their right legs, and wave the left hand upwards.",
+        "text1": "the two people lift their left legs, swing both hands upwards, take a step forward with their right legs, and wave the left hand upwards.",
+        "text2": "the two people lift their left legs, swing both hands upwards, take a step forward with their right legs, and wave the left hand upwards.",
+        "file_id": "5298"
+      },
+      {
+        "score": 0.8743969202041626,
+        "interaction_text": "the two people lift their left arms together, then swing their right arms and left arms back to their chest at the same time.",
+        "text1": "the two people lift their left arms together, then swing their right arms and left arms back to their chest at the same time.",
+        "text2": "the two people lift their left arms together, then swing their right arms and left arms back to their chest at the same time.",
+        "file_id": "5959"
+      }
+    ]
+  },
+  {
+    "file_id": "2813",
+    "query": "two individuals are conversing with each other.",
+    "retrieved_text": "the two persons approach each other closely.",
+    "cosine_similarity": 0.8986022472381592,
+    "selected_rank": 16,
+    "selection_reason": "first_similarity_below_threshold",
+    "top_results": [
+      {
+        "score": 0.985832154750824,
+        "interaction_text": "the two individuals are conversing with each other.",
+        "text1": "the two individuals are conversing with each other.",
+        "text2": "the two individuals are conversing with each other.",
+        "file_id": "4665"
+      },
+      {
+        "score": 0.9647006988525391,
+        "interaction_text": "two people are conversing with each other.",
+        "text1": "two people are conversing with each other.",
+        "text2": "two people are conversing with each other.",
+        "file_id": "3465(1)"
+      },
+      {
+        "score": 0.9606884717941284,
+        "interaction_text": "two individuals are discussing their interaction with each other.",
+        "text1": "two individuals are discussing their interaction with each other.",
+        "text2": "two individuals are discussing their interaction with each other.",
+        "file_id": "4086"
+      },
+      {
+        "score": 0.9375023245811462,
+        "interaction_text": "the two people are discussing their interaction.",
+        "text1": "the two people are discussing their interaction.",
+        "text2": "the two people are discussing their interaction.",
+        "file_id": "4086"
+      },
+      {
+        "score": 0.9305473566055298,
+        "interaction_text": "two individuals are interacting with each other.",
+        "text1": "two individuals are interacting with each other.",
+        "text2": "two individuals are interacting with each other.",
+        "file_id": "3384"
+      },
+      {
+        "score": 0.9213473796844482,
+        "interaction_text": "two individuals are engaged in a conversation.",
+        "text1": "two individuals are engaged in a conversation.",
+        "text2": "two individuals are engaged in a conversation.",
+        "file_id": "3465(1)"
+      },
+      {
+        "score": 0.9194978475570679,
+        "interaction_text": "two persons are having a conversation.",
+        "text1": "two persons are having a conversation.",
+        "text2": "two persons are having a conversation.",
+        "file_id": "2970"
+      },
+      {
+        "score": 0.914790689945221,
+        "interaction_text": "two individuals are confronting each other in an argument.",
+        "text1": "two individuals are confronting each other in an argument.",
+        "text2": "two individuals are confronting each other in an argument.",
+        "file_id": "4887"
+      }
+    ]
+  },
+  {
+    "file_id": "4000",
+    "query": "two persons stroll on the street and offer assistance in pushing the cart.",
+    "retrieved_text": "two people are taking a walk, and one picks up an item belonging to the first one.",
+    "cosine_similarity": 0.7718766331672668,
+    "selected_rank": 4,
+    "selection_reason": "first_similarity_below_threshold",
+    "top_results": [
+      {
+        "score": 1.000048279762268,
+        "interaction_text": "two persons stroll on the street and offer assistance in pushing the cart.",
+        "text1": "two persons stroll on the street and offer assistance in pushing the cart.",
+        "text2": "two persons stroll on the street and offer assistance in pushing the cart.",
+        "file_id": "4000"
+      },
+      {
+        "score": 0.9365493059158325,
+        "interaction_text": "two people are strolling along the street, giving assistance in pushing a cart.",
+        "text1": "two people are strolling along the street, giving assistance in pushing a cart.",
+        "text2": "two people are strolling along the street, giving assistance in pushing a cart.",
+        "file_id": "4000"
+      },
+      {
+        "score": 0.9013926982879639,
+        "interaction_text": "two individuals are taking a leisurely stroll along the street while lending a hand to push a cart.",
+        "text1": "two individuals are taking a leisurely stroll along the street while lending a hand to push a cart.",
+        "text2": "two individuals are taking a leisurely stroll along the street while lending a hand to push a cart.",
+        "file_id": "4000"
+      },
+      {
+        "score": 0.7718766331672668,
+        "interaction_text": "two people are taking a walk, and one picks up an item belonging to the first one.",
+        "text1": "two people are taking a walk, and one picks up an item belonging to the first one.",
+        "text2": "two people are taking a walk, and one picks up an item belonging to the first one.",
+        "file_id": "3916"
+      },
+      {
+        "score": 0.7647520303726196,
+        "interaction_text": "both people approach each other while walking.",
+        "text1": "both people approach each other while walking.",
+        "text2": "both people approach each other while walking.",
+        "file_id": "144"
+      },
+      {
+        "score": 0.7554959058761597,
+        "interaction_text": "two people walking side by side.",
+        "text1": "two people walking side by side.",
+        "text2": "two people walking side by side.",
+        "file_id": "3321"
+      },
+      {
+        "score": 0.752415657043457,
+        "interaction_text": "the two persons are shoving each other while walking side by side using their hands.",
+        "text1": "the two persons are shoving each other while walking side by side using their hands.",
+        "text2": "the two persons are shoving each other while walking side by side using their hands.",
+        "file_id": "2746"
+      },
+      {
+        "score": 0.75190269947052,
+        "interaction_text": "the two people are walking and pushing each other with their hands.",
+        "text1": "the two people are walking and pushing each other with their hands.",
+        "text2": "the two people are walking and pushing each other with their hands.",
+        "file_id": "2746"
+      }
+    ]
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "source": {
+    "repository": "https://github.com/skydreamorzzzz/DPMotion",
+    "commit": "36dafe8b2cefa8f4610723fb10f581e380548498",
+    "initial_commit_date": "2026-03-02T20:27:48+08:00",
+    "unmodified_upstream_code": true,
+    "intergen_reference_commit": "b1750df4a859443b8a69329f759ce3a7503ae179",
+    "note": "DPMotion implementation is evaluated from its own InterGen-derived code; official InterGen checkout is only the reference for checkpoint/normalization provenance."
+  },
+  "model": {
+    "checkpoint": "assets/intergen/intergen.ckpt",
+    "checkpoint_sha256": "bab341123c27af9d8c3ee7ebc43c2d341bfd0f4103425d06f8af6c717a086f8d",
+    "epoch": 299,
+    "global_step": 70200,
+    "strict_state_dict_load": true,
+    "normalization": "code/DPMotion/data/global_mean.npy and global_std.npy link to official InterGen; arrays byte/numeric identical"
+  },
+  "data": {
+    "split": "InterHuman test",
+    "file": "code/DPMotion/data/test_texts_120.json",
+    "entry_count": 120,
+    "all_ids_in_test_split": true,
+    "interaction_text_matches_annotation": "120/120 exact",
+    "txt_manifest_matches_json": "120/120 exact",
+    "window_frames": 150,
+    "fps": 30,
+    "output_frames": 150
+  },
+  "rag": {
+    "source": "all InterHuman annotations (no split filtering, as upstream code)",
+    "exact_text_dedup": true,
+    "embedding_dedup_cosine_threshold": 0.95,
+    "clip": "OpenAI CLIP ViT-L/14@336px from existing assets/clip cache",
+    "retrieval_top_k": 20,
+    "select_first_similarity_below": 0.9,
+    "fallback": "rank 6 if none under threshold"
+  },
+  "sampling": {
+    "algorithm": "repository InterDiffusion.forward_single -> p_sample_loop_multi -> DDPM ancestral sampling",
+    "diffusion_steps": 1000,
+    "config_strategy_note": "STRATEGY=ddim50 in model.yaml is not used by this forward_single; it explicitly respaces to all 1000 steps",
+    "config_t_bar": 700,
+    "effective_group_person_cutoff": 900,
+    "effective_gli_cutoff": 100,
+    "cfg_weight": 3.5,
+    "distance_m": 3.0,
+    "distance_weight": 5.0,
+    "angle_weight": 0.0,
+    "outer_gradient_scale": "5 + 5 * t / 1000",
+    "gli_loss_multiplier": 0.6,
+    "smoothing": "scipy gaussian_filter1d(sigma=1, axis=time, mode=nearest), upstream eval path",
+    "seed_base": 42,
+    "scene_seed": "base_seed + integer file_id, applied to Python, NumPy and Torch/CUDA before every scene; reproducibility plumbing because upstream seed controls only list subsampling"
+  },
+  "evaluation": {
+    "official_entrypoint": "code/DPMotion/dpmotion_eval.py::evaluate_all",
+    "metrics": [
+      "PeneBone",
+      "penetration rate",
+      "interaction/non-interaction penetration",
+      "CFrame",
+      "Contact",
+      "intra-scene motion embedding diversity"
+    ],
+    "cross_scene_diversity": "not implemented by current eval code; README number cannot be recomputed from a published definition in this repository"
+  }
+}

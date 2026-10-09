@@ -1,0 +1,298 @@
+{
+  "data_root": "/home/featurize/work/FreeMotion-reproduction/data/InterHuman",
+  "file_counts": {
+    "annots": 7897,
+    "person1": 7777,
+    "person2": 7777,
+    "text1": 7770,
+    "text2": 7770,
+    "motions": 7810
+  },
+  "logical_bytes": {
+    "annots": 3381479,
+    "person1": 2225408144,
+    "person2": 2225408144,
+    "text1": 2863251,
+    "text2": 2861874,
+    "motions": 1251681883
+  },
+  "official_ignore_list_present": false,
+  "splits": {
+    "train": {
+      "rows": 6022,
+      "unique_ids": 6022,
+      "duplicate_ids": [],
+      "complete_ids": 6013,
+      "missing": {
+        "annots": [],
+        "person1": [
+          "3945"
+        ],
+        "person2": [
+          "3945"
+        ],
+        "text1": [
+          "4385",
+          "4434",
+          "6028",
+          "6940",
+          "7220",
+          "7221",
+          "7543",
+          "7561"
+        ],
+        "text2": [
+          "4385",
+          "4434",
+          "6028",
+          "6940",
+          "7220",
+          "7221",
+          "7543",
+          "7561"
+        ]
+      },
+      "sample_ids": [
+        "3",
+        "5",
+        "7"
+      ]
+    },
+    "val": {
+      "rows": 580,
+      "unique_ids": 580,
+      "duplicate_ids": [],
+      "complete_ids": 579,
+      "missing": {
+        "annots": [],
+        "person1": [],
+        "person2": [],
+        "text1": [
+          "4193"
+        ],
+        "text2": [
+          "4193"
+        ]
+      },
+      "sample_ids": [
+        "2",
+        "63",
+        "64"
+      ]
+    },
+    "test": {
+      "rows": 1177,
+      "unique_ids": 1177,
+      "duplicate_ids": [],
+      "complete_ids": 1176,
+      "missing": {
+        "annots": [],
+        "person1": [
+          "4106"
+        ],
+        "person2": [
+          "4106"
+        ],
+        "text1": [],
+        "text2": []
+      },
+      "sample_ids": [
+        "1",
+        "4",
+        "6"
+      ]
+    }
+  },
+  "overlaps": {
+    "train/val": [],
+    "train/test": [],
+    "val/test": []
+  },
+  "motion_header_errors": [],
+  "motion_pair_errors": [],
+  "annotation_errors": [],
+  "sample_checks": [
+    {
+      "split": "train",
+      "id": "3",
+      "person": "person1",
+      "shape": [
+        24,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "train",
+      "id": "3",
+      "person": "person2",
+      "shape": [
+        24,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "train",
+      "id": "5",
+      "person": "person1",
+      "shape": [
+        64,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "train",
+      "id": "5",
+      "person": "person2",
+      "shape": [
+        64,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "train",
+      "id": "7",
+      "person": "person1",
+      "shape": [
+        157,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "train",
+      "id": "7",
+      "person": "person2",
+      "shape": [
+        157,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "val",
+      "id": "2",
+      "person": "person1",
+      "shape": [
+        32,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "val",
+      "id": "2",
+      "person": "person2",
+      "shape": [
+        32,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "val",
+      "id": "63",
+      "person": "person1",
+      "shape": [
+        30,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "val",
+      "id": "63",
+      "person": "person2",
+      "shape": [
+        30,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "val",
+      "id": "64",
+      "person": "person1",
+      "shape": [
+        21,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "val",
+      "id": "64",
+      "person": "person2",
+      "shape": [
+        21,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "test",
+      "id": "1",
+      "person": "person1",
+      "shape": [
+        239,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "test",
+      "id": "1",
+      "person": "person2",
+      "shape": [
+        239,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "test",
+      "id": "4",
+      "person": "person1",
+      "shape": [
+        80,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "test",
+      "id": "4",
+      "person": "person2",
+      "shape": [
+        80,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "test",
+      "id": "6",
+      "person": "person1",
+      "shape": [
+        42,
+        492
+      ],
+      "finite": true
+    },
+    {
+      "split": "test",
+      "id": "6",
+      "person": "person2",
+      "shape": [
+        42,
+        492
+      ],
+      "finite": true
+    }
+  ],
+  "validation_scope": "All NPY headers/file lengths and complete annotation triples; finite values sampled, no author checksums available.",
+  "ready_for_unmodified_official_loader": false
+}

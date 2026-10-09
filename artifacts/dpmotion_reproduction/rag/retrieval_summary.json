@@ -1,0 +1,9 @@
+{
+  "queries": 120,
+  "top_k": 20,
+  "threshold": 0.9,
+  "selected_below_threshold": 87,
+  "fallback_rank6": 33,
+  "same_text_fallback": 0,
+  "retrievals_sha256": "d04404ed238979dd14e098df6862dfeee12948e93c8be33aa3f64007cae96900"
+}

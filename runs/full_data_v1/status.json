@@ -1,0 +1,25 @@
+{
+  "state": "stopped_for_intergen_probe",
+  "stage": 1,
+  "child_pid": 33211,
+  "epochs": 30,
+  "command": [
+    "/home/featurize/work/FreeMotion-reproduction/.venv/bin/python",
+    "-u",
+    "/home/featurize/work/FreeMotion-reproduction/engineering/train.py",
+    "--stage",
+    "1",
+    "--epochs",
+    "30",
+    "--batch-size",
+    "16",
+    "--workers",
+    "4",
+    "--log-every",
+    "25",
+    "--run-dir",
+    "/home/featurize/work/FreeMotion-reproduction/runs/full_data_v1/stage1"
+  ],
+  "pid": 33207,
+  "updated_utc": "2026-10-04T11:52:46Z"
+}

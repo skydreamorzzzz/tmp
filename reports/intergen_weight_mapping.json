@@ -1,0 +1,19 @@
+{
+  "requested": "InterGen generator checkpoint",
+  "found_path": "code/FreeMotion-Codes/eval_model/interclip.ckpt",
+  "found_type": "InterCLIP evaluation model checkpoint",
+  "state_dict_keys": 207,
+  "generator_parameter_prefixes_found": [],
+  "compatible_freemotion_generator_parameters": 0,
+  "uninitializable": [
+    "FreeMotion decoder.net diffusion denoiser",
+    "FreeMotion decoder.net.control_branch",
+    "FreeMotion decoder.net.zero_linear",
+    "FreeMotion generation output heads"
+  ],
+  "control_interaction_branch_status": "not initialized from this checkpoint; no generator checkpoint available",
+  "official_intergen_generator_url": "https://drive.google.com/uc?id=1sYOJEdbB8hDI5pY1-X960njdFD2WcwFq",
+  "download_attempt": "TLS EOF from drive.google.com; stopped after one request",
+  "probe_status": "blocked_without_generator_weights",
+  "samples_written": false
+}

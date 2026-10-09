@@ -1,0 +1,18 @@
+{
+  "dpmotion_commit": "36dafe8b2cefa8f4610723fb10f581e380548498",
+  "annotation_dir": "/home/featurize/work/FreeMotion-reproduction/data/InterHuman/annots_utf8",
+  "annotation_files": 7897,
+  "annotation_filenames_sha256": "a480160119870f42497788bc6f398f39f1813406d0d8f477617894747ca82a14",
+  "dedup_sim_threshold": 0.95,
+  "clip": "ViT-L/14@336px cached official checkpoint",
+  "kb_entries_after_exact_and_embedding_dedup": 19443,
+  "embedding_shape": [
+    19443,
+    768
+  ],
+  "embedding_dtype": "float32",
+  "pickle_sha256": "4257e57ed53a3dba8e7158c4f21937961f50e8ce618f3f2a8fa8f328bbdf9624",
+  "seconds": 419.0415766239166,
+  "split_filter": null,
+  "split_filter_note": "Official build_from_annots reads every .txt in annotations; test annotations are included."
+}

@@ -1,0 +1,145 @@
+{
+  "FreeMotion paper single": {
+    "table": 2,
+    "pdf_page": 11,
+    "protocol": "Two independently generated single motions conditioned on re-annotated per-person texts are concatenated and evaluated by the two-person InterCLIP evaluator. Not HumanML3D single-person evaluator.",
+    "FreeMotion": {
+      "R_Precision": [
+        0.264,
+        0.394,
+        0.473
+      ],
+      "R_Precision_95CI": [
+        0.005,
+        0.006,
+        0.006
+      ],
+      "FID": 12.975,
+      "FID_95CI": 0.171,
+      "MM_Distance": 3.885,
+      "MM_Distance_95CI": 0.035,
+      "Diversity": 7.702,
+      "Diversity_95CI": 0.027,
+      "Multimodality": 1.3,
+      "Multimodality_95CI": 0.063
+    }
+  },
+  "FreeMotion paper two-person": {
+    "table": 1,
+    "pdf_page": 10,
+    "protocol": "InterHuman test set, two-person synthesis; per-person plus global interactive text for FreeMotion; InterCLIP paired-motion evaluator.",
+    "FreeMotion": {
+      "R_Precision": [
+        0.326,
+        0.462,
+        0.544
+      ],
+      "R_Precision_95CI": [
+        0.003,
+        0.006,
+        0.006
+      ],
+      "FID": 6.74,
+      "FID_95CI": 0.13,
+      "MM_Distance": 3.848,
+      "MM_Distance_95CI": 0.002,
+      "Diversity": 7.828,
+      "Diversity_95CI": 0.13,
+      "Multimodality": 1.226,
+      "Multimodality_95CI": 0.046
+    }
+  },
+  "InterGen single": {
+    "label": "InterGen single",
+    "ground_truth_sanity": {
+      "MM_Distance": 3.7847047863584575,
+      "R_Precision": [
+        0.41761363636363635,
+        0.5852272727272727,
+        0.6837121212121212
+      ],
+      "Diversity": 7.780393123626709,
+      "purpose": "Real motion calibration, not generated model metrics"
+    },
+    "metrics": {
+      "FID": 9.13302862474984,
+      "R_Precision": [
+        0.2481060606060606,
+        0.3939393939393939,
+        0.47632575757575757
+      ],
+      "MM_Distance": 3.878193913084088,
+      "Diversity": 7.5276007652282715,
+      "Multimodality": 1.4407639503479004
+    },
+    "protocol": {
+      "sanity_only": false,
+      "generated_cases": 1099,
+      "evaluation_cases": 1056,
+      "full_valid_test_cases": 1099,
+      "retrieval_candidates": 96,
+      "drop_last": true,
+      "seed": 1234,
+      "generation_replications": 1,
+      "confidence_interval": null,
+      "diversity_pairs": 300,
+      "mm_selected_cases": 100,
+      "mm_repeats": 30,
+      "mm_pairs": 10,
+      "fid_feature_scale": 6,
+      "diversity_feature_scale": 6,
+      "diversity_distance_divisor": 2,
+      "mm_distance_feature_scale": 1,
+      "multimodality_feature_scale": 1,
+      "evaluator": "unmodified FreeMotion EvaluatorModelWrapper and utils.metrics; interclip.ckpt strict load",
+      "paper_comparison": "descriptive reference only; paper repeats metrics20x / MM5x; paper baseline InterGen* retrained"
+    }
+  },
+  "InterGen native two-person": {
+    "label": "InterGen native two-person",
+    "ground_truth_sanity": {
+      "MM_Distance": 3.7847047863584575,
+      "R_Precision": [
+        0.41761363636363635,
+        0.5852272727272727,
+        0.6837121212121212
+      ],
+      "Diversity": 7.780393123626709,
+      "purpose": "Real motion calibration, not generated model metrics"
+    },
+    "metrics": {
+      "FID": 6.236981254044736,
+      "R_Precision": [
+        0.4375,
+        0.5890151515151515,
+        0.6581439393939394
+      ],
+      "MM_Distance": 3.8010472384366123,
+      "Diversity": 7.88578462600708,
+      "Multimodality": 1.275144338607788
+    },
+    "protocol": {
+      "sanity_only": false,
+      "generated_cases": 1099,
+      "evaluation_cases": 1056,
+      "full_valid_test_cases": 1099,
+      "retrieval_candidates": 96,
+      "drop_last": true,
+      "seed": 1234,
+      "generation_replications": 1,
+      "confidence_interval": null,
+      "diversity_pairs": 300,
+      "mm_selected_cases": 100,
+      "mm_repeats": 30,
+      "mm_pairs": 10,
+      "fid_feature_scale": 6,
+      "diversity_feature_scale": 6,
+      "diversity_distance_divisor": 2,
+      "mm_distance_feature_scale": 1,
+      "multimodality_feature_scale": 1,
+      "evaluator": "unmodified FreeMotion EvaluatorModelWrapper and utils.metrics; interclip.ckpt strict load",
+      "paper_comparison": "descriptive reference only; paper repeats metrics20x / MM5x; paper baseline InterGen* retrained"
+    }
+  },
+  "comparison_policy": "different protocols and training state; reference comparison, no strict superiority claim"
+}

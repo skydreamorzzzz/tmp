@@ -1,0 +1,600 @@
+{
+  "file_id": "4000",
+  "seed": 4042,
+  "guidance_enabled": true,
+  "distance_weight": 5.0,
+  "distance_m": 3.0,
+  "window": 150,
+  "events": [
+    {
+      "t": 999,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 4.549590536851683,
+      "outer_gradient_scale": 9.995000000000001,
+      "distance_guidance_active": false,
+      "gli_guidance_active": false
+    },
+    {
+      "t": 999,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 4.549590536851683,
+      "outer_gradient_scale": 9.995000000000001,
+      "distance_guidance_active": false,
+      "gli_guidance_active": false
+    },
+    {
+      "t": 901,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 4.995004995004995,
+      "outer_gradient_scale": 9.504999999999999,
+      "distance_guidance_active": false,
+      "gli_guidance_active": false
+    },
+    {
+      "t": 901,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 4.995004995004995,
+      "outer_gradient_scale": 9.504999999999999,
+      "distance_guidance_active": false,
+      "gli_guidance_active": false
+    },
+    {
+      "t": 900,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 5.0,
+      "outer_gradient_scale": 9.5,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 31.759347915649414,
+      "gradient_l2_norm": 0.9831854701042175,
+      "gradient_mean_abs": 0.001995240105316043,
+      "gradient_max_abs": 0.015964511781930923,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 6.351869583129883
+      },
+      "group_center_distance_mean_m": 0.8611271381378174,
+      "cross_member_distances_mean_m": [
+        0.6291702389717102,
+        1.6553263664245605,
+        1.1246140003204346,
+        2.202739953994751
+      ],
+      "cross_member_min_mean_m": 0.6291702389717102
+    },
+    {
+      "t": 900,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 5.0,
+      "outer_gradient_scale": 9.5,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 31.664714813232422,
+      "gradient_l2_norm": 1.1289970874786377,
+      "gradient_mean_abs": 0.0022649718448519707,
+      "gradient_max_abs": 0.02516448125243187,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 6.332942962646484
+      },
+      "group_center_distance_mean_m": 0.8644777536392212,
+      "cross_member_distances_mean_m": [
+        0.631705641746521,
+        1.6510987281799316,
+        1.1319960355758667,
+        2.2049198150634766
+      ],
+      "cross_member_min_mean_m": 0.631705641746521
+    },
+    {
+      "t": 700,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 6.25,
+      "outer_gradient_scale": 8.5,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 0.005597712006419897,
+      "gradient_l2_norm": 0.005588865373283625,
+      "gradient_mean_abs": 8.94588629307691e-06,
+      "gradient_max_abs": 0.00018429470947012305,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 0.000895633886102587
+      },
+      "group_center_distance_mean_m": 3.3973865509033203,
+      "cross_member_distances_mean_m": [
+        3.314786911010742,
+        3.571477174758911,
+        4.206120491027832,
+        5.355037689208984
+      ],
+      "cross_member_min_mean_m": 3.314786911010742
+    },
+    {
+      "t": 700,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 6.25,
+      "outer_gradient_scale": 8.5,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 0.005531142465770245,
+      "gradient_l2_norm": 0.011499397456645966,
+      "gradient_mean_abs": 1.558474832563661e-05,
+      "gradient_max_abs": 0.0010228189639747143,
+      "gradient_nonzero_fraction": 0.9999873042106628,
+      "group_loss_components": {
+        "inter_group": 0.0008849827572703362
+      },
+      "group_center_distance_mean_m": 3.3901379108428955,
+      "cross_member_distances_mean_m": [
+        3.302635908126831,
+        3.5641489028930664,
+        4.195267677307129,
+        5.347544193267822
+      ],
+      "cross_member_min_mean_m": 3.302635908126831
+    },
+    {
+      "t": 500,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 8.333333333333334,
+      "outer_gradient_scale": 7.5,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 0.0022079884074628353,
+      "gradient_l2_norm": 0.001332618179731071,
+      "gradient_mean_abs": 2.0305922134866705e-06,
+      "gradient_max_abs": 6.339611718431115e-05,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 0.0002649586240295321
+      },
+      "group_center_distance_mean_m": 3.3802804946899414,
+      "cross_member_distances_mean_m": [
+        3.3292582035064697,
+        3.464165449142456,
+        4.235212326049805,
+        5.285311698913574
+      ],
+      "cross_member_min_mean_m": 3.3292582035064697
+    },
+    {
+      "t": 500,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 8.333333333333334,
+      "outer_gradient_scale": 7.5,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 0.0023082669358700514,
+      "gradient_l2_norm": 0.002403966384008527,
+      "gradient_mean_abs": 3.584429350667051e-06,
+      "gradient_max_abs": 7.157401705626398e-05,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 0.0002769920392893255
+      },
+      "group_center_distance_mean_m": 3.3805975914001465,
+      "cross_member_distances_mean_m": [
+        3.3294434547424316,
+        3.4631829261779785,
+        4.235686302185059,
+        5.284457683563232
+      ],
+      "cross_member_min_mean_m": 3.3294434547424316
+    },
+    {
+      "t": 200,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 16.666666666666668,
+      "outer_gradient_scale": 6.0,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 0.0024001598358154297,
+      "gradient_l2_norm": 0.004687465261667967,
+      "gradient_mean_abs": 4.838670520257438e-06,
+      "gradient_max_abs": 0.0001989412703551352,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 0.00014400959480553865
+      },
+      "group_center_distance_mean_m": 3.3904917240142822,
+      "cross_member_distances_mean_m": [
+        3.3235552310943604,
+        3.4455385208129883,
+        4.245357513427734,
+        5.251890659332275
+      ],
+      "cross_member_min_mean_m": 3.3235552310943604
+    },
+    {
+      "t": 200,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 16.666666666666668,
+      "outer_gradient_scale": 6.0,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 0.0028965903911739588,
+      "gradient_l2_norm": 0.007304462604224682,
+      "gradient_mean_abs": 7.665275916224346e-06,
+      "gradient_max_abs": 0.0003149384865537286,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 0.00017379542987328023
+      },
+      "group_center_distance_mean_m": 3.3900961875915527,
+      "cross_member_distances_mean_m": [
+        3.322105884552002,
+        3.444993495941162,
+        4.244304180145264,
+        5.2513885498046875
+      ],
+      "cross_member_min_mean_m": 3.322105884552002
+    },
+    {
+      "t": 101,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 24.875621890547265,
+      "outer_gradient_scale": 5.505,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 0.0013429999817162752,
+      "gradient_l2_norm": 0.006137993186712265,
+      "gradient_mean_abs": 5.42087445865036e-06,
+      "gradient_max_abs": 0.0002543667796999216,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 5.3988598665455356e-05
+      },
+      "group_center_distance_mean_m": 3.3855836391448975,
+      "cross_member_distances_mean_m": [
+        3.306997060775757,
+        3.420158863067627,
+        4.23530387878418,
+        5.224780082702637
+      ],
+      "cross_member_min_mean_m": 3.306997060775757
+    },
+    {
+      "t": 101,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 24.875621890547265,
+      "outer_gradient_scale": 5.505,
+      "distance_guidance_active": true,
+      "gli_guidance_active": false,
+      "loss_total": 0.0010887312237173319,
+      "gradient_l2_norm": 0.007765735033899546,
+      "gradient_mean_abs": 8.419605364906602e-06,
+      "gradient_max_abs": 0.0003770452458411455,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 4.376699507702142e-05
+      },
+      "group_center_distance_mean_m": 3.385885238647461,
+      "cross_member_distances_mean_m": [
+        3.3070907592773438,
+        3.420539617538452,
+        4.235420227050781,
+        5.225177764892578
+      ],
+      "cross_member_min_mean_m": 3.3070907592773438
+    },
+    {
+      "t": 100,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 25.0,
+      "outer_gradient_scale": 5.5,
+      "distance_guidance_active": true,
+      "gli_guidance_active": true,
+      "loss_total": 0.034926384687423706,
+      "gradient_l2_norm": 0.006138801574707031,
+      "gradient_mean_abs": 9.467214113101363e-06,
+      "gradient_max_abs": 0.0007631957996636629,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 3.169844421790913e-05
+      },
+      "group_center_distance_mean_m": 3.3865623474121094,
+      "cross_member_distances_mean_m": [
+        3.307304620742798,
+        3.420957088470459,
+        4.2362565994262695,
+        5.225917339324951
+      ],
+      "cross_member_min_mean_m": 3.307304620742798,
+      "gli_raw": 0.05688986927270889,
+      "gli_scaled_weight": 0.6
+    },
+    {
+      "t": 100,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 25.0,
+      "outer_gradient_scale": 5.5,
+      "distance_guidance_active": true,
+      "gli_guidance_active": true,
+      "loss_total": 0.004342841450124979,
+      "gradient_l2_norm": 0.010265281423926353,
+      "gradient_mean_abs": 1.3865946129953954e-05,
+      "gradient_max_abs": 0.0007512008305639029,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 2.7781028620665893e-05
+      },
+      "group_center_distance_mean_m": 3.3870975971221924,
+      "cross_member_distances_mean_m": [
+        3.3085765838623047,
+        3.421142339706421,
+        4.237277984619141,
+        5.226138591766357
+      ],
+      "cross_member_min_mean_m": 3.3085765838623047,
+      "gli_raw": 0.006080525927245617,
+      "gli_scaled_weight": 0.6
+    },
+    {
+      "t": 99,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 25.12562814070352,
+      "outer_gradient_scale": 5.495,
+      "distance_guidance_active": true,
+      "gli_guidance_active": true,
+      "loss_total": 0.03476886823773384,
+      "gradient_l2_norm": 0.00489123584702611,
+      "gradient_mean_abs": 7.225798526633298e-06,
+      "gradient_max_abs": 0.00023768702521920204,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 2.5774341338546947e-05
+      },
+      "group_center_distance_mean_m": 3.3871665000915527,
+      "cross_member_distances_mean_m": [
+        3.308382034301758,
+        3.421506404876709,
+        4.237085342407227,
+        5.22625732421875
+      ],
+      "cross_member_min_mean_m": 3.308382034301758,
+      "gli_raw": 0.0568687841296196,
+      "gli_scaled_weight": 0.6
+    },
+    {
+      "t": 99,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 25.12562814070352,
+      "outer_gradient_scale": 5.495,
+      "distance_guidance_active": true,
+      "gli_guidance_active": true,
+      "loss_total": 0.004449136555194855,
+      "gradient_l2_norm": 0.007442933041602373,
+      "gradient_mean_abs": 7.878812539274804e-06,
+      "gradient_max_abs": 0.00040177488699555397,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 3.180613202857785e-05
+      },
+      "group_center_distance_mean_m": 3.3875997066497803,
+      "cross_member_distances_mean_m": [
+        3.308985471725464,
+        3.42146897315979,
+        4.237722873687744,
+        5.2262492179870605
+      ],
+      "cross_member_min_mean_m": 3.308985471725464,
+      "gli_raw": 0.006083312444388866,
+      "gli_scaled_weight": 0.6
+    },
+    {
+      "t": 50,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 33.333333333333336,
+      "outer_gradient_scale": 5.25,
+      "distance_guidance_active": true,
+      "gli_guidance_active": true,
+      "loss_total": 0.036166317760944366,
+      "gradient_l2_norm": 0.011655090376734734,
+      "gradient_mean_abs": 1.268879532290157e-05,
+      "gradient_max_abs": 0.0005067158490419388,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 7.950713916216046e-05
+      },
+      "group_center_distance_mean_m": 3.380679130554199,
+      "cross_member_distances_mean_m": [
+        3.2996699810028076,
+        3.394336462020874,
+        4.230679035186768,
+        5.18442440032959
+      ],
+      "cross_member_min_mean_m": 3.2996699810028076,
+      "gli_raw": 0.05586012825369835,
+      "gli_scaled_weight": 0.6
+    },
+    {
+      "t": 50,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 33.333333333333336,
+      "outer_gradient_scale": 5.25,
+      "distance_guidance_active": true,
+      "gli_guidance_active": true,
+      "loss_total": 0.006194166373461485,
+      "gradient_l2_norm": 0.015507864765822887,
+      "gradient_mean_abs": 1.561933459015563e-05,
+      "gradient_max_abs": 0.0010197223164141178,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 7.034699228825048e-05
+      },
+      "group_center_distance_mean_m": 3.3809657096862793,
+      "cross_member_distances_mean_m": [
+        3.300499677658081,
+        3.394284963607788,
+        4.2313232421875,
+        5.184420108795166
+      ],
+      "cross_member_min_mean_m": 3.300499677658081,
+      "gli_raw": 0.006415444426238537,
+      "gli_scaled_weight": 0.6
+    },
+    {
+      "t": 0,
+      "current_indices": [
+        0,
+        1
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 50.0,
+      "outer_gradient_scale": 5.0,
+      "distance_guidance_active": true,
+      "gli_guidance_active": true,
+      "loss_total": 0.41808420419692993,
+      "gradient_l2_norm": 0.04582379758358002,
+      "gradient_mean_abs": 4.247856850270182e-05,
+      "gradient_max_abs": 0.001790686510503292,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 0.007630230393260717
+      },
+      "group_center_distance_mean_m": 3.317984104156494,
+      "cross_member_distances_mean_m": [
+        3.254605293273926,
+        3.2305004596710205,
+        4.184404373168945,
+        4.96683406829834
+      ],
+      "cross_member_min_mean_m": 3.2305004596710205,
+      "gli_raw": 0.06095447763800621,
+      "gli_scaled_weight": 0.6
+    },
+    {
+      "t": 0,
+      "current_indices": [
+        2,
+        3
+      ],
+      "guidance_enabled": true,
+      "distance_weight": 5.0,
+      "effective_distance_weight": 50.0,
+      "outer_gradient_scale": 5.0,
+      "distance_guidance_active": true,
+      "gli_guidance_active": true,
+      "loss_total": 0.48561474680900574,
+      "gradient_l2_norm": 0.06963925808668137,
+      "gradient_mean_abs": 7.237010140670463e-05,
+      "gradient_max_abs": 0.0037337858229875565,
+      "gradient_nonzero_fraction": 1.0,
+      "group_loss_components": {
+        "inter_group": 0.0096087995916605
+      },
+      "group_center_distance_mean_m": 3.3136985301971436,
+      "cross_member_distances_mean_m": [
+        3.249484062194824,
+        3.209135055541992,
+        4.182276248931885,
+        4.946441173553467
+      ],
+      "cross_member_min_mean_m": 3.209135055541992,
+      "gli_raw": 0.008624587208032608,
+      "gli_scaled_weight": 0.6
+    }
+  ]
+}

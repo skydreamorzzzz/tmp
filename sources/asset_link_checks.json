@@ -1,0 +1,35 @@
+[
+  {
+    "file": "separate_annots_drive.html",
+    "url": "https://drive.google.com/file/d/1ZtNZuctaIXMrxlWuQZS2eZhT0U6kAMoQ/view?usp=sharing",
+    "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:1149)>"
+  },
+  {
+    "file": "evaluation_model_drive.html",
+    "url": "https://drive.google.com/file/d/1bJv5lTP7otJleaBYZ2byjru_k_wCsGvH/view",
+    "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:1149)>"
+  },
+  {
+    "file": "interhuman_drive_folder.html",
+    "url": "https://drive.google.com/drive/folders/1oyozJ4E7Sqgsr7Q747Na35tWo5CjNYk3?usp=sharing",
+    "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:1149)>"
+  },
+  {
+    "file": "intergen_README.md",
+    "url": "https://raw.githubusercontent.com/tr3e/InterGen/main/README.md",
+    "final_url": "https://raw.githubusercontent.com/tr3e/InterGen/main/README.md",
+    "status": 200,
+    "title": null,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 4129
+  },
+  {
+    "file": "clip_models.py",
+    "url": "https://raw.githubusercontent.com/openai/CLIP/main/clip/clip.py",
+    "final_url": "https://raw.githubusercontent.com/openai/CLIP/main/clip/clip.py",
+    "status": 200,
+    "title": null,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 9644
+  }
+]

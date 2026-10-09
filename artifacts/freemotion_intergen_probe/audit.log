@@ -1,0 +1,8 @@
+single raw {'matched_keys_count': 0, 'missing_keys_count': 330, 'unexpected_keys_count': 346, 'shape_mismatch_count': 0, 'matched_parameter_ratio': 0.0}
+single lightning_prefix_only {'matched_keys_count': 174, 'missing_keys_count': 156, 'unexpected_keys_count': 172, 'shape_mismatch_count': 0, 'matched_parameter_ratio': 0.46454385332260795}
+single safe_wrapper_mapping {'matched_keys_count': 282, 'missing_keys_count': 48, 'unexpected_keys_count': 64, 'shape_mismatch_count': 0, 'matched_parameter_ratio': 0.8254598123788601}
+multi raw {'matched_keys_count': 0, 'missing_keys_count': 502, 'unexpected_keys_count': 346, 'shape_mismatch_count': 0, 'matched_parameter_ratio': 0.0}
+multi lightning_prefix_only {'matched_keys_count': 174, 'missing_keys_count': 328, 'unexpected_keys_count': 172, 'shape_mismatch_count': 0, 'matched_parameter_ratio': 0.29691923438911233}
+multi safe_wrapper_mapping {'matched_keys_count': 282, 'missing_keys_count': 220, 'unexpected_keys_count': 64, 'shape_mismatch_count': 0, 'matched_parameter_ratio': 0.5276033548985577}
+multi safe_wrapper_and_official_stage2_clone {'matched_keys_count': 390, 'missing_keys_count': 112, 'unexpected_keys_count': 128, 'shape_mismatch_count': 0, 'matched_parameter_ratio': 0.758287475408003}
+SEMANTIC_BLOCKER: 48 condition_sa tensors missing even in single. Mapping ca_block to condition_sa_block discards learned xf_norm and changes K/V input; user authorization required before generation.

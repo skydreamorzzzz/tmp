@@ -1,0 +1,43 @@
+{
+  "design": "2x2 factorial: RAG {off,on} x guidance {off,on}",
+  "no_rag_definition": "Group2 receives the same test caption as Group1, matching prior A/C smoke definition",
+  "same_seed_all_arms": true,
+  "base_seed": 42,
+  "window": 150,
+  "sampler": "unmodified DPMotion forward_single / 1000-step ancestral DDPM",
+  "distance_m": 3.0,
+  "distance_weight": 5.0,
+  "conditions": [
+    "A_no_rag_no_guidance",
+    "B_rag_no_guidance",
+    "C_no_rag_guidance",
+    "D_rag_guidance"
+  ],
+  "test_ids": [
+    "2636"
+  ],
+  "status": "complete",
+  "smoke_torch_random_draws_identical_across_arms": true,
+  "smoke_noise_summaries": {
+    "A_no_rag_no_guidance": {
+      "torch_random_tensor_count": 2009,
+      "torch_random_sequence_sha256": "66dac1422ab76684dc229eb113471a388720e25031926d397e4b17a2e53f7d8f",
+      "initial_noise_sha256": "9c69cc39d204e4a774bd488be0e599ae098b174e457849e8613ecd1073394a60"
+    },
+    "B_rag_no_guidance": {
+      "torch_random_tensor_count": 2009,
+      "torch_random_sequence_sha256": "66dac1422ab76684dc229eb113471a388720e25031926d397e4b17a2e53f7d8f",
+      "initial_noise_sha256": "9c69cc39d204e4a774bd488be0e599ae098b174e457849e8613ecd1073394a60"
+    },
+    "C_no_rag_guidance": {
+      "torch_random_tensor_count": 2009,
+      "torch_random_sequence_sha256": "66dac1422ab76684dc229eb113471a388720e25031926d397e4b17a2e53f7d8f",
+      "initial_noise_sha256": "9c69cc39d204e4a774bd488be0e599ae098b174e457849e8613ecd1073394a60"
+    },
+    "D_rag_guidance": {
+      "torch_random_tensor_count": 2009,
+      "torch_random_sequence_sha256": "66dac1422ab76684dc229eb113471a388720e25031926d397e4b17a2e53f7d8f",
+      "initial_noise_sha256": "9c69cc39d204e4a774bd488be0e599ae098b174e457849e8613ecd1073394a60"
+    }
+  }
+}

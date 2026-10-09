@@ -1,0 +1,4 @@
+WROTE artifacts/dpmotion_reproduction/visualizations/2636_A_intergen_no_rag_no_guidance.gif shape= (4, 50, 22, 3)
+WROTE artifacts/dpmotion_reproduction/visualizations/2636_B_rag_no_guidance.gif shape= (4, 50, 22, 3)
+WROTE artifacts/dpmotion_reproduction/visualizations/2636_C_no_rag_guidance.gif shape= (4, 50, 22, 3)
+WROTE artifacts/dpmotion_reproduction/visualizations/2636_D_rag_plus_guidance.gif shape= (4, 50, 22, 3)

@@ -1,0 +1,15 @@
+torch==1.13.1+cu117
+torchvision==0.14.1+cu117
+torchaudio==0.13.1+cu117
+numpy==1.23.5
+lightning==1.9.1
+torchmetrics==0.11.4
+lightning-utilities==0.7.1
+pydantic==1.10.13
+packaging==23.2
+psutil==5.9.8
+fsspec==2023.1.0
+setuptools==65.6.3
+lightning-cloud==0.5.27
+yapf==0.32.0
+protobuf==3.20.3

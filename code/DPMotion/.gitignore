@@ -1,0 +1,30 @@
+# ---- Python / venv ----
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# ---- OS / IDE ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ---- Outputs / logs ----
+runs/
+results/
+logs/
+*.log
+
+# ---- Data / cache ----
+data/raw/
+data/processed/
+*.pkl
+
+
+# ---- Secrets ----
+.env
+*.key

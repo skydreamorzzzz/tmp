@@ -1,0 +1,42 @@
+{
+  "scene_count": 120,
+  "ok_count": 120,
+  "failed_count": 0,
+  "total_generation_seconds": 10785.500000000002,
+  "mean_seconds_per_scene": 89.87916666666666,
+  "median_seconds_per_scene": 88.91499999999999,
+  "min_seconds_per_scene": 61.88,
+  "max_seconds_per_scene": 150.72,
+  "first_file_id": "2636",
+  "last_file_id": "2775",
+  "full_integrity": {
+    "expected_scenes": 120,
+    "log_rows": 120,
+    "unique_logged_ids": 120,
+    "missing_ids": [],
+    "extra_ids": [],
+    "failed_rows": [],
+    "invalid_files": [],
+    "all_pass": true
+  },
+  "metric_evaluation": {
+    "penebone_mean": 0.30832890355959536,
+    "penebone_std": 1.078201460876605,
+    "pene_rate_mean": 5.379188712522046e-05,
+    "pene_rate_std": 0.0001778681645889578,
+    "penebone_inter_mean": 0.30832890355959536,
+    "pene_inter_rate_mean": 0.00016137566100269397,
+    "penebone_non_mean": 0.0,
+    "pene_non_rate_mean": 0.0,
+    "cframe_all_mean": 8.877777777777778,
+    "cframe_all_std": 19.045750635875464,
+    "contact_all_mean": 0.30883333333333335,
+    "contact_all_std": 1.020821079291531,
+    "cframe_inter_mean": 8.877777777777778,
+    "contact_inter_mean": 0.30883333333333335,
+    "cframe_non_mean": 0.0,
+    "contact_non_mean": 0.0,
+    "intra_scene_diversity_mean": 3.272060774804817,
+    "intra_scene_diversity_std": 0.5623502550290398
+  }
+}

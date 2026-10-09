@@ -1,0 +1,14 @@
+{
+  "repository": "skydreamorzzzz/DPMotion",
+  "commit": "36dafe8b2cefa8f4610723fb10f581e380548498",
+  "files": {
+    "models/nets.py": {
+      "url": "https://raw.githubusercontent.com/skydreamorzzzz/DPMotion/36dafe8b2cefa8f4610723fb10f581e380548498/models/nets.py",
+      "sha256": "aa9cc6686f03986453914eb5ac85b9046fd812320c57e840041205e1ad1b85f6"
+    },
+    "models/intergen.py": {
+      "url": "https://raw.githubusercontent.com/skydreamorzzzz/DPMotion/36dafe8b2cefa8f4610723fb10f581e380548498/models/intergen.py",
+      "sha256": "1266dce22ee10c42e71f30eccc9e8f3cfc095a4846e87acb0569c5c9a3ca7ffa"
+    }
+  }
+}

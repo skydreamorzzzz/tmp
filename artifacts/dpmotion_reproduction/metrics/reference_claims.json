@@ -1,0 +1,33 @@
+{
+  "published_paper": {
+    "title": "DPMotion: Multi-group Motion Generation with Spatial Constraints and Scene Diversity",
+    "authors": ["Tianyang Tang", "Hao Hu"],
+    "venue": "ICIC 2026, LNCS 16655, pp.466-476",
+    "doi": "10.1007/978-981-92-3438-7_39",
+    "first_online": "2026-07-14",
+    "official_publisher_page": "https://link.springer.com/chapter/10.1007/978-981-92-3438-7_39",
+    "public_abstract_claims": {
+      "top1_r_precision": 0.386,
+      "fid": 5.642,
+      "benchmark_description": "multi-group extension of InterHuman benchmark",
+      "method_description": ["Retrieval-augmented Knowledge Base", "Unified Group-level Separation", "Proxemics-guided Distance-based Constraints"]
+    },
+    "full_text_accessible_locally": false,
+    "publisher_access": "page exposes abstract and marks chapter as subscription content; no full paper PDF in workspace",
+    "protocol_and_metric_definition": "not available from the public abstract; do not treat these two headline numbers as protocol-matched to current repo evaluator"
+  },
+  "repository_readme_claims": {
+    "source": "code/DPMotion/README.md, section 120-scene results",
+    "claims": {
+      "penebone_mean": 0.3414,
+      "penebone_std": 1.2919,
+      "penetration_rate_percent_as_printed": 0.0060,
+      "interactive_pair_penetration_rate_percent_as_printed": 0.0181,
+      "noninteractive_pair_penetration_rate_percent_as_printed": 0.0,
+      "intra_scene_diversity_mean": 3.3386,
+      "intra_scene_diversity_std": 0.5514,
+      "cross_scene_diversity": 1.5876
+    },
+    "caveat": "These are repository README claims. The checked-in evaluation script has no cross-scene diversity computation and emits penetration rates as unit fractions without percentage conversion. The README values therefore are not all directly auditable against the current implementation."
+  }
+}

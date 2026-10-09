@@ -1,0 +1,27 @@
+{
+  "checkpoint": "/home/featurize/work/FreeMotion-reproduction/assets/intergen/intergen.ckpt",
+  "sha256": "bab341123c27af9d8c3ee7ebc43c2d341bfd0f4103425d06f8af6c717a086f8d",
+  "epoch": 299,
+  "global_step": 70200,
+  "source_keys": 346,
+  "matched_keys": 346,
+  "missing_keys": [],
+  "unexpected_keys": [],
+  "shape_mismatches": [],
+  "strict_load": true,
+  "prefix_handling": "remove only leading model. from Lightning state_dict",
+  "normalization": {
+    "mean_sha256": "2f97b88889c773551cd597c32e88bfa070c2fb1721a992a80bfb7cf4c22e03b6",
+    "std_sha256": "dd5988b979e9803786ab497f5945316c2d52b97c90b593d0427220fd49b03e4b",
+    "shape": [
+      262
+    ],
+    "same_as_intergen": true
+  },
+  "load_result": {
+    "missing_keys": [],
+    "unexpected_keys": []
+  },
+  "device": "cuda:0"
+}
+

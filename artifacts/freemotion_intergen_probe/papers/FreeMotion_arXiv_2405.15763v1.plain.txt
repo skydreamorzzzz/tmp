@@ -1,0 +1,708 @@
+=== PAGE 1 ===
+FreeMotion: A Unified Framework for
+Number-free Text-to-Motion Synthesis
+Ke Fan1, Junshu Tang1, Weijian Cao2, Ran Yi1, Moran Li2, Jingyu Gong1,
+Jiangning Zhang2, Yabiao Wang2, Chengjie Wang1,2, and Lizhuang Ma1
+1Shanghai Jiao Tong University
+2Tencent Youtu Lab
+https://VankouF.github.io/FreeMotion
+Abstract. Text-to-motionsynthesisisacrucialtaskincomputervision.
+Existing methods are limited in their universality, as they are tailored for
+single-person or two-person scenarios and can not be applied to generate
+motions for more individuals. To achieve the number-free motion syn-
+thesis, this paper reconsiders motion generation and proposes to unify
+the single and multi-person motion by the conditional motion distribu-
+tion. Furthermore, a generation module and an interaction module are
+designed for our FreeMotion framework to decouple the process of con-
+ditional motion generation and finally support the number-free motion
+synthesis. Besides, based on our framework, the current single-person
+motion spatial control method could be seamlessly integrated, achieving
+precise control of multi-person motion. Extensive experiments demon-
+strate the superior performance of our method and our capability to
+infer single and multi-human motions simultaneously.
+Keywords: Text-to-motion synthesis ·Diffusion models
+1 Introduction
+Human motion synthesis aims at generating human motions driven by the input
+text, audio, scene, etc., and has extensive applications in areas like robotic con-
+trol, movies, and animation production. Among these input signals, text, i.e.,
+natural language, can provide rich semantic details and is the most user-friendly
+and convenient signal for motion synthesis.
+Generating single-person motion, as a fundamental task in text-to-motion
+(T2M),hasreceivedsignificantattentionintheresearchcommunity.Somemeth-
+ods [6,19] aligned the text and motion in the same space by utilizing the VAE
+structure, while others [29,32,33] utilized the diffusion model conditioned on
+text to make the generated motion more diverse and realistic. Recently, some
+works have begun to explore two-person motion synthesis. ComMDM [21] fine-
+tuned a pre-trained single-human motion generation model on a dataset with
+only 20 two-person text-annotated motions by few-shot learning. InterGen [15]
+further introduced a large annotated two-person motion dataset, InterHuman,arXiv:2405.15763v1  [cs.CV]  24 May 2024
+
+=== PAGE 2 ===
+2 F. Author et al.
+𝒑(𝒙𝟏,…, 𝒙𝒏)=𝒑(𝒙𝟏)∏𝒊$𝟏𝒏%𝟏𝒑(𝒙𝒊&𝟏|𝒙𝒊,…,𝒙𝟏)FreeMotion
+𝑥',…, 𝑥(%'𝑥(…𝑥'𝑥(%'𝑥(Text / Spatial Condition
+Conditional Motion Modeling
+One is walking around in a circle.Two humans actively engage in fencing practice.
+Three people are walking forward to greet each other.Four people are walking in a circle.
+Fig. 1:Theleftshows our model can generate controllable motions for any number
+(1–4 from the figure) of individuals. Different colors represent the different person’s
+motion.The rightisanillustrationofournewparadigmofmotiongeneration,recursive
+generation, where every single motion is predicted under the condition of the motions
+generated before. Best viewed in color.
+and employed a shared-weight diffusion network and cross-attention to model
+the interaction of two-person motion.
+Althoughtheaforementionedmethodshavedemonstratedremarkableachieve-
+ments in both single-person and two-person motion generation, their applicabil-
+ityremainslimitedintermsofuniversality.Specifically,theselimitationsinclude:
+(1) their models are tailored either for fitting the marginal motion distribution
+of single-person or the joint motion distribution of two-person scenarios and can-
+not support motion inference for both cases simultaneously. (2) Moreover, due
+to the unavailability of text-annotated multi-person motion datasets, as well as
+the non-scalability of network design, none of these methods can be applied to
+generate motion for more than two individuals during the inference phase. (3)
+While some studies have accomplished spatial control for single-person motion
+generation, incorporating the spatial signal into the current multi-person motion
+generation model remains a non-trivial challenge.
+To address these problems, we rethink the process of multi-person motion
+synthesisandproposeFreeMotion,anovelunifiedframeworkthatenablesmotion
+generationforanynumberofindividualsandachievesfine-grainedspatialcontrol
+of multiple human motions.
+Our key insight is to build a bridge between the marginal and joint dis-
+tribution with the conditional distribution. Without loss of generality, for the
+n-person motion generation task, we need to model the joint distribution prob-
+ability p(x1, ...,xn). According to the formula of conditional probability, we can
+decompose the joint distribution as p(x1, ...,xn) =p(x1)Qn−1
+i=1p(xi+1|xi, ...,x1).
+
+=== PAGE 3 ===
+Abbreviated paper title 3
+Therefore, if we can model the conditional motion distribution, we can generate
+motions for nindividuals in a recursive process, as shown in Fig. 1. Through the
+conditional probability formula, we reduce the task of multi-person motion syn-
+thesis to the single-person motion synthesis under the guidance of other people’s
+motions, i.e., conditional single-person motion synthesis.
+To this end, we design a conditional motion diffusion network, which can
+generate the target motion conditioned on the motions of any number of other
+individuals. We decouple the modeling of conditional motion distribution into
+single-person motion generation and multi-person motion interaction, which cor-
+respond to the two modules of our network, namely the generation module and
+the interaction module. The generation module aims to generate diverse and
+vivid single-person motion according to the text prompt. While the interaction
+module aims to inject condition motions into the human motion generation by
+extracting the interactive information between condition motions and the cur-
+rent motion to be generated. To accommodate the variability in the number of
+motion conditions in the interaction module, we leverage the length-independent
+characteristics of self-attention and deliberately design the interactive block to
+be entirely based on global self-attention. Besides, to describe the motion of each
+person, we design prompts and employ a large language model [18] to transform
+multi-person motion descriptions into corresponding descriptions of each person.
+Furthermore, we enhance the fine-grained spatial control of multi-person mo-
+tion generation. Previous works [27,28] add accurate control on the joint of a
+single-person motion. Nevertheless, these control signals are not easy to be ap-
+plied to multi-person motion generation. In our work, we incorporate flexible
+spatial signals into the interaction module to control the global location of hu-
+man motions while maintaining the realism of the motion results. As demon-
+strated in Fig. 1, although our model is only trained on two-person motions, it
+has the ability to predict the movements of more than two individuals in the
+inference phase.
+In summary, our contributions are as follows: (1) We rethink the process of
+motion synthesis and propose a new paradigm to unify the synthesis of motions
+for both single and multiple people. (2) We propose a decoupled generation and
+interaction module for conditional motion generation, which is the first attempt
+to achieve high-fidelity number-free motion generation under text conditions.
+(3) We further achieve precise control of multi-person motion based on flexible
+spatial control signals utilizing explicit and implicit guidance. Extensive experi-
+ments demonstrate that our method outperforms prior works, and achieves vivid
+multiple motions results.
+2 Related Work
+2.1 Single-Person Motion Synthesis
+At present, the mainstream text2motion methods are mainly divided into two
+categories: align-based model and the condition-based model.
+
+=== PAGE 4 ===
+4 F. Author et al.
+The align-based model mainly aligns text and motion into a shared latent
+space. In the inference stage, features are extracted based on the given text, and
+the Features are regarded as corresponding motion features for action genera-
+tion. TEMOS [19] and Guo et al.[6] leverage the VAE architecture to learn a
+joint latent space of motion and text constrained on a normal distribution. How-
+ever, natural language and human motions are quite different with misaligned
+structure and distribution, which makes the alignment process quite difficult.
+Condition-based models are usually based on the diffusion model architec-
+ture. It uses pre-trained text encoders, such as CLIP, to extract text features,
+and inject text features as conditions into the diffusion reconstruction network
+to guide the network to generate corresponding motions. MDM [26] and Motion
+Diffuse [31] are the first works to introduce the diffusion model into the mo-
+tion generation field. MDM additionally introduces a geometric loss to improve
+the model performance. MLD [1] further leverages the latent diffusion model
+to significantly drop the training and inference cost. However, Xie et al.[29]
+points out that the latent dimension affects the performance of the model. It
+cascades two diffusion models with different latent dimensions, promoting the
+details and the modal consistency. ReMoDiffuse [32] proposes an enhancement
+mechanism based on data set retrieval to refine the denoising process of Diffu-
+sion. FineMoGen [33] and Motion-X [16] further propose a new large-scale data
+set to introduce more detailed descriptions, such as hand joints, expression, etc.
+GMD [11] and OminiControl [28] explore precise trajectory control by the im-
+painting technique or both implicit and explicit spatial guidance. However, these
+methods are all networks designed for single-person models, and it is difficult to
+achieve motion synthesis for two or even multiple individuals.
+2.2 Multi-Person Motion Synthesis
+Multi-person motion synthesis is more difficult than single-human motion gener-
+ation, which involves an interactive process between multiple individuals. Early
+works tend to use motion graphs [22] and momentum-based inverse kinemat-
+ics [12]. Guo et al.[7] proposes the Extreme Pose Interaction dataset as well
+as a two-stream network with cross-interaction attention for interaction mod-
+eling. InterFormer [3] uses an attention-based interaction transformer to gen-
+erate sparse-level reactive motions on the K3HI [10] and the DuetDance [13]
+datasets. SocialDiffusion [25] proposes the first diffusion-based stochastic mul-
+tiperson motion anticipation model. BiGraphDiff [2] further introduces bipar-
+tite graph diffusion for geometric constraints between skeleton nodes. Tanaka et
+al.[24] introduces a PIT module the diffusion network, which enables the model
+to automatically distinguish actors and receivers, thereby better learning the
+interaction process. To broaden the applications, ReMos [5] and Le et al.[14]
+further propose new datasets that contain hand movements or music. However,
+these methods depend on either historical motion, action label, or music to give
+the motion prediction, and can not support the task of T2M.
+ComMDM [21] annotates 3DPW manually to obtain a small scale of sam-
+ples. Furthermore, it fine-tunes a pre-trained single-person T2M model in a few-
+
+=== PAGE 5 ===
+Abbreviated paper title 5
+shot manner and attempted multi-person motion generation for the first time.
+However, since it only contains 27 two-person motion sequences, The model’s
+ability to generate two-person interactions is greatly restricted. Therefore, Inter-
+Gen [15] first contributes a large-scale text-annotated two-person motion dataset
+called InterHuman, and based on this, it proposed a diffusion model with shared
+weights and multiple regularization losses, outperforming the ComMDM. Inter-
+Control[27]attemptstocompletetheinteractionprocessbycontrollingthejoints
+of two individuals to a certain position. It uses LLM to generate planning for two
+individuals during their movements by designing prompts. However, since it was
+not trained on two individuals, the model can not model the interaction process
+explicitly. In short, these T2M models almost all directly predict the actions of a
+single person or a pair of individuals, and cannot support the inference of single
+and double persons at the same time, let alone support the inference of motion
+for multiple individuals at the same time.
+2.3 Diffusion Models
+Diffusion probabilistic models [8] are a class of neural generative models based
+on the stochastic diffusion process. Compared to VAE-based pipelines, the most
+popularmotion-generativemodelsinpreviousworks,diffusionmodelsstrengthen
+the generation capacity through a stochastic diffusion process, as evidenced by
+the diverse and high-fidelity generated results. Some works have made great
+progress in accelerating the denoising process [23] and improving the genera-
+tion quality [17]. Dhariwal et al.[4], introduces classifier-guided diffusion for a
+conditionedgeneration.TheClassifier-FreeGuidanceapproach[9]enablescondi-
+tioning while trading-off fidelity and diversity, and achieves better results. In this
+paper, we implement our model conditioned on the input text in a classifier-free
+manner. ControlNet [30] copies the trainable parameters of a diffusion model to
+processtheconditionandfreezestheoriginalmodeltoavoiddegenerationofgen-
+eration ability. Its generality in enabling various control signals has been largely
+proven. Inspired by this, we achieve conditional motion modeling by leveraging
+the ControlNet structure.
+3 Preliminaries
+3.1 Diffusion Model for Motion Synthesis
+The diffusion Model [8] is a probabilistic model that gradually denoises a Gaus-
+sian noise to generate a target output. The key point is to generate a target
+output by gradually denoising Gaussian noise. It is formulated as a diffusion pro-
+cessandareverseprocessandisutilizedtoapproximatetheposterior q(x1:T|x0),
+where Tis the total time steps, and x1, ...,xTare the real data x0with tsteps
+of noise added. The diffusion process follows a Markov chain to gradually add
+Gaussian noise to the data until its distribution is close to the latent distribution
+
+=== PAGE 6 ===
+6 F. Author et al.
+N(0,I), according to variance schedules given by βt:
+q(x1:T|x0) :=TY
+t=1q(xt|xt−1),
+q(xt|xt−1) :=N(xt;p
+1−βtxt−1, βtI).(1)
+During training, the mean-squared error loss is used to optimize the parame-
+ters. During inference, we can generate the target output by sampling the initial
+noise ϵand denoising it by predicting the added noise, mean, or x0recursively.
+To fit the arbitrary length of time, the transformer-based denoiser block is com-
+monly preferred in motion generation.
+3.2 Motion Interaction Representation
+To maintain generality, we model multi-person motion generation as a motion
+sequence X= (xp),p∈ {1,2, ..., N}, where Nrepresents the total number
+of individuals. For simplicity, we use xto represent the motion of a specific
+individual.
+In the context of generating motion for a single person, the canonical repre-
+sentation proposed by HumanML3D [6] has proven to be well-suited for neural
+network processing. However, its normalization operation loses the relative po-
+sition relationship in multi-person scenarios, making it unsuitable for such use
+cases. To address this limitation, InterGen [15] introduced a non-canonical rep-
+resentation that maintains the relative positions between different individuals.
+The formulation of this representation is as follows:
+xp(i) = [jpg,jgv,jr,cf], (2)
+where the i-th pose of xpis defined as a collection of global joint positions
+jgp∈R3J, velocities jgv∈R3Jin the world frame, local rotations jr∈R6Jin the
+root frame, and binary foot-ground contact features cf∈R4, where Jdenotes
+the joint number. Since this representation preserves the global coordinates of
+joints, it well represents the spatial relationship of interactions. In this paper,
+we follow the non-canonical representation proposed by InterGen.
+4 Method
+4.1 Overview
+In this paper, we propose a unified framework for number-free human motion
+generation. By reconsidering the generation process via decomposing the joint
+motion into a conditional distribution through the conditional probability for-
+mula, our framework can generate arbitrary number of motions in a recursive
+manner, as shown in Fig. 1. Specifically, we model the multi-person joint motion
+distribution as p(x1, ...,xn)
+
+=== PAGE 7 ===
+Abbreviated paper title 7
+𝑥!"
+ℎ!(#)Generation Module
+...
+...
+Interactive Block𝑥!"𝑥#,𝑥$…
+SA
+Mask
+SA
+Linear𝑥!%""
+LinearZeroZeroZeroZero
+Linear
+DenoiserDenoiserDenoiserDenoiserLinear
+InteractiveBlockℎ!(%)ℎ!(&)ℎ!(')ℎ!(()
+SA
+ZeroZeroLinearAddInteraction Module𝒔
+Spatial
+𝑥!,𝑥",𝑥#…Motion
+Condition𝒔
+Linear
+Copy
+LinearcConcat
+InteractiveBlockInteractiveBlockInteractiveBlockc
+CLIP(𝒅)
+CLIP(𝒅)
+Noisy MotionText Prompt 𝒅
+Fig. 2:Overall architecture of FreeMotion, which contains a generation module and
+an interaction module. Given a text d, our framework can infer a motion x1by the
+generation module independently, or under the condition of multiple motions x2, x3...
+or some spatial guidance s. Red line represents the implicit guidance of the spatial
+control signal.
+=p(x1)Qn−1
+i=1p(xi+1|xi, ...,x1). Given a text d, we first predict the motion of
+the first individual. Subsequently, the motion of the second individual is inferred,
+conditioned upon the motion of the first individual, and the process iterates until
+the motion of the n-th individual is generated. Therefore, this method essentially
+transforms a multi-person motion generation process into a sequence of condi-
+tional single-person motion generation. Based on this, we can further achieve
+multi-human spatial motion control by separately controlling the spatial motion
+of each individual.
+4.2 Number-free Motion Generation
+As introduced before, we consider the multiple motions generation as a condi-
+tional generation process. From the perspective of conditional motion distribu-
+tion, we decouple the modeling process into a motion generation process and a
+motion interaction process. To start with, we first design a generation module
+which has the capability of single motion generation. Then we design an inter-
+action module to inject condition signals (motions of N−1individuals) into the
+human motion generation process by modeling the interaction between condition
+signals and the current motion to be generated. The detailed architecture of the
+generation and the interaction module are shown in Fig. 2.
+Generation Module. The generation module is designed to synthesize di-
+verse single motion according to the text prompt. Similar to previous text-to-
+motion methods [26,31], the module is a Transformer-based diffusion network,
+containing several denoiser blocks. During training, at timestep t, we add noise
+to a motion xand get the noised motion xt, and then use the generation module
+to denoise xttoxt−1. During the inference, the generation module is able to
+generate a clean motion x0starting from the pure Gaussian noise xT.
+Interaction Module. Inspired by ControlNet [30], we design a neural net-
+work named Interaction Module to inject the condition signals into the human
+motion generation. Specifically, we denote the N−1motions in the condition
+
+=== PAGE 8 ===
+8 F. Author et al.
+signal as x2,x3, ..,xN, and the noised motion obtained by adding noise to x1as
+xt1. Firstly, we feed x1
+tandN−1motion conditions xi, i∈ {2, ..., N}into a
+shared linear layer to encode each motion into a hidden state, denoted as h1,0
+t
+andhi,0, i∈ {2, ...N}. Secondly, to model the interaction information between
+variable number of motion conditions and the motion to be generated, we de-
+sign a novel Interactive Block , which is sequentially stacked for Ktimes. The
+interactive block at the k-th stage ( k∈ {1, ..., K}) takes the h1,k−1
+tandhi,k−1
+as inputs and outputs the h1,k
+tandhi,k. Each interactive block contains two
+sequential self-attention modules and a mask module, and the whole calculation
+process in the k-th interactive block is formulated as:
+h1,k
+t,h2,k, ...,hN,k=SA(SA(h1,k−1
+t), Mask (h2,k−1, ...,hN,k−1)),(3)
+where k∈ {1, ..., K}andSArepresents the self-attention operation.
+Specifically, in the k-th interactive block, we firstly randomly mask some hid-
+den states hi,k−1, to enable our model to infer the motion under any number of
+motion conditions. Then, the noised hidden state h1,k−1is input into the first
+SAmodule. We concatenate the masked N−1hidden states, and the output
+of the first SAmodule along the channel dimension, and feed the concatenated
+result to the second SAmodule, so that the model learns the interactive infor-
+mation between the noised motion and motion conditions. And the outputs of
+the second SAmodule, i.e.,h1,k
+tandhi,ks, will be further input to the next
+interactive block. By leveraging the global self-attention, h1,k
+tsuccessfully fuses
+the information from the motion conditions.
+Theoutputfromtheinteractiveblockwillthenbeaddedtotheoutputofeach
+denoiser block in the generation module after going through a linear layer. The
+linear layers are initialized with zero, thereby ensuring that the interactive mod-
+ule does not impact the generation module at the onset of training. Compared
+with cross-attention, self-attention is more flexible for modeling the interaction
+between motions regardless of the number of motions in the condition.
+4.3 Training Process
+Wedecomposeourtrainingprocessintotwostages.Inthefirststage,wetrainthe
+generation module for single-person motion generation. To enable the generation
+module to synthesize the single-person motion, it is necessary to provide a single-
+person motion description as its input during training. Therefore, for a given
+interactive description of multi-person motion, we utilize the ability of the Large
+Language Model (LLM) [18] to generate Nmotion descriptions, one for each
+individual. We use the separated single-person description for the training of
+the generation module. The text feature is extracted by a pre-trained CLIP [20]
+modelandisinjectedintotheadaptivelayernormalizationinallattentionlayers.
+In the second stage, we train the interaction module for conditional motion
+modeling and multi-human motion generation. Inspired by the success of Con-
+trolNet, we first freeze the parameters of the generation module and utilize the
+
+=== PAGE 9 ===
+Abbreviated paper title 9
+parameters to initialize the interaction module. Then we use multi-human mo-
+tions data to train the interaction module. Denote the motions of Nindividuals
+as[x1,x2, ...,xN]. We initially randomize the order of these Nmotions and the
+corresponding descriptions, and then select the first one as the motion to be
+noised and reconstructed, leaving the other N−1motions as the clean motion
+condition. 1) We add tsteps of noise to x1to obtain x1
+tand input it to the
+generation module. 2) For the interaction module, x1
+tand the remaining N−1
+motion conditions xp,p∈ {2, ..., N}are input into a shared linear layer and K
+interactive blocks to extract the interactive information. 3) The output of each
+interactive block is added to the output from the corresponding denoiser block in
+the generation module after going through a linear layer. 4) Finally, the denoised
+motion x1
+t−1can be obtained from the generation module.
+4.4 Spatial Control
+Our proposed framework based on conditional motion generation enables effort-
+less spatial control over multi-human motions. It allows for the integration of
+the current single-person motion control method without the need for carefully
+designing the spatial representation of multiple individuals. Inspired by Omni-
+Control [28], we concurrently utilize explicit and implicit guidance to realize our
+spatial control.
+Explicit guidance. Given a desired spatial location s∈RF×3J, where F
+representsthevalidmotionlengthand Jdenotesthejointnumber.Weutilizethe
+L2distance d=∥snj−xnj∥2to measure the bias between target position sand
+the predicted motion xfor joint jat frame n. Then we leverage the mechanism
+of classifier guidance to perturb the predicted motion at each denoising step tto
+correct the bias, which is formulated as xt=xt−η∇xtd, where ηcontrols the
+step of the guidance.
+Implicit guidance. In addition to explicit guidance, as the red lines shown
+inFig.2,wefurtheremployimplicitspatialguidance.Thewholetrainingprocess
+is almost the same as the number-free motion generation. A minor difference is
+that we first input the spatial signal sinto an independent linear layer, and add
+the output together with the noised motion hidden state. Some frames and joints
+are randomly selected and the others are subsequently masked out for the whole
+training process.
+After injecting the spatial control signal under explicit and implicit guid-
+ance, our proposed unified framework has the capability to control the spatial
+locations of multi-human motions independently, which further enhances the
+controllability of our method.
+4.5 Loss Function
+In addition to reconstruction loss Lrec, we also incorporate some regularization
+losses, which include the contact loss Lfootand joint velocity loss Lvelmentioned
+in MDM [26] and the bone length loss Lblas well as the masked joint distance
+
+=== PAGE 10 ===
+10 F. Author et al.
+map (DM) loss Ldmmentioned in InterGen [15]. For the first stage of single-
+motion generation, the total loss is formulated as:
+L1=Lrec+λ1Lfoot+λ2Lvel+λ3Lbl, (4)
+where the DM loss is not included. For the second stage of conditional single-
+motiongeneration,wefurtherintroduceDMlosstomodeltheinteractions,where
+the total loss is formulated as:
+L2=Lrec+λ1Lfoot+λ2Lvel+λ3Lbl+λ4Ldm, (5)
+where λ1, λ2, λ3, and λ4are used to balance the effect of corresponding loss.
+5 Experiments
+5.1 Datasets and Metrics
+Datasets. We evaluate our proposed framework on the InterHuman dataset,
+which is the first text-annotated two-person motion dataset, consisting of 6,022
+motions derived from various categories of human actions, labeled with 16,756
+unique descriptions composed of 5,656 distinct words.
+Metrics. We utilize the same evaluation metrics as InterGen. (1) FID: mea-
+suring the latent distribution distance between the generated dataset and the
+real dataset. (2) R Precision: measuring the text motion matching, indicates the
+probability that the real text appears in the Top-k (1, 2, and 3) after sorting. (3)
+Diversity:measuringlatentvariance.(4)Multimodality(MModality):measuring
+diversity within the same text. (5) Multi-modal distance (MM Dist): measuring
+the distance between motions and text features.
+5.2 Implementation Details
+We employ a frozen CLIP-ViT-L-14 model as the text encoder. The number of
+diffusion timesteps is set to 1,000 during training and the DDIM [23] sampling
+strategy with 50 timesteps is applied in the inference stage. For number-free
+motiongeneration ,thebatchsizeissetto80and30forthefirstandthesecond
+training stage on each GPU. The epoch numbers are 2,500 and 1,000 separately
+forthetwostages.Bothtrainingstagesaretrainedwith1e-4learningrateand2e-
+5 weight decay. For spatial control , the epoch number and learning rate are set
+to 1,000 and 1e-5. Other hyper-parameters remain the same as aforementioned.
+All experiments are trained on eight Tesla V100 GPUs.
+5.3 Quantitative Results
+Baseline. We mainly compare our method against the current state-of-the-
+art approach InterGen that models the interaction relationship of two people
+by a cross-attention mechanism. However, it by default can only support the
+
+=== PAGE 11 ===
+Abbreviated paper title 11
+Table 1: Quantitative comparisons on the InterHuman test set. We run all the evalua-
+tions 20 times except MModality runs 5 times. ±indicates the 95% confidence interval.
+Bold indicates the best result.
+MethodsR Precision ↑FID↓MM Dist ↓Diversity →MModality ↑
+Top 1 Top 2 Top 3
+Real 0.452±.0080.610±.0090.701±.0080.273±.0073.755±.0087.748±.064-
+TEMOS [19] 0.224±.0100.316±.0130.450±.01817.375±.0435.342±.0156.939±.0710.535±.014
+T2M [6] 0.238±.0120.325±.0100.464±.01413.769±.0724.731±.0137.046±.0221.387±.076
+MDM [26] 0.153±.0120.260±.0090.339±.0129.167±.0566.125±.0187.602±.0452.355±.080
+ComMDM∗[21] 0.067±.0130.125±.0180.184±.01538.643±.09813.211±.0133.520±.0580.217±.018
+ComMDM [21] 0.223±.0090.334±.0080.466±.0107.069±.0545.212±.0217.244±.0381.822±.052
+InterGen∗[15] 0.264±.0060.392±.0050.472±.00513.404±.2003.882±.0017.77±.0301.451±.034
+FreeMotion 0.326±.0030.462±.0060.544±.0066.740±.1303.848±.0027.828±.1301.226±.046
+two-person motion inference and cannot generate single-person motion. Thus,
+we make minor modifications to its model structure and retrain it to make it
+adapt to the inference of both single and double human motion, ensuring a fair
+comparison. The corresponding output of cross-attention is set to zero with a
+10% probability, thereby gaining some capacity for single-person generation. Our
+re-annotated single-person texts are utilized during the training phase. Since the
+performance of other methods is inferior to the InterGen on two-person motion
+synthesis, we directly take the results reported by InterGen for the experiments
+of two-person motion synthesis.
+Comparison Results. For evaluation on two-person motion synthesis, we fol-
+lowthesettingsgivenbyInterGen.Asforsingle-personmotionsynthesis,wetake
+the corresponding re-annotated two single-person descriptions given by LLM to
+synthesizetwoseparatesingle-personmotionsandconcatenatethemtogetherfor
+performance evaluation. It can be seen from Tab. 1 and Tab. 2 that although the
+InterGen* can generate both single and two-person motions, the performance is
+inferior to ours in almost all terms of metrics. Besides, the remaining models
+in Tab. 1 are only trained on the interactive descriptions and have no ability
+for single-motion inference, their performance on two-person motion synthesis is
+still inferior to our method. This fully demonstrates the powerful generality of
+our proposed framework.
+5.4 Ablation Studies
+We investigate the influence of several designs on two-person motion genera-
+tion. Initially, we remove the interaction module, solely employing the genera-
+tion module (GM). During the second training stage, we finetune the param-
+eters of GM. To endow the network with both single-person and two-person
+motion capabilities, we drop the motion condition with a 10% probability in the
+second SA module within each denoiser block. In addition, we exclusively use
+
+=== PAGE 12 ===
+12 F. Author et al.
+Table 2: Quantitative comparisons with InterGen* on our re-annotated text for single
+motion generation. The manner of evaluation is the same as Tab. 1. Bold indicates the
+best result.
+MethodsR Precision ↑FID↓MM Dist ↓Diversity →MModality ↑
+Top 1 Top 2 Top 3
+Real 0.452±.0080.610±.0090.701±.0080.273±.0073.755±.0087.748±.064-
+InterGen* [15] 0.206±.0040.313±.0040.389±.00523.415±.2223.925±.0017.514±.0291.526±.026
+FreeMotion 0.264±.0050.394±.0060.473±.00612.975±.1713.885±.0357.702±.0271.300±.063
+Table 3: Ablation study of our proposed framework. All results are reported on the
+InterHuman test set under the setting of two-person motion generation. InterDes
+and the GMrepresent the interactive description and generation module. We use to
+separate whether to leverage InterDes or not.
+Methods InterDes R-Precision1 ↑FID↓MM Dist ↓Diversity →
+GM* 0.300±.0058.842±.1303.863±.0017.761±.036
+GM ✓ 0.259±.00510.749±.1453.883±.0017.645±.031
+FreeMotion* 0.300±.0048.792±.1353.865±.0017.750±.022
+FreeMotion ✓ 0.326±.0036.740±.1303.848±.0027.828±.130
+our re-annotated single-person motion texts, without the interactive description
+(InterDes) provided in the InterHuman dataset. Subsequently, we incorporate
+high-quality two-person interactive motion descriptions (2nd row) during the
+second training stage. Furthermore, we introduce the interaction module as well
+as InterDes to get our FreeMotion* (3rd row) and FreeMotion (4th row).
+Comparing FreeMotion* with GM*, we found it almost gets the same results
+in all metrics. However, after introducing the high-quality interactive descrip-
+tion (InterDes), our FineMotion achieved a significant improvement while the
+performance of GM dropped a great deal. We analyzed this and found that it is
+because when using only GM, the GM network parameters need to be updated
+in the second training stage. When using only single-person text, the text used
+in the second stage of training was consistent with the first stage and did not
+produce a large gap, so that the update process was able to ensure that GM*
+learned as well as FineMotion*. However, when InterDes was introduced, the
+differences between single and double text prevented the GM from effectively
+adapting its parameters after the first stage of training. However, as can be seen
+from the FineMotion results, the introduction of high-quality two-person texts
+is of great significance in improving the model performance. Overall, the decou-
+pled generation module and interaction module we designed can utilize all the
+information for training more efficiently.
+
+=== PAGE 13 ===
+Abbreviated paper title 13
+FreeMotionInterGen
+[1] A person raises their arms simultaneously while advancing towards a person.[4] The other person lashes out with a right leg kick at the first person's waist, forcing the first person to take a step back.[3] These two people are competing in rock-paper-scissors.[2] A person grabs onto another person's waist and lifts them off the ground, spinning them around in circles.
+Fig. 3:Comparison with Intergen* on single and two-person motion generation. For
+single-person motion, we generate it with our re-annotated single description. For two-
+person motion, we further leverage the original interactive descriptions. For better
+visualization, some pose frames are shifted to prevent complete overlap.
+5.5 Qualitative Results
+Single Person Motion Synthesis. To illustrate the effectiveness, we provide
+a qualitative comparison between the InterGen∗and our FreeMotion on single-
+motion synthesis. As shown in Fig. 3, the synthesized single-person motion given
+by the proposed method are more consistent with the description. For example,
+in the second column, our model can produce an obvious squatting pose, which is
+more consistent with the textual command of grabbing others’ waists. This fully
+demonstrates that the decomposition of the generation and interaction process
+we proposed can more adequately fit the mapping from text to single motion
+than randomly mask the interaction process in the training phase.
+Two Person Motion Synthesis. We further exhibit the comparison of two-
+person motion synthesis in the 3rd and 4th columns in Fig. 3. Our approach
+[1] Three people walk in a circle.[2] Three people prepare to make a strike.[3] They engage in a fierce boxing match, with aggressively exchanging blows while also defending themselves.
+Fig. 4:Qualitative results for generating three-person motions. We manually design
+some text prompts and feed them to our network for motion generation. For better
+visualization, some pose frames are slightly shifted to prevent completed overlap.
+
+=== PAGE 14 ===
+14 F. Author et al.
+[1] Two people run towards each other with joy and embrace each other.[2] Three people are walking to get away from each other.[3] Four people walks forward.
+Fig. 5:Results of multi-person spatial control. We manually design some text prompts
+aswellasthetrajectoriesandleveragetheintegratedspatialcontrolmoduletogenerate
+the results.
+performs better in two-person interaction coordination and comprehensibility
+in complex text. It can be seen that InterGen∗does not achieve simultaneity
+when generating the rock-paper-scissors motion at the third column, and even
+switches the mainly used hands. In the fourth column, InterGen∗only focuses on
+the kicking motion, which results in both people making kicks. In contrast, our
+method can perform better. We believe that this is also due to the decoupling
+of the generation and interaction processes. The generation module makes the
+comprehension of complex text better, and the interaction module enables better
+two-person synchronization.
+Three Person Motion Synthesis. We manually designed the text with three
+differentlevelsofinteraction(low,middle,andhigh),correspondingtotheresults
+from left to right in Fig. 4. Our interactive block is designed with global self-
+attention, which allows our network to have the ability to support more people’s
+motionsasconditions,thusgeneratingthreepeople’smotions.Moreimportantly,
+although our approach is trained using only two people’s motions due to data
+scarcity, the way we decouple the generation and interactive processes enables
+our network to have the ability to directly reason about three people’s motions.
+The generation module enables our network to generate semantically consistent
+one-person motions under weak interaction text. The interaction module enables
+the extraction of motion interaction features under strong interaction text. The
+above results further illustrate that the interactive block we designed can extract
+interaction information effectively.
+Controllable Motion Synthesis. Thanks to our proposed paradigm of condi-
+tional motion modeling, we can seamlessly integrate existing single motion con-
+trol models into spatial control of multi-person motions. We use both implicit
+and explicit spatial guidance to control our generation module (i.e., controlling
+the single-person motion generation). As shown in Fig 5, even though the spatial
+control module is trained for single motions, mounting the interaction module
+when generating multi-person motions has no obvious damage to the spatial
+control and performs well from two to four-person.
+
+=== PAGE 15 ===
+Abbreviated paper title 15
+6 Conclusion and Limitations
+In this paper, we present FreeMotion, a novel motion generation framework
+for number-free motion synthesis. We rethink the way of multi-person motion
+generations and propose to recursively generate multi-person motions based on
+conditional motion modeling. We further propose the decoupled generation mod-
+ule and interaction module, and conduct a large number of quantitative as well
+as qualitative experiments to prove that our framework can support motion
+synthesis for any number of motions.
+Limitations. First,wedirectlyutilizethecapabilityofthelargelanguagemodel
+to separate single-motion text from the interactive description. Inevitably, there
+might be some instances where text and movements do not match well, which
+limits our ability to generate single-person motion. Secondly, although our model
+can generate multi-person motions, due to the limited understanding of inter-
+actions from training only on two-person motions, there might be some inter-
+penetration among different individuals when the number gets large or the text
+prompt is too complex.
+References
+1. Chen, X., Jiang, B., Liu, W., Huang, Z., Fu, B., Chen, T., Yu, G.: Executing your
+commands via motion diffusion in latent space. In: Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition. pp. 18000–18010 (2023)
+2. Chopin, B., Tang, H., Daoudi, M.: Bipartite graph diffusion model for human
+interaction generation. In: Proceedings of the IEEE/CVF Winter Conference on
+Applications of Computer Vision. pp. 5333–5342 (2024)
+3. Chopin,B.,Tang,H.,Otberdout,N.,Daoudi,M.,Sebe,N.:Interactiontransformer
+for human reaction generation. IEEE Transactions on Multimedia (2023)
+4. Dhariwal, P., Nichol, A.: Diffusion models beat gans on image synthesis. Advances
+in neural information processing systems 34, 8780–8794 (2021)
+5. Ghosh, A., Dabral, R., Golyanik, V., Theobalt, C., Slusallek, P.: Remos: Reactive
+3d motion synthesis for two-person interactions. arXiv preprint arXiv:2311.17057
+(2023)
+6. Guo, C., Zou, S., Zuo, X., Wang, S., Ji, W., Li, X., Cheng, L.: Generating di-
+verse and natural 3d human motions from text. In: Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition. pp. 5152–5161 (2022)
+7. Guo, W., Bie, X., Alameda-Pineda, X., Moreno-Noguer, F.: Multi-person extreme
+motion prediction. In: Proceedings of the IEEE/CVF Conference on Computer
+Vision and Pattern Recognition. pp. 13053–13064 (2022)
+8. Ho, J., Jain, A., Abbeel, P.: Denoising diffusion probabilistic models. Advances in
+neural information processing systems 33, 6840–6851 (2020)
+9. Ho, J., Salimans, T.: Classifier-free diffusion guidance. arXiv preprint
+arXiv:2207.12598 (2022)
+10. Hu, T., Zhu, X., Guo, W., Su, K., et al.: Efficient interaction recognition through
+positiveactionrepresentation.MathematicalProblemsinEngineering 2013(2013)
+11. Karunratanakul, K., Preechakul, K., Suwajanakorn, S., Tang, S.: Gmd: Con-
+trollable human motion synthesis via guided diffusion models. arXiv preprint
+arXiv:2305.12577 (2023)
+
+=== PAGE 16 ===
+16 F. Author et al.
+12. Komura, T., Ho, E.S., Lau, R.W.: Animating reactive motion using momentum-
+based inverse kinematics. Computer Animation and Virtual Worlds 16(3-4), 213–
+223 (2005)
+13. Kundu, J.N., Buckchash, H., Mandikal, P., Jamkhandi, A., Radhakrishnan, V.B.,
+et al.: Cross-conditioned recurrent networks for long-term synthesis of inter-person
+human motion interactions. In: Proceedings of the IEEE/CVF winter conference
+on applications of computer vision. pp. 2724–2733 (2020)
+14. Le, N., Pham, T., Do, T., Tjiputra, E., Tran, Q.D., Nguyen, A.: Music-driven
+group choreography. In: Proceedings of the IEEE/CVF Conference on Computer
+Vision and Pattern Recognition. pp. 8673–8682 (2023)
+15. Liang,H.,Zhang,W.,Li,W.,Yu,J.,Xu,L.:Intergen:Diffusion-basedmulti-human
+motion generation under complex interactions. arXiv preprint arXiv:2304.05684
+(2023)
+16. Lin, J., Zeng, A., Lu, S., Cai, Y., Zhang, R., Wang, H., Zhang, L.: Motion-x:
+A large-scale 3d expressive whole-body human motion dataset. arXiv preprint
+arXiv:2307.00818 (2023)
+17. Nichol, A.Q., Dhariwal, P.: Improved denoising diffusion probabilistic models. In:
+International Conference on Machine Learning. pp. 8162–8171. PMLR (2021)
+18. OpenAI: Https://openai.com/blog/chatgpt
+19. Petrovich, M., Black, M.J., Varol, G.: Temos: Generating diverse human motions
+from textual descriptions. In: European Conference on Computer Vision. pp. 480–
+497. Springer (2022)
+20. Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G.,
+Askell, A., Mishkin, P., Clark, J., et al.: Learning transferable visual models from
+natural language supervision. In: International conference on machine learning. pp.
+8748–8763. PMLR (2021)
+21. Shafir, Y., Tevet, G., Kapon, R., Bermano, A.H.: Human motion diffusion as a
+generative prior. arXiv preprint arXiv:2303.01418 (2023)
+22. Shum, H.P., Komura, T., Yamazaki, S.: Simulating competitive interactions using
+singly captured motions. In: Proceedings of the 2007 ACM symposium on Virtual
+reality software and technology. pp. 65–72 (2007)
+23. Song, J., Meng, C., Ermon, S.: Denoising diffusion implicit models. arXiv preprint
+arXiv:2010.02502 (2020)
+24. Tanaka, M., Fujiwara, K.: Role-aware interaction generation from textual descrip-
+tion. In: Proceedings of the IEEE/CVF International Conference on Computer
+Vision. pp. 15999–16009 (2023)
+25. Tanke, J., Zhang, L., Zhao, A., Tang, C., Cai, Y., Wang, L., Wu, P.C., Gall, J.,
+Keskin, C.: Social diffusion: Long-term multiple human motion anticipation. In:
+Proceedings of the IEEE/CVF International Conference on Computer Vision. pp.
+9601–9611 (2023)
+26. Tevet, G., Raab, S., Gordon, B., Shafir, Y., Cohen-Or, D., Bermano, A.H.: Human
+motion diffusion model. arXiv preprint arXiv:2209.14916 (2022)
+27. Wang, Z., Wang, J., Lin, D., Dai, B.: Intercontrol: Generate human motion inter-
+actions by controlling every joint. arXiv preprint arXiv:2311.15864 (2023)
+28. Xie, Y., Jampani, V., Zhong, L., Sun, D., Jiang, H.: Omnicontrol: Control any joint
+at any time for human motion generation. arXiv preprint arXiv:2310.08580 (2023)
+29. Xie, Z., Wu, Y., Gao, X., Sun, Z., Yang, W., Liang, X.: Towards detailed text-to-
+motion synthesis via basic-to-advanced hierarchical diffusion model. arXiv preprint
+arXiv:2312.10960 (2023)
+
+=== PAGE 17 ===
+Abbreviated paper title 17
+30. Zhang, L., Rao, A., Agrawala, M.: Adding conditional control to text-to-image
+diffusion models. In: Proceedings of the IEEE/CVF International Conference on
+Computer Vision. pp. 3836–3847 (2023)
+31. Zhang, M., Cai, Z., Pan, L., Hong, F., Guo, X., Yang, L., Liu, Z.: Motiondiffuse:
+Text-driven human motion generation with diffusion model. IEEE Transactions on
+Pattern Analysis and Machine Intelligence (2024)
+32. Zhang, M., Guo, X., Pan, L., Cai, Z., Hong, F., Li, H., Yang, L., Liu, Z.: Remodif-
+fuse:Retrieval-augmentedmotiondiffusionmodel.arXivpreprintarXiv:2304.01116
+(2023)
+33. Zhang, M., Li, H., Cai, Z., Ren, J., Yang, L., Liu, Z.: Finemogen: Fine-grained
+spatio-temporal motion generation and editing. arXiv preprint arXiv:2312.15004
+(2023)

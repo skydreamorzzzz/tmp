@@ -1,0 +1,33 @@
+{
+  "primary_paper": "papers/FreeMotion_ECCV2024.pdf",
+  "supplementary": "papers/FreeMotion_ECCV2024_supplementary.pdf",
+  "single": {
+    "table": 2, "pdf_page": 11,
+    "protocol": "Two independently generated single motions conditioned on re-annotated per-person texts are concatenated and evaluated by the two-person InterCLIP evaluator. Not HumanML3D single-person evaluator.",
+    "FreeMotion": {"R_Precision": [0.264, 0.394, 0.473], "R_Precision_95CI": [0.005, 0.006, 0.006], "FID": 12.975, "FID_95CI": 0.171, "MM_Distance": 3.885, "MM_Distance_95CI": 0.035, "Diversity": 7.702, "Diversity_95CI": 0.027, "Multimodality": 1.300, "Multimodality_95CI": 0.063}
+  },
+  "two_person": {
+    "table": 1, "pdf_page": 10,
+    "protocol": "InterHuman test set, two-person synthesis; per-person plus global interactive text for FreeMotion; InterCLIP paired-motion evaluator.",
+    "FreeMotion": {"R_Precision": [0.326, 0.462, 0.544], "R_Precision_95CI": [0.003, 0.006, 0.006], "FID": 6.740, "FID_95CI": 0.130, "MM_Distance": 3.848, "MM_Distance_95CI": 0.002, "Diversity": 7.828, "Diversity_95CI": 0.130, "Multimodality": 1.226, "Multimodality_95CI": 0.046}
+  },
+  "shared": {
+    "paper_metric_replications": 20, "paper_multimodality_replications": 5,
+    "confidence_interval": "95%, code: 1.96 * std / sqrt(replications)",
+    "sampling": "DDIM50, training diffusion timesteps1000",
+    "official_code_retrieval_batch_size": 96, "official_code_drop_last": true,
+    "official_code_diversity_pairs": 300, "official_code_multimodality_texts": 100,
+    "official_code_multimodality_generations_per_text": 30, "official_code_multimodality_pairs": 10,
+    "paper_vs_code_difference": "tools/eval.py repeats all metrics including MM20x, paper Table1 specifies MM5x",
+    "InterGen_star_is_not_native_checkpoint": "Main section5.2: modified InterGen cross-attention output dropout10%, retrained with per-person texts; native released checkpoint is not this baseline.",
+    "SA_vs_CA_is_substantive": "Supplementary section2.2/Table1: CA FID7.03 vs SA6.74."
+  },
+  "official_metric_implementation": {
+    "embedding": "512-d InterCLIP normalized text/motion features multiplied by learned latent_scale; physical motions [B,T,2,262], last4 contacts removed per actor before encoding",
+    "FID": "Multiply motion features by6; means and sample covariances; Frechet distance with scipy.linalg.sqrtm(C_real C_gen).",
+    "R_Precision": "Within96-candidate batches, Euclidean text-to-motion distances; cumulative diagonal matches top1,2,3. Apply same length sorting to both.",
+    "MM_Distance": "Mean Euclidean paired text/motion feature distance; no factor6.",
+    "Diversity": "Two sets of300 indices without replacement, average norm(6*(f_i-f_j)/2).",
+    "Multimodality": "100 texts x30 motions,10 repeat-index pairs without replacement, mean motion feature distance; no factor6 or divisor2."
+  }
+}

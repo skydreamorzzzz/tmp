@@ -1,0 +1,42 @@
+{
+  "num_scenes": 1,
+  "metrics": {
+    "penebone_mean": 0.0,
+    "penebone_std": 0.0,
+    "pene_rate_mean": 0.0,
+    "pene_rate_std": 0.0,
+    "penebone_inter_mean": 0.0,
+    "pene_inter_rate_mean": 0.0,
+    "penebone_non_mean": 0.0,
+    "pene_non_rate_mean": 0.0,
+    "cframe_all_mean": 0.0,
+    "cframe_all_std": 0.0,
+    "contact_all_mean": 0.0,
+    "contact_all_std": 0.0,
+    "cframe_inter_mean": 0.0,
+    "contact_inter_mean": 0.0,
+    "cframe_non_mean": 0.0,
+    "contact_non_mean": 0.0,
+    "intra_scene_diversity_mean": 3.2176172137260437,
+    "intra_scene_diversity_std": 0.0
+  },
+  "per_scene": [
+    {
+      "scene": "scene_2636_4p",
+      "num_frames": 150,
+      "penebone": 0.0,
+      "pene_rate": 0.0,
+      "penebone_inter": 0.0,
+      "pene_inter_rate": 0.0,
+      "penebone_non": 0.0,
+      "pene_non_rate": 0.0,
+      "cframe_all": 0.0,
+      "contact_all": 0.0,
+      "cframe_inter": 0.0,
+      "contact_inter": 0.0,
+      "cframe_non": 0.0,
+      "contact_non": 0.0,
+      "diversity": 3.2176172137260437
+    }
+  ]
+}

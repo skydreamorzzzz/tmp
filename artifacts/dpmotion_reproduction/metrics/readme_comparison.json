@@ -1,0 +1,51 @@
+{
+  "n_scenes": 120,
+  "penebone_mean": {
+    "readme": 0.3414,
+    "actual": 0.30832890355959536,
+    "delta_actual_minus_readme": -0.033071096440404624
+  },
+  "penebone_std": {
+    "readme": 1.2919,
+    "actual": 1.078201460876605,
+    "delta_actual_minus_readme": -0.21369853912339498,
+    "note": "Current evaluator np.std uses population std (ddof=0); README aggregation convention unspecified."
+  },
+  "penetration_rate": {
+    "readme_percent": 0.006,
+    "actual_raw_fraction": 5.379188712522046e-05,
+    "actual_percent_equivalent": 0.005379188712522046,
+    "delta_percentage_points_if_readme_uses_percent": -0.0006208112874779544
+  },
+  "interaction_penetration_rate": {
+    "readme_percent": 0.0181,
+    "actual_raw_fraction": 0.00016137566100269397,
+    "actual_percent_equivalent": 0.016137566100269396,
+    "delta_percentage_points_if_readme_uses_percent": -0.0019624338997306055
+  },
+  "non_interaction_penetration_rate": {
+    "readme_percent": 0.0,
+    "actual_raw_fraction": 0.0,
+    "actual_percent_equivalent": 0.0
+  },
+  "intra_scene_diversity_mean": {
+    "readme": 3.3386,
+    "actual": 3.272060774804817,
+    "delta_actual_minus_readme": -0.06653922519518307
+  },
+  "intra_scene_diversity_std": {
+    "readme": 0.5514,
+    "actual": 0.5623502550290398,
+    "delta_actual_minus_readme": 0.01095025502903979
+  },
+  "cross_scene_diversity": {
+    "readme": 1.5876,
+    "actual": null,
+    "reason": "No implementation or definition in checked-in evaluator."
+  },
+  "protocol_caveats": [
+    "Per-scene seed explicitly fixed here; original README generation RNG not recorded.",
+    "Current 120 test texts use the same split and window=150; current path is DDPM1000 with GLI at t<=100.",
+    "README does not specify rate unit conversion or standard-deviation ddof."
+  ]
+}

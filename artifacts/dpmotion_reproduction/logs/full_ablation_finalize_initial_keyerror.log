@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "artifacts/dpmotion_reproduction/finalize_full_ablation.py", line 89, in <module>
+    main()
+  File "artifacts/dpmotion_reproduction/finalize_full_ablation.py", line 54, in main
+    row = clip["paired_contrasts"][name]
+KeyError: 'rag_effect_without_guidance'

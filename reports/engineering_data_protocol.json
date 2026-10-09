@@ -1,0 +1,40 @@
+{
+  "mode": "engineering reconstruction",
+  "splits": {
+    "train": {
+      "original": 6022,
+      "retained": 6013,
+      "excluded": [
+        "3945",
+        "4385",
+        "4434",
+        "6028",
+        "6940",
+        "7220",
+        "7221",
+        "7543",
+        "7561"
+      ],
+      "reason": "Required motion or per-person annotation file absent; no annotations fabricated."
+    },
+    "val": {
+      "original": 580,
+      "retained": 579,
+      "excluded": [
+        "4193"
+      ],
+      "reason": "Required motion or per-person annotation file absent; no annotations fabricated."
+    },
+    "test": {
+      "original": 1177,
+      "retained": 1176,
+      "excluded": [
+        "4106"
+      ],
+      "reason": "Required motion or per-person annotation file absent; no annotations fabricated."
+    }
+  },
+  "original_splits_modified": false,
+  "encoding_conversions": "annotation_encoding.json",
+  "short_sequences": "Official loader still excludes sequences shorter than 15 input frames."
+}

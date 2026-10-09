@@ -1,0 +1,3 @@
+START /home/featurize/work/FreeMotion-reproduction/.venv/bin/python -u /home/featurize/work/FreeMotion-reproduction/engineering/train.py --stage 1 --epochs 2500 --batch-size 80 --physical-batch 80 --workers 4 --log-every 10 --run-dir /home/featurize/work/FreeMotion-reproduction/runs/official_budget_v1/stage1
+CUDA OOM: reduce physical batch only; retain epochs/effective batch.
+START /home/featurize/work/FreeMotion-reproduction/.venv/bin/python -u /home/featurize/work/FreeMotion-reproduction/engineering/train.py --stage 1 --epochs 2500 --batch-size 80 --physical-batch 40 --workers 4 --log-every 10 --run-dir /home/featurize/work/FreeMotion-reproduction/runs/official_budget_v1/stage1

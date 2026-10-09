@@ -1,0 +1,34 @@
+{
+  "file_id": "2813",
+  "seed": 2855,
+  "group1_text": "two individuals are conversing with each other.",
+  "group2_text": "the two persons approach each other closely.",
+  "retrieval": {
+    "text": "the two persons approach each other closely.",
+    "score": 0.8986022472381592,
+    "rank": 16,
+    "reason": "first_similarity_below_threshold"
+  },
+  "window": 150,
+  "distance_m": 3.0,
+  "distance_weight": 5.0,
+  "sampler": "unmodified upstream forward_single; ancestral DDPM 1000",
+  "same_torch_random_draws_exactly": true,
+  "torch_random_draw_count": 2009,
+  "conditions": {
+    "off": {
+      "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/off/scene_2813_4p.npy",
+      "mean_random_draw_count": 2009,
+      "random_draw_sequence_sha256": "7e2002209fb50bf711f9c4b7aad7e9b6ed90619db82ded934ff81fcdd08af7aa",
+      "first_draw_sha256": "162ee37aa2577cb6e531ceb28fdd35acc0f261e2adb64cff7a092cfe4905bd45",
+      "last_draw_sha256": "9acf62de67dd89480a1b42543c0c9af398ef9e7bb00b9b53194f66b6d1d05b46"
+    },
+    "on": {
+      "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/on/scene_2813_4p.npy",
+      "mean_random_draw_count": 2009,
+      "random_draw_sequence_sha256": "7e2002209fb50bf711f9c4b7aad7e9b6ed90619db82ded934ff81fcdd08af7aa",
+      "first_draw_sha256": "162ee37aa2577cb6e531ceb28fdd35acc0f261e2adb64cff7a092cfe4905bd45",
+      "last_draw_sha256": "9acf62de67dd89480a1b42543c0c9af398ef9e7bb00b9b53194f66b6d1d05b46"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "file_id": "5647",
+  "seed": 5689,
+  "group1_text": "two persons lift slightly and swing both hands upwards from the front of their bodies.",
+  "group2_text": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+  "retrieval": {
+    "text": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+    "score": 0.8930875062942505,
+    "rank": 3,
+    "reason": "first_similarity_below_threshold"
+  },
+  "window": 150,
+  "distance_m": 3.0,
+  "distance_weight": 5.0,
+  "sampler": "unmodified upstream forward_single; ancestral DDPM 1000",
+  "same_torch_random_draws_exactly": true,
+  "torch_random_draw_count": 2009,
+  "conditions": {
+    "off": {
+      "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/off/scene_5647_4p.npy",
+      "mean_random_draw_count": 2009,
+      "random_draw_sequence_sha256": "527996b48936eebfc91809bc96b45eea599b9f576fb9da5acb324466080078d2",
+      "first_draw_sha256": "6f25783a90322a0306d5175d287c50e37062c39e9d20d7d7449ea3d8a3f1a378",
+      "last_draw_sha256": "5fa05b1de7ef39b70f4a4aca8a94d5adf966ad9d00d58d5156a7ecdd32b41bb3"
+    },
+    "on": {
+      "path": "artifacts/dpmotion_reproduction/ablations/guidance_pairs/on/scene_5647_4p.npy",
+      "mean_random_draw_count": 2009,
+      "random_draw_sequence_sha256": "527996b48936eebfc91809bc96b45eea599b9f576fb9da5acb324466080078d2",
+      "first_draw_sha256": "6f25783a90322a0306d5175d287c50e37062c39e9d20d7d7449ea3d8a3f1a378",
+      "last_draw_sha256": "5fa05b1de7ef39b70f4a4aca8a94d5adf966ad9d00d58d5156a7ecdd32b41bb3"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "expected_scenes": 120,
+  "log_rows": 120,
+  "unique_logged_ids": 120,
+  "missing_ids": [],
+  "extra_ids": [],
+  "failed_rows": [],
+  "invalid_files": [],
+  "all_pass": true
+}

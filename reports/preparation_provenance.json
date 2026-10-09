@@ -1,0 +1,13 @@
+{
+  "official_repository": "https://github.com/VankouF/FreeMotion-Codes.git",
+  "commit": "df92bdd982e25363fd27c86899e22b3b40230de2",
+  "python_base": "/environment/miniconda3/envs/py38/bin/python",
+  "data_sources": {
+    "annots": "/home/featurize/work/incoming/interhuman/InterHuman-dataset/annots-20261004T100415Z-1-001/annots",
+    "motions": "/home/featurize/work/incoming/interhuman/InterHuman-dataset/motions-20261004T100527Z-1-001/motions",
+    "motions_processed": "/home/featurize/work/incoming/interhuman/InterHuman-dataset/motions_processed/motions_processed",
+    "separate_annots": "/home/featurize/work/incoming/interhuman/InterHuman-dataset/separate_annots/separate_annots",
+    "split": "/home/featurize/work/incoming/interhuman/InterHuman-dataset/split-20261004T100531Z-1-001/split"
+  },
+  "evaluation_checkpoint": "/home/featurize/work/incoming/interclip/interclip.ckpt"
+}

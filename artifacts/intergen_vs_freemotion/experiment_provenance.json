@@ -1,0 +1,29 @@
+{
+  "native_commit": "b1750df4a859443b8a69329f759ce3a7503ae179",
+  "native_source_unchanged": true,
+  "generator_sha256": "bab341123c27af9d8c3ee7ebc43c2d341bfd0f4103425d06f8af6c717a086f8d",
+  "evaluator_sha256": "4e14b8ee5c2d965778fe003fb37d98ed8e5c7e0940668515fc7dcfa2831c17f8",
+  "normalizer": {
+    "global_mean.npy": "2f97b88889c773551cd597c32e88bfa070c2fb1721a992a80bfb7cf4c22e03b6",
+    "global_std.npy": "dd5988b979e9803786ab497f5945316c2d52b97c90b593d0427220fd49b03e4b"
+  },
+  "torch": "1.13.1+cu117",
+  "device": "NVIDIA GeForce RTX4090",
+  "single_adds_parameters": 0,
+  "zero_B_equivalence_error": 1.6689300537109375e-06,
+  "port_reference": {
+    "repository": "skydreamorzzzz/DPMotion",
+    "commit": "36dafe8b2cefa8f4610723fb10f581e380548498",
+    "files": {
+      "models/nets.py": {
+        "url": "https://raw.githubusercontent.com/skydreamorzzzz/DPMotion/36dafe8b2cefa8f4610723fb10f581e380548498/models/nets.py",
+        "sha256": "aa9cc6686f03986453914eb5ac85b9046fd812320c57e840041205e1ad1b85f6"
+      },
+      "models/intergen.py": {
+        "url": "https://raw.githubusercontent.com/skydreamorzzzz/DPMotion/36dafe8b2cefa8f4610723fb10f581e380548498/models/intergen.py",
+        "sha256": "1266dce22ee10c42e71f30eccc9e8f3cfc095a4846e87acb0569c5c9a3ca7ffa"
+      }
+    }
+  },
+  "algorithm_changes": "Only user-authorized zero-B single dispatch; native joint generation and evaluator source unmodified."
+}

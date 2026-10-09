@@ -1,0 +1,346 @@
+{
+  "n_fixed_cases": 4,
+  "cases": [
+    {
+      "file_id": "2636",
+      "retrieval": {
+        "text": "the first one moves ahead by running, and the other person moves forward by walking.",
+        "score": 0.923800528049469,
+        "rank": 6,
+        "reason": "rank6_fallback_no_below_threshold"
+      },
+      "same_text_and_seed": true,
+      "same_torch_random_draws_exactly": true,
+      "off": {
+        "group_center_xz_distance_m": {
+          "mean": 2.410073757171631,
+          "min": 0.6424901485443115,
+          "fraction_frames_below_3m": 0.54
+        },
+        "cross_group_root_xz_distance_m": {
+          "mean": 2.6792378425598145,
+          "min": 0.10553126037120819,
+          "fraction_pair_frames_below_3m": 0.6133333333333333
+        },
+        "within_group_root_distances": {
+          "group1_root_3d_mean_m": 1.626191258430481,
+          "group2_root_3d_mean_m": 1.5275771617889404,
+          "group1_root_xz_mean_m": 1.623965859413147,
+          "group2_root_xz_mean_m": 1.526826024055481
+        },
+        "root_xz_path_length_m_by_person": [
+          2.360668659210205,
+          2.749904155731201,
+          2.668206214904785,
+          3.5701498985290527
+        ],
+        "mean_joint_xyz_speed_m_per_frame": 0.022214017808437347,
+        "penebone_depth_sum_m": 0.7820073962211609,
+        "penetration_rate_fraction": 0.00012597631645250694,
+        "interaction_penebone_depth_sum_m": 0.0,
+        "non_interaction_penebone_depth_sum_m": 0.7820073962211609,
+        "contact_frame_rate_pct": 10.666666666666668,
+        "contact_joint_pairs_per_frame": 0.4866666666666667
+      },
+      "on": {
+        "group_center_xz_distance_m": {
+          "mean": 4.61915922164917,
+          "min": 3.800231695175171,
+          "fraction_frames_below_3m": 0.0
+        },
+        "cross_group_root_xz_distance_m": {
+          "mean": 4.85007905960083,
+          "min": 2.946289300918579,
+          "fraction_pair_frames_below_3m": 0.03
+        },
+        "within_group_root_distances": {
+          "group1_root_3d_mean_m": 2.5728938579559326,
+          "group2_root_3d_mean_m": 1.834212064743042,
+          "group1_root_xz_mean_m": 2.5715267658233643,
+          "group2_root_xz_mean_m": 1.833614468574524
+        },
+        "root_xz_path_length_m_by_person": [
+          1.8053951263427734,
+          3.394843339920044,
+          2.3451671600341797,
+          3.7018442153930664
+        ],
+        "mean_joint_xyz_speed_m_per_frame": 0.021722521632909775,
+        "penebone_depth_sum_m": 0.0,
+        "penetration_rate_fraction": 0.0,
+        "interaction_penebone_depth_sum_m": 0.0,
+        "non_interaction_penebone_depth_sum_m": 0.0,
+        "contact_frame_rate_pct": 0.0,
+        "contact_joint_pairs_per_frame": 0.0
+      },
+      "paired_motion_change": {
+        "mean_abs_joint_xyz_change_m": 0.49768614768981934,
+        "max_abs_joint_xyz_change_m": 2.8963828086853027,
+        "mean_abs_change_by_person_m": [
+          0.7121636271476746,
+          0.8267737030982971,
+          0.27226361632347107,
+          0.17954373359680176
+        ]
+      }
+    },
+    {
+      "file_id": "5647",
+      "retrieval": {
+        "text": "the two persons raise both arms and swing up and down and twist their waist to the left and right while stepping up and down in place.",
+        "score": 0.8930875062942505,
+        "rank": 3,
+        "reason": "first_similarity_below_threshold"
+      },
+      "same_text_and_seed": true,
+      "same_torch_random_draws_exactly": true,
+      "off": {
+        "group_center_xz_distance_m": {
+          "mean": 0.5419029593467712,
+          "min": 0.44870519638061523,
+          "fraction_frames_below_3m": 1.0
+        },
+        "cross_group_root_xz_distance_m": {
+          "mean": 0.7024087905883789,
+          "min": 0.09703231602907181,
+          "fraction_pair_frames_below_3m": 1.0
+        },
+        "within_group_root_distances": {
+          "group1_root_3d_mean_m": 1.1019773483276367,
+          "group2_root_3d_mean_m": 0.5025607347488403,
+          "group1_root_xz_mean_m": 1.1016669273376465,
+          "group2_root_xz_mean_m": 0.5014976263046265
+        },
+        "root_xz_path_length_m_by_person": [
+          0.9556101560592651,
+          0.9986567497253418,
+          0.9103233814239502,
+          0.9627887606620789
+        ],
+        "mean_joint_xyz_speed_m_per_frame": 0.014850377105176449,
+        "penebone_depth_sum_m": 5.716816425323486,
+        "penetration_rate_fraction": 0.0009145880574452003,
+        "interaction_penebone_depth_sum_m": 0.0,
+        "non_interaction_penebone_depth_sum_m": 5.716816425323486,
+        "contact_frame_rate_pct": 92.66666666666666,
+        "contact_joint_pairs_per_frame": 4.36
+      },
+      "on": {
+        "group_center_xz_distance_m": {
+          "mean": 3.43605637550354,
+          "min": 3.098513126373291,
+          "fraction_frames_below_3m": 0.0
+        },
+        "cross_group_root_xz_distance_m": {
+          "mean": 3.536872625350952,
+          "min": 2.860191822052002,
+          "fraction_pair_frames_below_3m": 0.08833333333333333
+        },
+        "within_group_root_distances": {
+          "group1_root_3d_mean_m": 1.6348150968551636,
+          "group2_root_3d_mean_m": 0.8814936280250549,
+          "group1_root_xz_mean_m": 1.634352207183838,
+          "group2_root_xz_mean_m": 0.8813393115997314
+        },
+        "root_xz_path_length_m_by_person": [
+          1.3192603588104248,
+          0.9913424849510193,
+          0.911408543586731,
+          0.8759003281593323
+        ],
+        "mean_joint_xyz_speed_m_per_frame": 0.015116065740585327,
+        "penebone_depth_sum_m": 0.0,
+        "penetration_rate_fraction": 0.0,
+        "interaction_penebone_depth_sum_m": 0.0,
+        "non_interaction_penebone_depth_sum_m": 0.0,
+        "contact_frame_rate_pct": 0.0,
+        "contact_joint_pairs_per_frame": 0.0
+      },
+      "paired_motion_change": {
+        "mean_abs_joint_xyz_change_m": 0.6319615840911865,
+        "max_abs_joint_xyz_change_m": 2.620039224624634,
+        "mean_abs_change_by_person_m": [
+          0.8039448261260986,
+          0.8082209825515747,
+          0.5729984045028687,
+          0.34268203377723694
+        ]
+      }
+    },
+    {
+      "file_id": "2813",
+      "retrieval": {
+        "text": "the two persons approach each other closely.",
+        "score": 0.8986022472381592,
+        "rank": 16,
+        "reason": "first_similarity_below_threshold"
+      },
+      "same_text_and_seed": true,
+      "same_torch_random_draws_exactly": true,
+      "off": {
+        "group_center_xz_distance_m": {
+          "mean": 1.4418983459472656,
+          "min": 1.3159804344177246,
+          "fraction_frames_below_3m": 1.0
+        },
+        "cross_group_root_xz_distance_m": {
+          "mean": 1.5100516080856323,
+          "min": 0.14028219878673553,
+          "fraction_pair_frames_below_3m": 0.9366666666666666
+        },
+        "within_group_root_distances": {
+          "group1_root_3d_mean_m": 0.7508852481842041,
+          "group2_root_3d_mean_m": 1.4373736381530762,
+          "group1_root_xz_mean_m": 0.7484007477760315,
+          "group2_root_xz_mean_m": 1.4366272687911987
+        },
+        "root_xz_path_length_m_by_person": [
+          0.47779831290245056,
+          0.9622195363044739,
+          1.8087174892425537,
+          1.9391447305679321
+        ],
+        "mean_joint_xyz_speed_m_per_frame": 0.010507517494261265,
+        "penebone_depth_sum_m": 1.2883522510528564,
+        "penetration_rate_fraction": 0.00020156210632401108,
+        "interaction_penebone_depth_sum_m": 0.0,
+        "non_interaction_penebone_depth_sum_m": 1.2883522510528564,
+        "contact_frame_rate_pct": 18.0,
+        "contact_joint_pairs_per_frame": 0.66
+      },
+      "on": {
+        "group_center_xz_distance_m": {
+          "mean": 3.8650121688842773,
+          "min": 3.7681663036346436,
+          "fraction_frames_below_3m": 0.0
+        },
+        "cross_group_root_xz_distance_m": {
+          "mean": 3.897212028503418,
+          "min": 2.957207441329956,
+          "fraction_pair_frames_below_3m": 0.008333333333333333
+        },
+        "within_group_root_distances": {
+          "group1_root_3d_mean_m": 0.9398519992828369,
+          "group2_root_3d_mean_m": 0.7299365997314453,
+          "group1_root_xz_mean_m": 0.9388509392738342,
+          "group2_root_xz_mean_m": 0.7293210625648499
+        },
+        "root_xz_path_length_m_by_person": [
+          0.7365957498550415,
+          1.4680895805358887,
+          1.472688913345337,
+          1.1131210327148438
+        ],
+        "mean_joint_xyz_speed_m_per_frame": 0.009902385994791985,
+        "penebone_depth_sum_m": 0.0,
+        "penetration_rate_fraction": 0.0,
+        "interaction_penebone_depth_sum_m": 0.0,
+        "non_interaction_penebone_depth_sum_m": 0.0,
+        "contact_frame_rate_pct": 0.0,
+        "contact_joint_pairs_per_frame": 0.0
+      },
+      "paired_motion_change": {
+        "mean_abs_joint_xyz_change_m": 0.4802801012992859,
+        "max_abs_joint_xyz_change_m": 2.882227897644043,
+        "mean_abs_change_by_person_m": [
+          0.6082873940467834,
+          0.21399922668933868,
+          0.3939417600631714,
+          0.7048919200897217
+        ]
+      }
+    },
+    {
+      "file_id": "4000",
+      "retrieval": {
+        "text": "two people are taking a walk, and one picks up an item belonging to the first one.",
+        "score": 0.7718766331672668,
+        "rank": 4,
+        "reason": "first_similarity_below_threshold"
+      },
+      "same_text_and_seed": true,
+      "same_torch_random_draws_exactly": true,
+      "off": {
+        "group_center_xz_distance_m": {
+          "mean": 0.7219739556312561,
+          "min": 0.5294471979141235,
+          "fraction_frames_below_3m": 1.0
+        },
+        "cross_group_root_xz_distance_m": {
+          "mean": 1.2558687925338745,
+          "min": 0.17527449131011963,
+          "fraction_pair_frames_below_3m": 1.0
+        },
+        "within_group_root_distances": {
+          "group1_root_3d_mean_m": 1.076537013053894,
+          "group2_root_3d_mean_m": 1.9807722568511963,
+          "group1_root_xz_mean_m": 1.0744646787643433,
+          "group2_root_xz_mean_m": 1.9774452447891235
+        },
+        "root_xz_path_length_m_by_person": [
+          1.734097957611084,
+          1.8509202003479004,
+          2.5266077518463135,
+          2.318401336669922
+        ],
+        "mean_joint_xyz_speed_m_per_frame": 0.01635742373764515,
+        "penebone_depth_sum_m": 0.0,
+        "penetration_rate_fraction": 0.0,
+        "interaction_penebone_depth_sum_m": 0.0,
+        "non_interaction_penebone_depth_sum_m": 0.0,
+        "contact_frame_rate_pct": 8.0,
+        "contact_joint_pairs_per_frame": 0.08666666666666667
+      },
+      "on": {
+        "group_center_xz_distance_m": {
+          "mean": 3.3155930042266846,
+          "min": 3.004160165786743,
+          "fraction_frames_below_3m": 0.0
+        },
+        "cross_group_root_xz_distance_m": {
+          "mean": 3.8988640308380127,
+          "min": 2.7639057636260986,
+          "fraction_pair_frames_below_3m": 0.12833333333333333
+        },
+        "within_group_root_distances": {
+          "group1_root_3d_mean_m": 1.7657865285873413,
+          "group2_root_3d_mean_m": 3.943300485610962,
+          "group1_root_xz_mean_m": 1.764979600906372,
+          "group2_root_xz_mean_m": 3.9422266483306885
+        },
+        "root_xz_path_length_m_by_person": [
+          2.253457546234131,
+          1.3403667211532593,
+          1.4412052631378174,
+          2.0440573692321777
+        ],
+        "mean_joint_xyz_speed_m_per_frame": 0.014341507107019424,
+        "penebone_depth_sum_m": 0.0,
+        "penetration_rate_fraction": 0.0,
+        "interaction_penebone_depth_sum_m": 0.0,
+        "non_interaction_penebone_depth_sum_m": 0.0,
+        "contact_frame_rate_pct": 0.0,
+        "contact_joint_pairs_per_frame": 0.0
+      },
+      "paired_motion_change": {
+        "mean_abs_joint_xyz_change_m": 0.6727601289749146,
+        "max_abs_joint_xyz_change_m": 2.5419559478759766,
+        "mean_abs_change_by_person_m": [
+          0.37008944153785706,
+          0.7431763410568237,
+          0.9102639555931091,
+          0.6675106287002563
+        ]
+      }
+    }
+  ],
+  "scope_note": "Four fixed retrieval examples chosen to span rank-6 fallback and below-threshold selection; descriptive mechanism check, not a random 120-scene estimate or a quality claim.",
+  "paired_means_on_minus_off": {
+    "group_center_xz_distance_m.mean": 2.529992938041687,
+    "cross_group_root_xz_distance_m.mean": 2.508865177631378,
+    "penebone_depth_sum_m": -1.946794018149376,
+    "penetration_rate_fraction": -0.0003105316200554296,
+    "contact_frame_rate_pct": -32.33333333333333,
+    "mean_joint_xyz_speed_m_per_frame": -0.0007117139175534248
+  }
+}

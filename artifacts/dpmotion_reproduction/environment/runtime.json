@@ -1,0 +1,17 @@
+{
+  "python": "3.8.20 (default, Oct  3 2024, 15:24:27) \n[GCC 11.2.0]",
+  "platform": "Linux-5.15.0-102-generic-x86_64-with-glibc2.17",
+  "torch": "1.13.1+cu117",
+  "torch_cuda": "11.7",
+  "cuda_available": true,
+  "numpy": "1.23.5",
+  "scipy": "1.4.1",
+  "matplotlib": "3.2.0",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "gpu_capability": [
+    8,
+    9
+  ],
+  "gpu_properties_memory_bytes": 25250627584,
+  "nvidia_smi": "NVIDIA GeForce RTX 4090, 580.95.05, 24564 MiB"
+}
